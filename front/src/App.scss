@@ -1,0 +1,36 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.containerRoot {
+  // max-width: 1200px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  // border: 1px solid red;
+  overflow: hidden;
+  // width: 100%;
+}
+
+#root {
+  // display: flex;
+  background: #2d3142;
+  // width: 100%;
+  // min-height: 100vh;
+  // background: red;
+}
+
+.active i {
+  color: #fff;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+
+}

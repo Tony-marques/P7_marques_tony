@@ -1,0 +1,24 @@
+.news {
+  background: #2d3142;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+
+  .postsContainer {
+    background: #b0d7ff;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding: 1.5rem;
+    margin: 0 auto;
+    width: 100%;
+    width: 700px;
+    max-height: 95vh;
+    overflow: auto;
+
+
+  }
+
+  .postsContainer::-webkit-scrollbar {
+    display: none;
+  }
+}

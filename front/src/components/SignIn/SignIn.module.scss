@@ -1,0 +1,62 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 400px;
+  height: 350px;
+  align-items: center;
+  background: white;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+
+  input {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 5px;
+    border: 1px solid #dddfe2;
+    outline: none;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: #b0d7ff;
+    }
+  }
+
+  input[type="button"] {
+    cursor: pointer;
+  }
+  hr {
+    height: 1px;
+    background-color: #dddfe2;
+    width: 100%;
+    border: none;
+  }
+
+  .loginBtn {
+    background: #2d3142;
+    color: white;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+
+    &:hover {
+      background: white;
+      color: #b0d7ff;
+      border-color: #b0d7ff;
+    }
+  }
+
+  .accountBtn {
+    width: 50%;
+    background: #b0d7ff;
+    color: #2d3142;
+    font-weight: bold;
+    transition: all 0.3s;
+
+    &:hover {
+      background: white;
+      border-color: #b0d7ff;
+    }
+  }
+}

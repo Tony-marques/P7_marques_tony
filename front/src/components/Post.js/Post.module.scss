@@ -1,0 +1,98 @@
+.post {
+  border: 1px solid rgb(176, 215, 255);
+  border-radius: 5px;
+  background: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.3s;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+
+  .postHeader {
+    background: #2d3142;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+    color: white;
+
+    .postProfil {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      img {
+        width: 40px;
+        border-radius: 50%;
+        border: 2px solid #b0d7ff;
+      }
+    }
+  }
+
+  .postBody {
+    padding: 1rem 0;
+    text-align: left;
+  }
+
+  button {
+    background: #2d3142;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid transparent;
+
+    color: white;
+    cursor: pointer;
+    margin-left: 1rem;
+    transition: all 0.3s;
+
+    &:hover {
+      background: white;
+      border: 1px solid #2d3142;
+      box-shadow: 1px 1px 10px #2d3142;
+
+      i {
+        color: #2d3142;
+      }
+    }
+  }
+
+  .update {
+    background: #b0d7ff;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+
+    &:hover {
+      background: white;
+      border: 1px solid #b0d7ff;
+      box-shadow: 1px 1px 10px rgba(176, 215, 255, 01);
+
+      i {
+        color: #b0d7ff;
+      }
+    }
+  }
+
+  .btnContainer {
+    display: flex;
+    justify-content: flex-end;
+
+    .comments {
+      flex-grow: 1;
+      padding: 0 1rem;
+      border-radius: 5px;
+      border: 1px solid #dddfe2;
+      outline: none;
+      transition: border-color 0.3s;
+
+      &:focus {
+        border-color: #2d3142;
+      }
+    }
+  }
+
+  i {
+    width: 15px;
+    height: 15px;
+  }
+}

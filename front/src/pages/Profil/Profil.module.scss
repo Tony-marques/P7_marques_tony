@@ -1,0 +1,57 @@
+
+// .profilContainer {
+//   background: #fff;
+//   box-shadow: 1px 1px 10px rgba(0, 0, 0, 1);
+//   border-radius: 5px;
+//   padding: 2rem;
+//   margin: 0 auto;
+//   width: 100%;
+//   width: 700px;
+//   height: 50vh;
+//   min-height: 450px;
+//   overflow: auto;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: space-between;
+//   align-items: center;
+//   position: relative;
+
+//   .nameContainer, .firstNameContainer {
+//     display: flex;
+//     width: 100%;
+
+//     .name, .firstName {
+//       width: 50%;
+//       text-align: right;
+//     }
+//   }
+
+//   .lastname,
+//   .firstname,
+//   .age,
+//   .mail {
+//     display: flex;
+//     align-items: center;
+//     margin-left: 1rem;
+//   }
+//   i {
+//     margin-left: 2rem;
+//     cursor: pointer;
+//     color: #2d3142;
+//     position: absolute;
+//     top: 10%;
+//     right: 10%;
+//     font-size: 1.5rem;
+//   }
+
+//   img {
+//     width: 200px;
+//     height: 200px;
+//     border-radius: 50%;
+//     border: 5px solid #b0d7ff;
+//     transition: box-shadow 0.3s;
+//     &:hover {
+//       box-shadow: 1px 1px 20px #b0d7ff;
+//     }
+//   }
+// }
