@@ -8,26 +8,27 @@ import { useEffect } from "react";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import { apiPost } from "../../Api/Api";
 
 export default function AddForm() {
   const { toggleAdd, setToggleAdd } = useContext(ToggleAddContext);
   const navigate = useNavigate();
   const [author, setAuthor] = useState("");
   const [content, setContent] = useState("");
-  const { USER_ID } = useContext(AuthContext);
+  const { USER_ID, setIsPostUpdating } = useContext(AuthContext);
   // const userId = Cookies.get("userId");
-  // console.log(userId);
 
   const handleSend = () => {
     axios
-      .post("http://localhost:3000/api/post/createpost", {
+      .post(`${apiPost}/createpost`, {
         author,
         content,
         userId: USER_ID,
       })
-      .then(() => document.location.reload())
+      .then(() => setIsPostUpdating(true))
       .catch(() => console.log("error"));
     setToggleAdd(false);
+    setIsPostUpdating(false);
   };
 
   const closeAddForm = () => {

@@ -22,6 +22,8 @@ const App = () => {
   // Variables
   const token = Cookies.get("token");
   const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [isProfilUpdating, setIsProfilUpdating] = useState(null);
+  const [isPostUpdating, setIsPostUpdating] = useState(null);
   const [toggleAdd, setToggleAdd] = useState(null);
   const [USER_ID, setUSER_ID] = useState(null);
 
@@ -49,7 +51,15 @@ const App = () => {
 
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, setIsAuthenticated, USER_ID }}
+      value={{
+        isAuthenticated,
+        setIsAuthenticated,
+        isProfilUpdating,
+        setIsProfilUpdating,
+        isPostUpdating,
+        setIsPostUpdating,
+        USER_ID,
+      }}
     >
       <ToggleAddContext.Provider value={{ toggleAdd, setToggleAdd }}>
         <div className="containerRoot">

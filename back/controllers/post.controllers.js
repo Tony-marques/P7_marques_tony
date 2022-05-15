@@ -40,3 +40,4 @@ exports.deletePost = (req, res, next) => {
     .then(() => res.status(200).json({ message: "Message supprimé !" }))
     .catch((error) => res.status(400).json({ error }));
 };
+

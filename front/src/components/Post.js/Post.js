@@ -2,11 +2,18 @@ import React from "react";
 import styles from "./Post.module.scss";
 import pp from "../../assets/Profil.webp";
 import { formatDate } from "../../Utils/formatDate";
-import axios from "axios"
+import axios from "axios";
+import { apiPost } from "../../Api/Api";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Post({ item }) {
+  const { setIsPostUpdating } = useContext(AuthContext);
   const deletePost = () => {
-    axios.delete(`http://localhost:3000/api/post/deletepost/${item.id}`)
+    axios.delete(`${apiPost}/deletepost/${item.id}`).then(() => {
+      setIsPostUpdating(true);
+    });
+    setIsPostUpdating(false);
   };
 
   return (

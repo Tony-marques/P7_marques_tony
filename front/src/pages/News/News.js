@@ -8,20 +8,22 @@ import { useState } from "react";
 import axios from "axios";
 import { useEffect } from "react";
 import Post from "../../components/Post.js/Post";
+import { apiPost } from "../../Api/Api";
 
 export default function News() {
   const [listOfPosts, setListOfPosts] = useState([]);
+  const { isPostUpdating } = useContext(AuthContext);
 
   const fetchData = () => {
     axios
-      .get("http://localhost:3000/api/post/getallposts")
+      .get(`${apiPost}/getallposts`)
       .then((res) => setListOfPosts(res.data))
       .catch(() => console.log("erreur"));
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [isPostUpdating]);
 
   return (
     <main className={styles.news}>

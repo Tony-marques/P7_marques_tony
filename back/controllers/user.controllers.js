@@ -56,7 +56,20 @@ exports.login = (req, res) => {
 
 exports.getOneProfil = (req, res) => {
   console.log(req.params.id);
-  UserModel.findByPk(req.params.id)
+  UserModel.findByPk(req.params.id, {
+    attributes: ["id", "name", "lastname", "age", "admin"],
+  })
     .then((user) => res.status(200).json(user))
     .catch((err) => res.status(401).json("erreuerrrrr"));
+};
+
+exports.getAllUsers = (req, res) => {
+  UserModel.findAll().then((users) => res.status(200).json( users ));
+};
+
+exports.updateProfil = (req, res) => {
+  console.log(req.body);
+  UserModel.findByPk(req.params.id).then((user) => {
+    user.update({ ...req.body }).then((newUser) => res.status(201).json({ newUser }));
+  });
 };
