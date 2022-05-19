@@ -15,11 +15,11 @@
 
 // module.exports = sequelize;
 
-
 module.exports = {
   username: "root",
   password: "",
   database: "groupomania",
   host: "localhost",
-  dialect: "mysql"
-}
+  dialect: "mysql",
+  logging: false,
+};

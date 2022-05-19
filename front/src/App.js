@@ -1,22 +1,21 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { AuthContext } from "./contexts/AuthContext";
+import { ToastContainer } from "react-toastify";
 import Cookies from "js-cookie";
 import { isExpired, decodeToken } from "react-jwt";
 
+import { AuthContext } from "./contexts/AuthContext";
 import "./App.scss";
-import { useState } from "react";
 import PrivateRoute from "./components/PrivateRoute";
 import News from "./pages/News/News";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
-import { useEffect } from "react";
 import Profil from "./pages/Profil/Profil";
 import Error404 from "./pages/Error404/Error404";
 import { ToggleAddContext } from "./contexts/ToggleAddContext";
+import PersonnalsPosts from "./pages/PersonnalsPosts/PersonnalsPosts";
+import AllUsers from "./components/AdminComponents/AllUsers/AllUsers";
 
 const App = () => {
   // Variables
@@ -24,13 +23,13 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [isProfilUpdating, setIsProfilUpdating] = useState(null);
   const [isPostUpdating, setIsPostUpdating] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(null);
   const [toggleAdd, setToggleAdd] = useState(null);
   const [USER_ID, setUSER_ID] = useState(null);
 
   // Fonctions
   const checkToken = () => {
     const decodedToken = decodeToken(token);
-    // console.log(USER_ID);
 
     if (!decodedToken) {
       Cookies.remove("token");
@@ -40,6 +39,8 @@ const App = () => {
 
     if (decodedToken) {
       const { userId } = decodedToken;
+      const { admin } = decodedToken;
+      setIsAdmin(admin);
       setUSER_ID(userId);
       setIsAuthenticated(true);
     }
@@ -54,6 +55,8 @@ const App = () => {
       value={{
         isAuthenticated,
         setIsAuthenticated,
+        isAdmin,
+        setIsAdmin,
         isProfilUpdating,
         setIsProfilUpdating,
         isPostUpdating,
@@ -70,6 +73,8 @@ const App = () => {
               <Route element={<PrivateRoute />}>
                 <Route path="/news" element={<News />} />
                 <Route path="/profil/:id" element={<Profil />} />
+                <Route path="/myposts" element={<PersonnalsPosts />} />
+                <Route path="/allusers" element={<AllUsers />} />
               </Route>
               <Route path="*" element={<Error404 />} />
             </Routes>

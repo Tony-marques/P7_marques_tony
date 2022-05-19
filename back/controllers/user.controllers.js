@@ -1,5 +1,5 @@
 const db = require("../models");
-// const UserModel = require("../models/user.model");
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -29,14 +29,14 @@ exports.login = (req, res) => {
   })
     .then((user) => {
       if (!user) {
-        res.status(401).json({ msg: "Utilisateur non trouvé" });
+        res.status(401).json({ msg: "Adresse e-mail incorrecte" });
       } else {
         bcrypt.compare(req.body.password, user.password).then((valid) => {
           if (!valid) {
             res.status(401).json({ msg: "Mot de passe incorrect" });
           } else {
             const token = jwt.sign(
-              { userId: user.id, admin: user.admin },
+              { userId: user.id, admin: user.admin, name: user.name },
               "RANDOM_SECRET_KEY",
               {
                 expiresIn: "24h",
@@ -44,7 +44,6 @@ exports.login = (req, res) => {
             );
             res.status(200).json({
               userId: user.id,
-
               token: token,
             });
           }
@@ -57,19 +56,34 @@ exports.login = (req, res) => {
 exports.getOneProfil = (req, res) => {
   console.log(req.params.id);
   UserModel.findByPk(req.params.id, {
-    attributes: ["id", "name", "lastname", "age", "admin"],
+    attributes: ["id", "name", "lastname", "age", "admin", "bio"],
   })
     .then((user) => res.status(200).json(user))
-    .catch((err) => res.status(401).json("erreuerrrrr"));
+    .catch((err) => res.status(401).json("erreur"));
 };
 
 exports.getAllUsers = (req, res) => {
-  UserModel.findAll().then((users) => res.status(200).json( users ));
+  UserModel.findAll({
+    attributes: ["admin", "age", "bio", "email", "id", "name", "lastname"],
+  }).then((users) => res.status(200).json(users));
 };
 
 exports.updateProfil = (req, res) => {
   console.log(req.body);
   UserModel.findByPk(req.params.id).then((user) => {
-    user.update({ ...req.body }).then((newUser) => res.status(201).json({ newUser }));
+    user
+      .update({ ...req.body })
+      .then((newUser) => res.status(201).json({ newUser }));
+  });
+};
+
+exports.deleteUser = (req, res) => {
+  const { id } = req.params;
+  UserModel.findOne({
+    where: {
+      id: id,
+    },
+  }).then((user) => {
+    user.destroy();
   });
 };

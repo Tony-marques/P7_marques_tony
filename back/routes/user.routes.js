@@ -6,6 +6,7 @@ const {
   getOneProfil,
   updateProfil,
   getAllUsers,
+  deleteUser,
 } = require("../controllers/user.controllers");
 
 // Route connexion
@@ -20,5 +21,7 @@ router.get("/getoneprofil/:id", getOneProfil);
 router.get("/getallusers", getAllUsers);
 
 router.put("/updateuser/:id", updateProfil);
+
+router.delete("/deleteuser/:id", deleteUser);
 
 module.exports = router;

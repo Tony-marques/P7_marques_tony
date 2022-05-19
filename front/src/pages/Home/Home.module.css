@@ -1,0 +1,58 @@
+.home {
+  background: #2D3142;
+  height: 100vh;
+  width: 100%;
+}
+
+.home .homeWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.home .homeTitle {
+  border-radius: 5px;
+  background: #b0d7ff;
+  -webkit-box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.7);
+          box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.7);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+}
+
+.home .homeTitle img {
+  width: 60%;
+}
+
+.home .homeTitle h1, .home .homeTitle h2 {
+  color: #2D3142;
+}
+
+@media only screen and (max-width: 500px) {
+  .home {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 0 1rem;
+  }
+}
+/*# sourceMappingURL=Home.module.css.map */

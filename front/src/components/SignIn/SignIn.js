@@ -1,28 +1,37 @@
 import React from "react";
 import { useState } from "react";
-import styles from "./SignIn.module.scss";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
+import styles from "./SignIn.module.scss";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
+import { apiUser } from "../../Api/Api";
 
 export default function Login({ setLogin }) {
   // Variables
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
-  // Fonctions
+  // Contexts
+  const { isAuthenticated } = useContext(AuthContext);
+
+  // Functions
   const handleForm = () => {
     axios
-      .post("http://localhost:3000/api/user/signin", {
+      .post(`${apiUser}/signin`, {
         email,
         password,
       })
-      .then((res) => toast.success("Compte créé !"))
-      .catch((error) => toast.error(error.response.data));
+      .then((res) => {
+        toast.success("Votre compte a été créé avec succès !");
+        setLogin(true);
+      })
+      .catch((error) => {
+        toast.error(error.response.data.msg);
+        console.log(error.response.data);
+      });
   };
 
   const toggleLoginHandle = () => {
@@ -41,7 +50,7 @@ export default function Login({ setLogin }) {
       />
       <input
         type="text"
-        placeholder="Password"
+        placeholder="Mot de passe"
         onChange={(e) => setPassword(e.target.value)}
       />
       <input

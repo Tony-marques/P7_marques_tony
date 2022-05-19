@@ -1,0 +1,10 @@
+.fa-file-pen, .fa-check {
+  margin-left: 2rem;
+  cursor: pointer;
+  color: #2d3142;
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: 1.5rem;
+}
+/*# sourceMappingURL=UserProfil.css.map */

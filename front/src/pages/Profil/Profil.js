@@ -1,31 +1,30 @@
-import React from "react";
-import MetaHead from "../../components/MetaHead/MetaHead";
-import styles from "./Profil.module.scss";
-import { useState } from "react";
-import { useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+
+import MetaHead from "../../components/MetaHead/MetaHead";
 import UserProfil from "../../components/UserProfil/UserProfil";
 import { apiUser } from "../../Api/Api";
-import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Profil() {
+  // Variables
   const [profilData, setProfilData] = useState([]);
-
   const { id } = useParams();
-  const { isProfilUpdating } = useContext(AuthContext);
-  console.log(isProfilUpdating);
 
+  // Contexts
+  const { isProfilUpdating } = useContext(AuthContext);
+
+  // Functions
   const fetchProfilData = async () => {
     const response = await axios.get(`${apiUser}/getoneprofil/${id}`);
     setProfilData(response.data);
+    console.log(response.data);
   };
 
   useEffect(() => {
     fetchProfilData();
   }, [isProfilUpdating]);
-  // console.log(profilData);
 
   return (
     <div>

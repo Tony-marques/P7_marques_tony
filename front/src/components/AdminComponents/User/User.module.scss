@@ -1,0 +1,41 @@
+.userContainer {
+  border: 1px solid #2d3142;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+
+  .name,
+  .lastname,
+  .email,
+  i {
+    // flex-grow: 1;
+    width: 25%;
+    max-width: 25%;
+    color: #2d3142;
+    // font-size: 1.2rem;
+    text-align: center;
+    // width: 100px;
+    // margin-left: 1rem;
+  }
+
+  i {
+    cursor: pointer;
+  }
+}
+
+table {
+  width: 100%;
+  border: 1px solid #2d3142;
+}
+
+table td {
+  text-align: center;
+  padding: 1rem 0;
+  width: 20%;
+  // border: 1px solid red;
+}
+
+.delete {
+  width: 5%;
+}

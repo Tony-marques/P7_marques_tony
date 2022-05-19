@@ -7,7 +7,7 @@
   width: 100%;
   width: 700px;
   height: 50vh;
-  min-height: 450px;
+  min-height: 500px;
   overflow: auto;
   display: flex;
   flex-direction: column;
@@ -15,22 +15,47 @@
   align-items: center;
   position: relative;
 
+  .infosContainer {
+    width: 100%;
+  }
+
+  .btn {
+    border: 1px solid transparent;
+    background: #2d3142;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s;
+
+    &:hover {
+      border: 1px solid #2d3142;
+      background: #fff;
+      color: #2d3142;
+    }
+  }
   .lastnameContainer,
   .firstnameContainer,
-  .ageContainer {
+  .ageContainer,
+  .bioContainer {
     display: flex;
     width: 100%;
 
-    input {
-      // padding: 1rem;
+    input,
+    .lastname,
+    .firstname,
+    .age,
+    .bio {
+      padding: 0.75rem 1.25rem;
       margin-left: 1rem;
     }
 
     .lastname,
     .firstname,
-    .age {
+    .age,
+    .bio {
       width: 50%;
-      // text-align: right;
       display: flex;
       justify-content: end;
       align-items: center;
@@ -40,10 +65,12 @@
   .lastnameInput,
   .firstnameInput,
   .ageInput,
-  .mailInput {
+  .mailInput,
+  .bioInput {
+    padding: 0.75rem 1.25rem;
+
     display: flex;
     align-items: center;
-    margin-left: 1rem;
   }
 
   img {

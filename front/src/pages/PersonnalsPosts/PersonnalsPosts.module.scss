@@ -1,0 +1,16 @@
+.personnalsPosts {
+  display: flex;
+  flex-direction: column;
+  background: #b0d7ff;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 1.5rem;
+  width: 100%;
+  width: 700px;
+  max-height: 95vh;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

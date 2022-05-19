@@ -3,35 +3,68 @@
 
 const db = require("../models");
 const PostModel = db.post;
-const userModel = db.user;
+const UserModel = db.user;
 
 exports.getAllPosts = (req, res) => {
-  // PostModel.findAll({
-  //   attributes: [],
-  //   include: [{ model: UserModel, attributes: ["name"] }],
-  // });
-  PostModel.findAll()
+  PostModel.findAll({
+    // attributes: ["id", "author", "content", "userid"],
+    include: [
+      {
+        model: UserModel,
+        attributes: ["name", "lastname", "id", "admin", "age"],
+      },
+    ],
+  })
     .then((posts) => {
       return res.status(200).json(posts);
     })
     .catch((err) => res.status(500).json(err));
+
+  // PostModel.findAll()
+  //   .then((posts) => {
+  //     return res.status(200).json(posts);
+  //   })
+  //   .catch((err) => res.status(500).json(err));
+};
+
+exports.getPersonnalPosts = (req, res) => {
+  console.log(req.params.id);
+  PostModel.findAll({
+    where: {
+      userId: req.params.id,
+    },
+    include: [
+      {
+        model: UserModel,
+        required: true,
+        attributes: ["name", "lastname", "id", "admin"],
+      },
+    ],
+  }).then((posts) => {
+    return res.status(200).json(posts);
+  });
 };
 
 exports.createPost = (req, res) => {
   const { author, content, userId } = req.body;
-  console.log(req.body);
-  console.log(content);
-  PostModel.create({
-    author,
-    content,
-    userId,
-  })
-    .then(() => {
-      return res.status(201).json({ message: "post créé avec succès !" });
+  UserModel.findByPk(req.params.id)
+    .then((user) => {
+      PostModel.create({
+        author:
+          user.name && user.lastname
+            ? user.name + " " + user.lastname
+            : user.email,
+        content,
+        userId: req.params.id,
+      })
+        .then(() => {
+          return res.status(201).json({ message: "post créé avec succès !" });
+        })
+        .catch(() => {
+          return res.status(500).json({ message: "post non créé !" });
+        });
     })
-    .catch(() => {
-      return res.status(500).json({ message: "post non créé !" });
-    });
+    .catch(() => res.status(401).json());
 };
 
 exports.deletePost = (req, res, next) => {
@@ -40,4 +73,3 @@ exports.deletePost = (req, res, next) => {
     .then(() => res.status(200).json({ message: "Message supprimé !" }))
     .catch((error) => res.status(400).json({ error }));
 };
-

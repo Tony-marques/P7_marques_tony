@@ -1,21 +1,19 @@
 import React from "react";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { AuthContext } from "../../contexts/AuthContext";
-import styles from "./Navbar.module.scss";
 import Cookies from "js-cookie";
-import { useState } from "react";
+import styles from "./Navbar.module.scss";
+import { AuthContext } from "../../contexts/AuthContext";
 import AddForm from "../AddForm/AddForm";
 import { ToggleAddContext } from "../../contexts/ToggleAddContext";
 
 export default function Navbar() {
-  // Variables
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
+  // Contexts
+  const { isAuthenticated, setIsAuthenticated, USER_ID, isAdmin } =
+    useContext(AuthContext);
   const { toggleAdd, setToggleAdd } = useContext(ToggleAddContext);
-  const {USER_ID} = useContext(AuthContext)
-  // const [toggle, setToggle] = useState(false);
 
-  // Fonctions
+  // Functions
   const logoutHandle = () => {
     Cookies.remove("token");
     setIsAuthenticated(false);
@@ -41,9 +39,15 @@ export default function Navbar() {
                   <i className="fa-solid fa-user"></i>
                 </li>
               </NavLink>
+
               <button className={styles.add} onClick={toggleForm}>
                 <i className="fa-solid fa-square-plus"></i>
               </button>
+              {isAdmin && (
+                <NavLink to="/allusers">
+                  <i className="fa-solid fa-users"></i>
+                </NavLink>
+              )}
               {toggleAdd && <AddForm />}
               <button onClick={logoutHandle} className={styles.button}>
                 <i className="fa-solid fa-right-from-bracket"></i>

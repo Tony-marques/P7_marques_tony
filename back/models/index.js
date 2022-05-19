@@ -17,7 +17,10 @@ db.sequelize = sequelize;
 db.post = require("./post.model")(sequelize, DataTypes);
 db.user = require("./user.model")(sequelize, DataTypes);
 
-db.sequelize.sync({ force: false }).then(() => {
+db.user.hasMany(db.post, { foreignKey: "userId", onDelete: "cascade" });
+db.post.belongsTo(db.user, { foreignKey: "userId" });
+
+db.sequelize.sync({ alter: true, force: false }).then(() => {
   console.log("yes re-sync done!");
 });
 

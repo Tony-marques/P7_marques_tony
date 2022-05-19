@@ -1,45 +1,46 @@
 import React from "react";
 import { useState } from "react";
-import styles from "./Login.module.scss";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { useContext } from "react";
+
+import styles from "./Login.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
+import { apiUser } from "../../Api/Api";
 
 export default function Login({ setLogin }) {
   // Variables
-  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // Contexts
+  const { setIsAuthenticated } = useContext(AuthContext);
+
   // Fonctions
   const handleForm = () => {
     axios
-      .post("http://localhost:3000/api/user/login", {
+      .post(`${apiUser}/login`, {
         email,
         password,
       })
       .then((res) => {
         Cookies.set("token", res.data.token);
-        // Cookies.set("userId", res.data.userId);
         setIsAuthenticated(true);
-        toast.success("Vous êtes bien connecté !");
+        toast.success("Bienvenue sur votre espace !");
         navigate("/news");
       })
-      .catch((error) => toast.error(error.response.data));
+      .catch((error) => {
+        toast.error(error.response.data.msg);
+      });
   };
 
   const toggleLoginHandle = () => {
     setLogin(false);
   };
 
-  // console.log(isAuthenticated);
-  if (isAuthenticated) {
-    // return <Navigate to="/news" />;
-  }
   return (
     <form className={styles.form}>
       <input
@@ -49,7 +50,7 @@ export default function Login({ setLogin }) {
       />
       <input
         type="text"
-        placeholder="Password"
+        placeholder="Mot de passe"
         onChange={(e) => setPassword(e.target.value)}
       />
       <input

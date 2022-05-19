@@ -1,29 +1,27 @@
 import React from "react";
 import { useContext } from "react";
-import { ToggleAddContext } from "../../contexts/ToggleAddContext";
-import styles from "./AddForm.module.scss";
 import axios from "axios";
 import { useState } from "react";
-import { useEffect } from "react";
-import Cookies from "js-cookie";
-import { useNavigate } from "react-router-dom";
+
+import styles from "./AddForm.module.scss";
+import { ToggleAddContext } from "../../contexts/ToggleAddContext";
 import { AuthContext } from "../../contexts/AuthContext";
 import { apiPost } from "../../Api/Api";
 
 export default function AddForm() {
-  const { toggleAdd, setToggleAdd } = useContext(ToggleAddContext);
-  const navigate = useNavigate();
-  const [author, setAuthor] = useState("");
+  // Variables
   const [content, setContent] = useState("");
-  const { USER_ID, setIsPostUpdating } = useContext(AuthContext);
-  // const userId = Cookies.get("userId");
 
+  // Contexts
+  const { setToggleAdd } = useContext(ToggleAddContext);
+  const { USER_ID, setIsPostUpdating } = useContext(AuthContext);
+
+  // Functions
   const handleSend = () => {
     axios
-      .post(`${apiPost}/createpost`, {
-        author,
+      .post(`${apiPost}/createpost/${USER_ID}`, {
         content,
-        userId: USER_ID,
+        // userId: USER_ID,
       })
       .then(() => setIsPostUpdating(true))
       .catch(() => console.log("error"));
@@ -38,11 +36,6 @@ export default function AddForm() {
   return (
     <div className={styles.overlay} onClick={closeAddForm}>
       <form onClick={(e) => e.stopPropagation()}>
-        <input
-          type="text"
-          placeholder="Auteur"
-          onChange={(e) => setAuthor(e.target.value)}
-        />
         <textarea
           type="text"
           placeholder="Contenu"

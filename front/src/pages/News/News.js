@@ -1,22 +1,28 @@
 import React from "react";
+import { useContext, useState, useEffect } from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
+
 import MetaHead from "../../components/MetaHead/MetaHead";
 import styles from "./News.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
-import { useContext } from "react";
-import { Navigate } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
-import { useEffect } from "react";
 import Post from "../../components/Post.js/Post";
-import { apiPost } from "../../Api/Api";
+import { apiPost, setHeaders } from "../../Api/Api";
 
 export default function News() {
+  // Variables
   const [listOfPosts, setListOfPosts] = useState([]);
-  const { isPostUpdating } = useContext(AuthContext);
+  const token = Cookies.get("token");
 
+  // Contexts
+  const { isPostUpdating, USER_ID } = useContext(AuthContext);
+
+  // Functions
   const fetchData = () => {
+    // Voir avec Thomas, userid = null ?
+    const userid = USER_ID;
     axios
-      .get(`${apiPost}/getallposts`)
+      .post(`${apiPost}/getallposts`, { userid: userid }, setHeaders(token))
       .then((res) => setListOfPosts(res.data))
       .catch(() => console.log("erreur"));
   };

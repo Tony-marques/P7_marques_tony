@@ -1,0 +1,123 @@
+.post {
+  border: 1px solid #b0d7ff;
+  border-radius: 5px;
+  background: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  -webkit-transition: -webkit-box-shadow 0.3s;
+  transition: -webkit-box-shadow 0.3s;
+  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+.post .postHeader {
+  background: #2d3142;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem 1rem;
+  color: white;
+}
+
+.post .postHeader .postProfil {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+}
+
+.post .postHeader .postProfil img {
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #b0d7ff;
+}
+
+.post .postBody {
+  padding: 1rem 0;
+  text-align: left;
+}
+
+.post button {
+  background: #2d3142;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  color: white;
+  cursor: pointer;
+  margin-left: 1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.post button:hover {
+  background: white;
+  border: 1px solid #2d3142;
+  -webkit-box-shadow: 1px 1px 10px #2d3142;
+          box-shadow: 1px 1px 10px #2d3142;
+}
+
+.post button:hover i {
+  color: #2d3142;
+}
+
+.post .update {
+  background: #b0d7ff;
+  border: 1px solid transparent;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.post .update:hover {
+  background: white;
+  border: 1px solid #b0d7ff;
+  -webkit-box-shadow: 1px 1px 10px #b0d7ff;
+          box-shadow: 1px 1px 10px #b0d7ff;
+}
+
+.post .update:hover i {
+  color: #b0d7ff;
+}
+
+.post .btnContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.post .btnContainer .comments {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding: 0 1rem;
+  border-radius: 5px;
+  border: 1px solid #dddfe2;
+  outline: none;
+  -webkit-transition: border-color 0.3s;
+  transition: border-color 0.3s;
+}
+
+.post .btnContainer .comments:focus {
+  border-color: #2d3142;
+}
+
+.post i {
+  width: 15px;
+  height: 15px;
+}
+/*# sourceMappingURL=Post.module.css.map */

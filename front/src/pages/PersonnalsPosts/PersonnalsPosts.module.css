@@ -1,0 +1,23 @@
+.personnalsPosts {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #b0d7ff;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 1.5rem;
+  width: 100%;
+  width: 700px;
+  max-height: 95vh;
+  overflow: auto;
+}
+
+.personnalsPosts::-webkit-scrollbar {
+  display: none;
+}
+/*# sourceMappingURL=PersonnalsPosts.module.css.map */

@@ -3,6 +3,7 @@
 
 // db config avec la connexion à la bdd
 // const db = require("../config/db");
+const post = require("./");
 
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define("user", {
@@ -36,7 +37,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
+    bio: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     // picture: {},
   });
+
   return user;
 };

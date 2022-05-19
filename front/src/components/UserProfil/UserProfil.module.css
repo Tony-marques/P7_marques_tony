@@ -1,0 +1,116 @@
+.profilContainer {
+  background: #fff;
+  -webkit-box-shadow: 1px 1px 10px black;
+          box-shadow: 1px 1px 10px black;
+  border-radius: 5px;
+  padding: 2rem;
+  margin: 0 auto;
+  width: 100%;
+  width: 700px;
+  height: 50vh;
+  min-height: 500px;
+  overflow: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.profilContainer .infosContainer {
+  width: 100%;
+}
+
+.profilContainer .btn {
+  border: 1px solid transparent;
+  background: #2d3142;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.75rem 1.25rem;
+  border-radius: 5px;
+  font-weight: bold;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.profilContainer .btn:hover {
+  border: 1px solid #2d3142;
+  background: #fff;
+  color: #2d3142;
+}
+
+.profilContainer .lastnameContainer,
+.profilContainer .firstnameContainer,
+.profilContainer .ageContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.profilContainer .lastnameContainer input,
+.profilContainer .firstnameContainer input,
+.profilContainer .ageContainer input {
+  padding: 0.75rem 1.25rem;
+  margin-left: 1rem;
+}
+
+.profilContainer .lastnameContainer .lastname,
+.profilContainer .lastnameContainer .firstname,
+.profilContainer .lastnameContainer .age,
+.profilContainer .firstnameContainer .lastname,
+.profilContainer .firstnameContainer .firstname,
+.profilContainer .firstnameContainer .age,
+.profilContainer .ageContainer .lastname,
+.profilContainer .ageContainer .firstname,
+.profilContainer .ageContainer .age {
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profilContainer .lastnameInput,
+.profilContainer .firstnameInput,
+.profilContainer .ageInput,
+.profilContainer .mailInput {
+  padding: 0.75rem 1.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profilContainer img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 5px solid #b0d7ff;
+  -webkit-transition: -webkit-box-shadow 0.3s;
+  transition: -webkit-box-shadow 0.3s;
+  transition: box-shadow 0.3s;
+  transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
+}
+
+.profilContainer img:hover {
+  -webkit-box-shadow: 1px 1px 20px #b0d7ff;
+          box-shadow: 1px 1px 20px #b0d7ff;
+}
+/*# sourceMappingURL=UserProfil.module.css.map */

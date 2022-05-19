@@ -3,16 +3,17 @@ const {
   getAllPosts,
   createPost,
   deletePost,
-  updatePost,
+  getPersonnalPosts,
 } = require("../controllers/post.controllers");
+const auth = require("../middleware/auth.middleware");
 const router = express.Router();
 
 // Récupération de tous les posts
-router.get("/getallposts", getAllPosts);
+router.post("/getallposts", getAllPosts);
+router.post("/getpersonnalposts/:id", getPersonnalPosts);
 
-router.post("/createpost", createPost);
+router.post("/createpost/:id", createPost);
 
 router.delete("/deletepost/:id", deletePost);
-
 
 module.exports = router;

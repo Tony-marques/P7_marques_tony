@@ -1,5 +1,5 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+
 import Login from "../../components/Login/Login";
 import SignIn from "../../components/SignIn/SignIn";
 import styles from "./Home.module.scss";
@@ -7,6 +7,7 @@ import icon from "../../assets/icon-left-font-monochrome-white.svg";
 import MetaHead from "../../components/MetaHead/MetaHead";
 
 export default function Home() {
+  // Variables
   const [login, setLogin] = useState(true);
 
   return (
