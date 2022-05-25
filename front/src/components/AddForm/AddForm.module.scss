@@ -12,8 +12,8 @@
 }
 
 form {
-  width: 400px;
-  height: 400px;
+  width: 500px;
+  height: 500px;
   border-radius: 5px;
   background: white;
   z-index: 1;
@@ -34,6 +34,12 @@ form {
     }
   }
 
+  input[type="file"] {
+    margin-bottom: 1rem;
+    color: white;
+    cursor: pointer;
+  }
+
   textarea {
     flex-grow: 1;
     margin-bottom: 1rem;
@@ -52,6 +58,12 @@ form {
       font-size: 1.2rem;
       width: 50%;
       margin: 0 1rem;
+      transition: all 0.3s;
+
+      &:hover {
+        background: #fff;
+        color: #2d3142;
+      }
     }
   }
 }

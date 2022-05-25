@@ -10,6 +10,19 @@
   overflow: auto;
 }
 
+table{
+  border-collapse: collapse;
+}
+
+td {
+  width: 20%;
+
+}
+
+.delete {
+  width: 5%;
+}
+
 .usersContainer::-webkit-scrollbar {
   display: none;
 }

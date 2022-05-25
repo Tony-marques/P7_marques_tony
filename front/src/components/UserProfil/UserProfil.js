@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 import styles from "./UserProfil.module.scss";
 import "./UserProfil.scss";
-import pp from "../../assets/Profil.webp";
+import pp from "../../assets/DefaultProfil.jpg";
 import { AuthContext } from "../../contexts/AuthContext";
 import { apiUser } from "../../Api/Api";
 
@@ -138,3 +138,10 @@ export default function UserProfil({ user }) {
     </div>
   );
 }
+
+const options = {
+  headers: {
+    Authorization: "Bearer my-token",
+    "My-Custom-Header": "foobar",
+  },
+};

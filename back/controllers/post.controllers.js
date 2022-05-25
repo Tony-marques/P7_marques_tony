@@ -46,15 +46,20 @@ exports.getPersonnalPosts = (req, res) => {
 };
 
 exports.createPost = (req, res) => {
+  console.log(req.file);
   const { author, content, userId } = req.body;
   UserModel.findByPk(req.params.id)
     .then((user) => {
+      // ref.file ? :
       PostModel.create({
         author:
           user.name && user.lastname
             ? user.name + " " + user.lastname
             : user.email,
         content,
+        image: req.file
+          ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+          : null,
         userId: req.params.id,
       })
         .then(() => {
@@ -68,7 +73,7 @@ exports.createPost = (req, res) => {
 };
 
 exports.deletePost = (req, res, next) => {
-  console.log(req.params.id);
+  console.log(req.token);
   PostModel.destroy({ where: { id: req.params.id } })
     .then(() => res.status(200).json({ message: "Message supprimé !" }))
     .catch((error) => res.status(400).json({ error }));

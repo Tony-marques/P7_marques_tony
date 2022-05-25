@@ -1,11 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../../../contexts/AuthContext";
 import User from "../User/User";
 import styles from "./AllUsers.module.scss";
 
 export default function AllUsers() {
   // Variables
   const [listOfUsers, setListOfUsers] = useState([]);
+
+  const {isAdmin} = useContext(AuthContext)
 
   // Functions
   const getAllUsers = () => {
@@ -17,7 +21,7 @@ export default function AllUsers() {
 
   useEffect(() => {
     getAllUsers();
-  }, []);
+  }, [isAdmin]);
 
   return (
     <div className={styles.usersContainer}>

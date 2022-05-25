@@ -8,10 +8,12 @@ import styles from "./News.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import Post from "../../components/Post.js/Post";
 import { apiPost, setHeaders } from "../../Api/Api";
+import Spinner from "../../components/Spinner/Spinner";
 
 export default function News() {
   // Variables
   const [listOfPosts, setListOfPosts] = useState([]);
+  const [isDataLoading, setIsDataLoading] = useState(false);
   const token = Cookies.get("token");
 
   // Contexts
@@ -19,11 +21,13 @@ export default function News() {
 
   // Functions
   const fetchData = () => {
-    // Voir avec Thomas, userid = null ?
     const userid = USER_ID;
     axios
       .post(`${apiPost}/getallposts`, { userid: userid }, setHeaders(token))
-      .then((res) => setListOfPosts(res.data))
+      .then((res) => {
+        setListOfPosts(res.data);
+        // setIsDataLoading(true);
+      })
       .catch(() => console.log("erreur"));
   };
 
@@ -39,7 +43,9 @@ export default function News() {
           listOfPosts
             .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
             .map((item) => {
-              return <Post item={item} key={item.id} />;
+              return (
+                <Post item={item} key={item.id} isDataLoading={isDataLoading} />
+              );
             })
         ) : (
           <p>Il n'y a actuellement aucun message.</p>

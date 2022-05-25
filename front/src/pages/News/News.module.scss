@@ -14,6 +14,9 @@
     width: 700px;
     max-height: 95vh;
     overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .postsContainer::-webkit-scrollbar {

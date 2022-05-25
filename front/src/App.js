@@ -8,6 +8,7 @@ import { isExpired, decodeToken } from "react-jwt";
 import { AuthContext } from "./contexts/AuthContext";
 import "./App.scss";
 import PrivateRoute from "./components/PrivateRoute";
+import PrivateAdminRoute from "./components/PrivateAdminRoute";
 import News from "./pages/News/News";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
@@ -74,8 +75,11 @@ const App = () => {
                 <Route path="/news" element={<News />} />
                 <Route path="/profil/:id" element={<Profil />} />
                 <Route path="/myposts" element={<PersonnalsPosts />} />
-                <Route path="/allusers" element={<AllUsers />} />
+                <Route element={<PrivateAdminRoute />}>
+                  <Route path="/allusers" element={<AllUsers />} />
+                </Route>
               </Route>
+
               <Route path="*" element={<Error404 />} />
             </Routes>
             <ToastContainer />

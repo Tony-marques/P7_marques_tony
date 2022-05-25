@@ -8,9 +8,10 @@ const {
   getAllUsers,
   deleteUser,
 } = require("../controllers/user.controllers");
+const isEmail = require("../middleware/isEmail");
 
 // Route connexion
-router.post("/login", login);
+router.post("/login", isEmail, login);
 
 // Route création de compte
 router.post("/signin", signIn);

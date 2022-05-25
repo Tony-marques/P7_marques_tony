@@ -33,7 +33,8 @@ export default function Login({ setLogin }) {
         navigate("/news");
       })
       .catch((error) => {
-        toast.error(error.response.data.msg);
+        console.log(error.response.data.error);
+        toast.error(error.response.data.msg || error.response.data.error);
       });
   };
 

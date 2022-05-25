@@ -6,6 +6,13 @@
   margin-bottom: 1rem;
   transition: box-shadow 0.3s;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+
+  .imgUrl {
+    max-width: 100%;
+    width: 100%;
+    // height: 100px;
+  }
 
   .postHeader {
     background: #2d3142;
