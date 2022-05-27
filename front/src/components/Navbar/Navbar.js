@@ -1,7 +1,8 @@
 import React from "react";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+
 import styles from "./Navbar.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import AddForm from "../AddForm/AddForm";
@@ -9,8 +10,13 @@ import { ToggleAddContext } from "../../contexts/ToggleAddContext";
 
 export default function Navbar() {
   // Contexts
-  const { isAuthenticated, setIsAuthenticated, USER_ID, isAdmin } =
-    useContext(AuthContext);
+  const {
+    isAuthenticated,
+    setIsAuthenticated,
+    USER_ID,
+    isAdmin,
+    profilCompleted,
+  } = useContext(AuthContext);
   const { toggleAdd, setToggleAdd } = useContext(ToggleAddContext);
 
   // Functions

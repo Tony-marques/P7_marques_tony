@@ -9,60 +9,66 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
 
-form {
-  width: 500px;
-  height: 500px;
-  border-radius: 5px;
-  background: white;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  background: #2d3142;
 
-  input,
-  textarea {
-    padding: 1rem;
-    outline: none;
-    border: 1px solid rgba(0, 0, 0, 0.5);
+  form {
+    width: 500px;
+    height: 500px;
     border-radius: 5px;
+    background: white;
 
-    &:focus {
-      border: 1px solid #b0d7ff;
-    }
-  }
-
-  input[type="file"] {
-    margin-bottom: 1rem;
-    color: white;
-    cursor: pointer;
-  }
-
-  textarea {
-    flex-grow: 1;
-    margin-bottom: 1rem;
-    resize: none;
-  }
-
-  .btnContainer {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    padding: 1rem;
+    background: #ffd7d7;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
 
-    input[type="button"] {
-      cursor: pointer;
-      background: #b0d7ff;
+    input,
+    textarea {
+      padding: 1rem;
+      outline: none;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      border-radius: 5px;
+
+      &:focus {
+        border: 1px solid #ffd7d7;
+      }
+    }
+
+    input[type="file"] {
+      margin-bottom: 1rem;
+      background-color: #4e5166;
+      background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
       color: white;
-      font-weight: bold;
-      font-size: 1.2rem;
-      width: 50%;
-      margin: 0 1rem;
-      transition: all 0.3s;
+      cursor: pointer;
+    }
 
-      &:hover {
-        background: #fff;
-        color: #2d3142;
+    textarea {
+      flex-grow: 1;
+      margin-bottom: 1rem;
+      resize: none;
+    }
+
+    .btnContainer {
+      display: flex;
+      justify-content: space-between;
+
+      input[type="button"] {
+        cursor: pointer;
+        background: #fd2d01;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+        width: 50%;
+        margin: 0 1rem;
+        transition: all 0.3s;
+
+        &:hover {
+          background: #fff;
+          color: #fd2d01;
+          border-color: #fd2d01;
+        }
       }
     }
   }

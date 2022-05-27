@@ -1,19 +1,31 @@
+.postContainer {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
 .post {
-  border: 1px solid #b0d7ff;
   border-radius: 5px;
   background: white;
   padding: 1rem;
-  margin-bottom: 1rem;
+  position: relative;
   -webkit-transition: -webkit-box-shadow 0.3s;
   transition: -webkit-box-shadow 0.3s;
   transition: box-shadow 0.3s;
   transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.post .imgUrl {
+  max-width: 100%;
+  width: 100%;
+  margin-top: 1rem;
 }
 
 .post .postHeader {
-  background: #2d3142;
+  background-color: #4e5166;
+  background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
   border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -26,6 +38,7 @@
           align-items: center;
   padding: 1rem 1rem;
   color: white;
+  border: 2px solid #fd2d01;
 }
 
 .post .postHeader .postProfil {
@@ -41,7 +54,7 @@
 .post .postHeader .postProfil img {
   width: 40px;
   border-radius: 50%;
-  border: 2px solid #b0d7ff;
+  border: 2px solid #ffd7d7;
 }
 
 .post .postBody {
@@ -50,7 +63,7 @@
 }
 
 .post button {
-  background: #2d3142;
+  background: #fd2d01;
   padding: 0.75rem 1.25rem;
   border: none;
   border-radius: 5px;
@@ -64,31 +77,45 @@
 
 .post button:hover {
   background: white;
-  border: 1px solid #2d3142;
-  -webkit-box-shadow: 1px 1px 10px #2d3142;
-          box-shadow: 1px 1px 10px #2d3142;
+  border: 1px solid #fd2d01;
+  -webkit-box-shadow: 1px 1px 10px #fd2d01;
+          box-shadow: 1px 1px 10px #fd2d01;
 }
 
 .post button:hover i {
-  color: #2d3142;
+  color: #fd2d01;
 }
 
-.post .update {
-  background: #b0d7ff;
+.post .addComment {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 0;
+  background: #4e5166;
+  height: 100%;
   border: 1px solid transparent;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+  border-radius: 0 5px 5px 0;
 }
 
-.post .update:hover {
+.post .addComment:hover {
   background: white;
-  border: 1px solid #b0d7ff;
+  border: 1px solid #ffd7d7;
   -webkit-box-shadow: 1px 1px 10px #b0d7ff;
           box-shadow: 1px 1px 10px #b0d7ff;
 }
 
-.post .update:hover i {
-  color: #b0d7ff;
+.post .addComment:hover i {
+  color: #ffd7d7;
+}
+
+.post .inputContainer {
+  position: relative;
+  width: 100%;
+  border: 1px solid #dddfe2;
+  border-radius: 5px;
 }
 
 .post .btnContainer {
@@ -104,20 +131,44 @@
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  padding: 0 1rem;
+  padding: 1rem;
   border-radius: 5px;
-  border: 1px solid #dddfe2;
   outline: none;
   -webkit-transition: border-color 0.3s;
   transition: border-color 0.3s;
+  width: 80%;
+  border: none;
 }
 
 .post .btnContainer .comments:focus {
-  border-color: #2d3142;
+  border-color: #fd2d01;
 }
 
 .post i {
   width: 15px;
   height: 15px;
+}
+
+.commentsWall {
+  padding: 0.5rem;
+  background: #fff;
+  border-radius: 5px;
+  width: 95%;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  margin: 0.25rem auto 0 auto;
+  -webkit-transform: translateY(-100%);
+          transform: translateY(-100%);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  position: relative;
+}
+
+.appear {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 /*# sourceMappingURL=Post.module.css.map */

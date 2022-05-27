@@ -23,14 +23,15 @@
 }
 
 #root {
-  background: #2d3142;
+  background-color: #4e5166;
+  background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
 }
 
 .active i {
-  color: #fff;
+  color: #FD2D01;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 /*# sourceMappingURL=App.css.map */

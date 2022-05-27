@@ -19,7 +19,7 @@
     outline: none;
 
     &:focus {
-      border-color: #b0d7ff;
+      border-color: #fd2d01;
     }
   }
 
@@ -34,7 +34,8 @@
   }
 
   .loginBtn {
-    background: #2d3142;
+    background: #4e5166;
+    background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
     color: white;
     font-weight: bold;
     font-size: 1.1rem;
@@ -42,21 +43,23 @@
 
     &:hover {
       background: white;
-      color: #2d3142;
-      border-color: #2d3142;
+      color: #4e5166;
+      border-color: #4e5166;
     }
   }
 
   .accountBtn {
     width: 50%;
-    background: #b0d7ff;
-    color: #2d3142;
+    background: #ffd7d7;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+
+    color: #4e5166;
     font-weight: bold;
     transition: all 0.3s;
 
     &:hover {
       background: white;
-      border-color: #b0d7ff;
+      border-color: #ffd7d7;
     }
   }
 }

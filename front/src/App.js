@@ -17,28 +17,36 @@ import Error404 from "./pages/Error404/Error404";
 import { ToggleAddContext } from "./contexts/ToggleAddContext";
 import PersonnalsPosts from "./pages/PersonnalsPosts/PersonnalsPosts";
 import AllUsers from "./components/AdminComponents/AllUsers/AllUsers";
+import { apiUser, setHeaders } from "./Api/Api";
+import axios from "axios";
 
 const App = () => {
   // Variables
   const token = Cookies.get("token");
   const [isAuthenticated, setIsAuthenticated] = useState(null);
   const [isProfilUpdating, setIsProfilUpdating] = useState(null);
-  const [isPostUpdating, setIsPostUpdating] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(null);
+  const [profil, setProfil] = useState([]);
+  const [isPostUpdating, setIsPostUpdating] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [userDeleted, setUserDeleted] = useState(false);
   const [toggleAdd, setToggleAdd] = useState(null);
   const [USER_ID, setUSER_ID] = useState(null);
-
+  const [profilCompleted, setProfilCompleted] = useState(false);
   // Fonctions
   const checkToken = () => {
     const decodedToken = decodeToken(token);
 
     if (!decodedToken) {
+      console.log(!decodedToken);
+      console.log("non decodé");
       Cookies.remove("token");
       Cookies.remove("userId");
       setIsAuthenticated(false);
     }
 
     if (decodedToken) {
+      console.log("decodé");
+
       const { userId } = decodedToken;
       const { admin } = decodedToken;
       setIsAdmin(admin);
@@ -51,9 +59,30 @@ const App = () => {
     checkToken();
   }, [isAuthenticated]);
 
+  const fetchProfilData = () => {
+    if (USER_ID != null) {
+      axios
+        .get(`${apiUser}/getoneprofil/${USER_ID}`, setHeaders(token))
+        .then((res) => {
+          setIsAdmin(res.data.admin);
+        })
+        .catch((err) => {});
+    }
+  };
+
+  useEffect(() => {
+    fetchProfilData();
+  }, [isProfilUpdating, isAuthenticated, isAdmin]);
+
+  // USER_ID, isAdmin
+
   return (
     <AuthContext.Provider
       value={{
+        // profil,
+        // setProfil,
+        userDeleted,
+        setUserDeleted,
         isAuthenticated,
         setIsAuthenticated,
         isAdmin,
@@ -63,6 +92,8 @@ const App = () => {
         isPostUpdating,
         setIsPostUpdating,
         USER_ID,
+        // profilCompleted,
+        // setProfilCompleted,
       }}
     >
       <ToggleAddContext.Provider value={{ toggleAdd, setToggleAdd }}>
@@ -75,12 +106,11 @@ const App = () => {
                 <Route path="/news" element={<News />} />
                 <Route path="/profil/:id" element={<Profil />} />
                 <Route path="/myposts" element={<PersonnalsPosts />} />
+                <Route path="/:id" element={<Error404 />} />
                 <Route element={<PrivateAdminRoute />}>
                   <Route path="/allusers" element={<AllUsers />} />
                 </Route>
               </Route>
-
-              <Route path="*" element={<Error404 />} />
             </Routes>
             <ToastContainer />
           </Router>

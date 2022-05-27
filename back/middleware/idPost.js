@@ -3,7 +3,7 @@ const PostModel = db.post;
 
 module.exports = async (req, res, next) => {
   const post = await PostModel.findByPk(req.params.id);
-  if (post.userId && post.userId == req.token.userId) {
+  if (post.userId && post.userId == req.token.userId || req.token.admin) {
     next();
   } else {
     return res

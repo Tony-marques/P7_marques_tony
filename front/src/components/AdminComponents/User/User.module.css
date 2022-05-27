@@ -1,0 +1,48 @@
+.userContainer {
+  border: 1px solid #fd2d01;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+}
+
+table {
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+table td {
+  text-align: center;
+  padding: 1rem 0;
+  border: 1px solid #fd2d01;
+}
+
+.delete {
+  width: 5%;
+  cursor: pointer;
+}
+
+.admin {
+  width: 7.5%;
+}
+
+.email {
+  width: 25%;
+}
+
+select {
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+option {
+  padding: 1rem;
+}
+/*# sourceMappingURL=User.module.css.map */

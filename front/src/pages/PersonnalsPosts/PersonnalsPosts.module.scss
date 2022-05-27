@@ -1,7 +1,8 @@
 .personnalsPosts {
   display: flex;
   flex-direction: column;
-  background: #b0d7ff;
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 1.5rem;
@@ -20,9 +21,9 @@
       width: 30%;
       padding: 1rem;
       cursor: pointer;
-      background: #2d3142;
+      background: #fd2d01;
       border-radius: 5px;
-      color: #fff;
+      color: #ffd7d7;
       border: none;
     }
   }

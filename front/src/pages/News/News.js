@@ -8,32 +8,50 @@ import styles from "./News.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import Post from "../../components/Post.js/Post";
 import { apiPost, setHeaders } from "../../Api/Api";
-import Spinner from "../../components/Spinner/Spinner";
+import { useNavigate } from "react-router-dom";
 
 export default function News() {
   // Variables
   const [listOfPosts, setListOfPosts] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(false);
   const token = Cookies.get("token");
+  const navigate = useNavigate();
 
   // Contexts
-  const { isPostUpdating, USER_ID } = useContext(AuthContext);
+  const {
+    isPostUpdating,
+    USER_ID,
+    isAuthenticated,
+    profil,
+    setProfilCompleted,
+  } = useContext(AuthContext);
 
   // Functions
   const fetchData = () => {
-    const userid = USER_ID;
-    axios
-      .post(`${apiPost}/getallposts`, { userid: userid }, setHeaders(token))
-      .then((res) => {
-        setListOfPosts(res.data);
-        // setIsDataLoading(true);
-      })
-      .catch(() => console.log("erreur"));
+    if (USER_ID != null) {
+      const userId = USER_ID;
+      axios
+        .post(`${apiPost}/getallposts`, { userId: userId }, setHeaders(token))
+        .then((res) => {
+          setListOfPosts(res.data);
+        })
+        .catch(() => {});
+    }
   };
 
   useEffect(() => {
     fetchData();
-  }, [isPostUpdating]);
+  }, [isAuthenticated, isPostUpdating, USER_ID]);
+
+  // console.log();
+  // useEffect(() => {
+  //   if (profil.name == null || profil.lastname == null) {
+  //     navigate(`/profil/${USER_ID}`);
+  //     setProfilCompleted(false);
+  //   } else {
+  //     setProfilCompleted(true);
+  //   }
+  // }, []);
 
   return (
     <main className={styles.news}>

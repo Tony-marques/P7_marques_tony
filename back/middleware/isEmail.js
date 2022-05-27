@@ -7,6 +7,6 @@ module.exports = (req, res, next) => {
   } else {
     return res
       .status(401)
-      .json({ error: `Le format de l'email n'est pas respecté` });
+      .json({ error: `Merci de renseigner une adresse e-mail valide` });
   }
 };

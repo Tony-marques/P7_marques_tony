@@ -1,0 +1,39 @@
+.error404 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  padding: 1.5rem;
+  width: 100%;
+  width: 700px;
+  max-height: 95vh;
+  overflow: auto;
+}
+
+.error404 button {
+  padding: 0.75rem 1.25rem;
+  background: #fd2d01;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  color: #fff;
+}
+
+.error404 button:hover {
+  background: #fff;
+  border-color: #fd2d01;
+  color: black;
+}
+/*# sourceMappingURL=Error404.module.css.map */

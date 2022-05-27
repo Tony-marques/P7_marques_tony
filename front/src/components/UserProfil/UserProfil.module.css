@@ -1,5 +1,6 @@
 .profilContainer {
-  background: #fff;
+  background-color: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
   -webkit-box-shadow: 1px 1px 10px black;
           box-shadow: 1px 1px 10px black;
   border-radius: 5px;
@@ -8,7 +9,7 @@
   width: 100%;
   width: 700px;
   height: 50vh;
-  min-height: 500px;
+  min-height: 600px;
   overflow: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -26,14 +27,47 @@
   position: relative;
 }
 
+.profilContainer::-webkit-scrollbar {
+  display: none;
+}
+
 .profilContainer .infosContainer {
   width: 100%;
 }
 
+.profilContainer .btnContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.profilContainer .deleteBtn {
+  background: #fd2d01;
+}
+
+.profilContainer .deleteBtn:hover {
+  border: 1px solid #fd2d01;
+  background: #fff;
+  color: #fd2d01;
+}
+
+.profilContainer .postsBtn {
+  background: #4e5166;
+}
+
+.profilContainer .postsBtn:hover {
+  border: 1px solid #4e5166;
+  background: #fff;
+  color: #4e5166;
+}
+
 .profilContainer .btn {
-  border: 1px solid transparent;
-  background: #2d3142;
   color: #fff;
+  border: 1px solid transparent;
   cursor: pointer;
   padding: 0.75rem 1.25rem;
   border-radius: 5px;
@@ -42,15 +76,11 @@
   transition: all 0.3s;
 }
 
-.profilContainer .btn:hover {
-  border: 1px solid #2d3142;
-  background: #fff;
-  color: #2d3142;
-}
-
 .profilContainer .lastnameContainer,
 .profilContainer .firstnameContainer,
-.profilContainer .ageContainer {
+.profilContainer .ageContainer,
+.profilContainer .bioContainer,
+.profilContainer .roleContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -58,8 +88,35 @@
 }
 
 .profilContainer .lastnameContainer input,
+.profilContainer .lastnameContainer .lastname,
+.profilContainer .lastnameContainer .firstname,
+.profilContainer .lastnameContainer .age,
+.profilContainer .lastnameContainer .bio,
+.profilContainer .lastnameContainer .role,
 .profilContainer .firstnameContainer input,
-.profilContainer .ageContainer input {
+.profilContainer .firstnameContainer .lastname,
+.profilContainer .firstnameContainer .firstname,
+.profilContainer .firstnameContainer .age,
+.profilContainer .firstnameContainer .bio,
+.profilContainer .firstnameContainer .role,
+.profilContainer .ageContainer input,
+.profilContainer .ageContainer .lastname,
+.profilContainer .ageContainer .firstname,
+.profilContainer .ageContainer .age,
+.profilContainer .ageContainer .bio,
+.profilContainer .ageContainer .role,
+.profilContainer .bioContainer input,
+.profilContainer .bioContainer .lastname,
+.profilContainer .bioContainer .firstname,
+.profilContainer .bioContainer .age,
+.profilContainer .bioContainer .bio,
+.profilContainer .bioContainer .role,
+.profilContainer .roleContainer input,
+.profilContainer .roleContainer .lastname,
+.profilContainer .roleContainer .firstname,
+.profilContainer .roleContainer .age,
+.profilContainer .roleContainer .bio,
+.profilContainer .roleContainer .role {
   padding: 0.75rem 1.25rem;
   margin-left: 1rem;
 }
@@ -67,12 +124,28 @@
 .profilContainer .lastnameContainer .lastname,
 .profilContainer .lastnameContainer .firstname,
 .profilContainer .lastnameContainer .age,
+.profilContainer .lastnameContainer .bio,
+.profilContainer .lastnameContainer .role,
 .profilContainer .firstnameContainer .lastname,
 .profilContainer .firstnameContainer .firstname,
 .profilContainer .firstnameContainer .age,
+.profilContainer .firstnameContainer .bio,
+.profilContainer .firstnameContainer .role,
 .profilContainer .ageContainer .lastname,
 .profilContainer .ageContainer .firstname,
-.profilContainer .ageContainer .age {
+.profilContainer .ageContainer .age,
+.profilContainer .ageContainer .bio,
+.profilContainer .ageContainer .role,
+.profilContainer .bioContainer .lastname,
+.profilContainer .bioContainer .firstname,
+.profilContainer .bioContainer .age,
+.profilContainer .bioContainer .bio,
+.profilContainer .bioContainer .role,
+.profilContainer .roleContainer .lastname,
+.profilContainer .roleContainer .firstname,
+.profilContainer .roleContainer .age,
+.profilContainer .roleContainer .bio,
+.profilContainer .roleContainer .role {
   width: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -88,7 +161,9 @@
 .profilContainer .lastnameInput,
 .profilContainer .firstnameInput,
 .profilContainer .ageInput,
-.profilContainer .mailInput {
+.profilContainer .mailInput,
+.profilContainer .bioInput,
+.profilContainer .roleInput {
   padding: 0.75rem 1.25rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -102,7 +177,7 @@
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 5px solid #b0d7ff;
+  border: 2px solid #4e5166;
   -webkit-transition: -webkit-box-shadow 0.3s;
   transition: -webkit-box-shadow 0.3s;
   transition: box-shadow 0.3s;
@@ -110,7 +185,7 @@
 }
 
 .profilContainer img:hover {
-  -webkit-box-shadow: 1px 1px 20px #b0d7ff;
-          box-shadow: 1px 1px 20px #b0d7ff;
+  -webkit-box-shadow: 1px 1px 20px #ffd7d7;
+          box-shadow: 1px 1px 20px #ffd7d7;
 }
 /*# sourceMappingURL=UserProfil.module.css.map */

@@ -1,41 +1,42 @@
 .userContainer {
-  border: 1px solid #2d3142;
+  border: 1px solid #fd2d01;
   border-radius: 5px;
   display: flex;
   align-items: center;
   padding: 1rem;
-
-  .name,
-  .lastname,
-  .email,
-  i {
-    // flex-grow: 1;
-    width: 25%;
-    max-width: 25%;
-    color: #2d3142;
-    // font-size: 1.2rem;
-    text-align: center;
-    // width: 100px;
-    // margin-left: 1rem;
-  }
-
-  i {
-    cursor: pointer;
-  }
 }
 
 table {
   width: 100%;
-  border: 1px solid #2d3142;
+  font-size: 0.8rem;
 }
 
 table td {
   text-align: center;
   padding: 1rem 0;
-  width: 20%;
-  border: 1px solid #2d3142;
+  border: 1px solid #fd2d01;
 }
 
 .delete {
   width: 5%;
+  cursor: pointer;
+}
+
+.admin {
+  width: 7.5%;
+}
+.email {
+  width: 25%;
+}
+
+select {
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+option {
+  padding: 1rem;
 }

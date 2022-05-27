@@ -1,0 +1,96 @@
+.commentsContainer {
+  background: #fff;
+  margin: 0 auto;
+  padding: 0.5rem 0.5rem;
+}
+
+.commentsContainer .comment {
+  padding: 0.75rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.commentsContainer .comment:hover button {
+  right: 0px;
+}
+
+.commentsContainer .comment .commentBottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.commentsContainer .comment .commentProfil {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.commentsContainer .comment .commentProfil img {
+  width: 35px;
+  border-radius: 50%;
+  border: 2px solid #ffd7d7;
+  margin-right: 0.5rem;
+}
+
+.commentsContainer .comment .commentHead {
+  background-color: #4e5166;
+  border: 2px solid #fd2d01;
+  border-radius: 5px;
+  background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  font-weight: 700;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.commentsContainer .comment .commentBody {
+  margin-right: auto;
+}
+
+.commentsContainer button {
+  background: #fd2d01;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  color: white;
+  cursor: pointer;
+  margin-left: 1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  position: relative;
+  right: -100%;
+}
+
+.commentsContainer button:hover {
+  background: white;
+  border: 1px solid #fd2d01;
+  -webkit-box-shadow: 1px 1px 10px #fd2d01;
+          box-shadow: 1px 1px 10px #fd2d01;
+}
+
+.commentsContainer button:hover i {
+  color: #fd2d01;
+}
+/*# sourceMappingURL=Comments.module.css.map */

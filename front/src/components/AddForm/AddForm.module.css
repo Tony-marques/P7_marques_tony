@@ -17,12 +17,11 @@
           justify-content: center;
 }
 
-form {
-  width: 400px;
-  height: 400px;
+.overlay form {
+  width: 500px;
+  height: 500px;
   border-radius: 5px;
   background: white;
-  z-index: 1;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -30,24 +29,34 @@ form {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  position: relative;
   padding: 1rem;
-  background: #2d3142;
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
 }
 
-form input,
-form textarea {
+.overlay form input,
+.overlay form textarea {
   padding: 1rem;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 5px;
 }
 
-form input:focus,
-form textarea:focus {
-  border: 1px solid #b0d7ff;
+.overlay form input:focus,
+.overlay form textarea:focus {
+  border: 1px solid #ffd7d7;
 }
 
-form textarea {
+.overlay form input[type="file"] {
+  margin-bottom: 1rem;
+  background-color: #4e5166;
+  background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
+  color: white;
+  cursor: pointer;
+}
+
+.overlay form textarea {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
@@ -55,7 +64,7 @@ form textarea {
   resize: none;
 }
 
-form .btnContainer {
+.overlay form .btnContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -64,13 +73,21 @@ form .btnContainer {
           justify-content: space-between;
 }
 
-form .btnContainer input[type="button"] {
+.overlay form .btnContainer input[type="button"] {
   cursor: pointer;
-  background: #b0d7ff;
+  background: #fd2d01;
   color: white;
   font-weight: bold;
   font-size: 1.2rem;
   width: 50%;
   margin: 0 1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.overlay form .btnContainer input[type="button"]:hover {
+  background: #fff;
+  color: #fd2d01;
+  border-color: #fd2d01;
 }
 /*# sourceMappingURL=AddForm.module.css.map */

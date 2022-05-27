@@ -1,10 +1,9 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
-import { useContext } from "react";
 
 import styles from "./Login.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -33,7 +32,6 @@ export default function Login({ setLogin }) {
         navigate("/news");
       })
       .catch((error) => {
-        console.log(error.response.data.error);
         toast.error(error.response.data.msg || error.response.data.error);
       });
   };

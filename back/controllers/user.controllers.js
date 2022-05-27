@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const UserModel = db.user;
 
 exports.signIn = (req, res) => {
-  const { password, email } = req.body;
+  const { password, email, name, lastname } = req.body;
   bcrypt
     .hash(password, 10)
     .then((hash) => {
@@ -14,6 +14,8 @@ exports.signIn = (req, res) => {
         email: email,
         password: hash,
         admin: false,
+        name: name,
+        lastname: lastname,
       })
         .then(() => res.status(201).json({ msg: "Utilisateur créé" }))
         .catch((err) => res.status(500).json({ msg: "Utilisateur non créé" }));
@@ -37,7 +39,7 @@ exports.login = (req, res) => {
           } else {
             const token = jwt.sign(
               { userId: user.id, admin: user.admin, name: user.name },
-              "RANDOM_SECRET_KEY",
+              process.env.SECRET_KEY,
               {
                 expiresIn: "24h",
               }
@@ -54,7 +56,6 @@ exports.login = (req, res) => {
 };
 
 exports.getOneProfil = (req, res) => {
-  console.log(req.params.id);
   UserModel.findByPk(req.params.id, {
     attributes: ["id", "name", "lastname", "age", "admin", "bio"],
   })
@@ -69,7 +70,6 @@ exports.getAllUsers = (req, res) => {
 };
 
 exports.updateProfil = (req, res) => {
-  console.log(req.body);
   UserModel.findByPk(req.params.id).then((user) => {
     user
       .update({ ...req.body })
@@ -84,6 +84,25 @@ exports.deleteUser = (req, res) => {
       id: id,
     },
   }).then((user) => {
+    user.destroy().then(() => {
+      return res
+        .status(200)
+        .json({ msg: "Le compte a été supprimé avec succès !" });
+    });
+  });
+};
+
+exports.deleteMyProfil = (req, res) => {
+  const { id } = req.params;
+  UserModel.findByPk(id).then((user) => {
     user.destroy();
+  });
+};
+
+exports.toggleAdmin = (req, res) => {
+  UserModel.findByPk(req.params.id).then((user) => {
+    user
+      .update({ ...req.body })
+      .then((newUser) => res.status(201).json({ newUser }));
   });
 };

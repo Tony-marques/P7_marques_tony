@@ -1,5 +1,8 @@
 .profilContainer {
-  background: #fff;
+  background-color: #ffd7d7;
+  // background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 1);
   border-radius: 5px;
   padding: 2rem;
@@ -7,38 +10,60 @@
   width: 100%;
   width: 700px;
   height: 50vh;
-  min-height: 500px;
+  min-height: 600px;
   overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   position: relative;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .infosContainer {
     width: 100%;
   }
 
+  .btnContainer {
+    display: flex;
+    // border: 1px solid red;
+    width: 80%;
+    justify-content: space-evenly;
+  }
+  .deleteBtn {
+    background: #fd2d01;
+    &:hover {
+      border: 1px solid #fd2d01;
+      background: #fff;
+      color: #fd2d01;
+    }
+  }
+
+  .postsBtn {
+    background: #4e5166;
+    &:hover {
+      border: 1px solid #4e5166;
+      background: #fff;
+      color: #4e5166;
+    }
+  }
+
   .btn {
-    border: 1px solid transparent;
-    background: #2d3142;
     color: #fff;
+    border: 1px solid transparent;
     cursor: pointer;
     padding: 0.75rem 1.25rem;
     border-radius: 5px;
     font-weight: bold;
     transition: all 0.3s;
-
-    &:hover {
-      border: 1px solid #2d3142;
-      background: #fff;
-      color: #2d3142;
-    }
   }
+
   .lastnameContainer,
   .firstnameContainer,
   .ageContainer,
-  .bioContainer {
+  .bioContainer,
+  .roleContainer {
     display: flex;
     width: 100%;
 
@@ -46,7 +71,8 @@
     .lastname,
     .firstname,
     .age,
-    .bio {
+    .bio,
+    .role {
       padding: 0.75rem 1.25rem;
       margin-left: 1rem;
     }
@@ -54,7 +80,8 @@
     .lastname,
     .firstname,
     .age,
-    .bio {
+    .bio,
+    .role {
       width: 50%;
       display: flex;
       justify-content: end;
@@ -66,7 +93,8 @@
   .firstnameInput,
   .ageInput,
   .mailInput,
-  .bioInput {
+  .bioInput,
+  .roleInput {
     padding: 0.75rem 1.25rem;
 
     display: flex;
@@ -77,10 +105,10 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 5px solid #b0d7ff;
+    border: 2px solid #4e5166;
     transition: box-shadow 0.3s;
     &:hover {
-      box-shadow: 1px 1px 20px #b0d7ff;
+      box-shadow: 1px 1px 20px #ffd7d7;
     }
   }
 }

@@ -7,22 +7,36 @@ const {
   updateProfil,
   getAllUsers,
   deleteUser,
+  deleteMyProfil,
+  toggleAdmin,
 } = require("../controllers/user.controllers");
+const auth = require("../middleware/auth.middleware");
+const checkAdmin = require("../middleware/checkAdmin");
+const idUser = require("../middleware/idUser");
 const isEmail = require("../middleware/isEmail");
 
-// Route connexion
-router.post("/login", isEmail, login);
+// Connexion // remettre isEmail
+router.post("/login", login);
 
-// Route création de compte
+// Création de compte // remettre isEmail
 router.post("/signin", signIn);
 
-//
-router.get("/getoneprofil/:id", getOneProfil);
+// Obtenir son propre profil => ok
+router.get("/getoneprofil/:id", auth, getOneProfil);
 
-router.get("/getallusers", getAllUsers);
+// Obtenir tous les users => ok
+router.post("/getallusers", auth, checkAdmin, getAllUsers);
 
-router.put("/updateuser/:id", updateProfil);
+// Mettre à jour son profil => ok
+router.put("/updateuser/:id", auth, updateProfil);
 
-router.delete("/deleteuser/:id", deleteUser);
+// Changer le status admin => ok
+router.put("/toggleadmin/:id", auth, checkAdmin, toggleAdmin);
+
+// Supprimer un user => ok
+router.delete("/deleteuser/:id", auth, checkAdmin, deleteUser);
+
+// Supprimer son profil / compte => ok
+router.delete("/deletemyprofil/:id", auth, idUser, deleteMyProfil);
 
 module.exports = router;

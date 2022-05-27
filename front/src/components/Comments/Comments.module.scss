@@ -1,0 +1,80 @@
+.commentsContainer {
+  background: #fff;
+  // width: 95%;
+
+  margin: 0 auto;
+  padding: 0.5rem 0.5rem;
+  // border-radius: 0 0 5px 5px;
+
+  .comment {
+    padding: 0.75rem;
+    // display: flex;
+    align-items: center;
+    // border: 1px solid #4e5166;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    &:hover button {
+      right: 0px;
+    }
+
+    .commentBottom {
+      display: flex;
+      overflow: hidden;
+      align-items: center;
+    }
+
+    .commentProfil {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 35px;
+        border-radius: 50%;
+        border: 2px solid #ffd7d7;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .commentHead {
+      background-color: #4e5166;
+      border: 2px solid #fd2d01;
+      border-radius: 5px;
+      background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
+      display: flex;
+      align-items: center;
+      color: #fff;
+      font-weight: 700;
+      justify-content: space-between;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .commentBody {
+      margin-right: auto;
+    }
+  }
+
+  button {
+    background: #fd2d01;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    color: white;
+    cursor: pointer;
+    margin-left: 1rem;
+    transition: all 0.3s;
+    position: relative;
+    right: -100%;
+
+    &:hover {
+      background: white;
+      border: 1px solid #fd2d01;
+      box-shadow: 1px 1px 10px #fd2d01;
+
+      i {
+        color: #fd2d01;
+      }
+    }
+  }
+}

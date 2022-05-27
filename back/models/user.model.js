@@ -1,10 +1,3 @@
-// const { DataTypes } = require("sequelize");
-// const PostModel = require("./post.model");
-
-// db config avec la connexion à la bdd
-// const db = require("../config/db");
-const post = require("./");
-
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define("user", {
     id: {
@@ -14,11 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     lastname: {
       type: DataTypes.STRING,
-      allowNull: true,
+      allowNull: false,
     },
     age: {
       type: DataTypes.INTEGER,

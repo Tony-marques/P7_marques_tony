@@ -1,9 +1,7 @@
-// const PostModel = require("../models/post.model");
-// const UserModel = require("../models/user.model");
-
 const db = require("../models");
 const PostModel = db.post;
 const UserModel = db.user;
+const fs = require("fs");
 
 exports.getAllPosts = (req, res) => {
   PostModel.findAll({
@@ -28,7 +26,6 @@ exports.getAllPosts = (req, res) => {
 };
 
 exports.getPersonnalPosts = (req, res) => {
-  console.log(req.params.id);
   PostModel.findAll({
     where: {
       userId: req.params.id,
@@ -46,16 +43,14 @@ exports.getPersonnalPosts = (req, res) => {
 };
 
 exports.createPost = (req, res) => {
-  console.log(req.file);
   const { author, content, userId } = req.body;
   UserModel.findByPk(req.params.id)
     .then((user) => {
-      // ref.file ? :
       PostModel.create({
-        author:
-          user.name && user.lastname
-            ? user.name + " " + user.lastname
-            : user.email,
+        author: `${user.name} - ${user.lastname}`,
+        // user.name && user.lastname
+        //   ? user.name + " " + user.lastname
+        //   : user.email,
         content,
         image: req.file
           ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
@@ -73,8 +68,20 @@ exports.createPost = (req, res) => {
 };
 
 exports.deletePost = (req, res, next) => {
-  console.log(req.token);
-  PostModel.destroy({ where: { id: req.params.id } })
-    .then(() => res.status(200).json({ message: "Message supprimé !" }))
-    .catch((error) => res.status(400).json({ error }));
+  // S'il y a une image dans le post, il faut d'abord supprimé l'image du backend
+  if (req.file) {
+    PostModel.findOne({ id: req.params.id }).then((post) => {
+      const filename = post.image.split("/images/")[1];
+      fs.unlink(`images/${filename}`, () => {
+        PostModel.destroy({ where: { id: req.params.id } })
+          .then(() => res.status(200).json({ message: "Message supprimé !" }))
+          .catch((error) => res.status(400).json({ error }));
+      });
+    });
+  } else {
+    // S'il n'y a pas d'image
+    PostModel.destroy({ where: { id: req.params.id } })
+      .then(() => res.status(200).json({ message: "Message supprimé !" }))
+      .catch((error) => res.status(400).json({ error }));
+  }
 };

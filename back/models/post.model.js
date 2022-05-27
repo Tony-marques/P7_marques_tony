@@ -4,14 +4,6 @@ module.exports = (sequelize, DataTypes) => {
     author: { type: DataTypes.STRING, allowNull: false },
     content: { type: DataTypes.STRING, allowNull: false },
     image: { type: DataTypes.STRING, allowNull: true },
-    // userId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   // references: {
-    //   //   model: "user",
-    //   //   key: "id",
-    //   // },
-    // },
   });
 
   return post;

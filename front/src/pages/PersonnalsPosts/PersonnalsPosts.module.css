@@ -6,7 +6,8 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #b0d7ff;
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -15,6 +16,28 @@
   width: 700px;
   max-height: 95vh;
   overflow: auto;
+}
+
+.personnalsPosts .emptyPost {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.personnalsPosts .emptyPost button {
+  width: 30%;
+  padding: 1rem;
+  cursor: pointer;
+  background: #fd2d01;
+  border-radius: 5px;
+  color: #ffd7d7;
+  border: none;
 }
 
 .personnalsPosts::-webkit-scrollbar {

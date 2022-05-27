@@ -5,8 +5,12 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
-  background: #2d3142;
-  border-radius: 5%;
+  // background: #fd2d01;
+  background-color: #ffd7d7;
+  // background-image: url("https://www.transparenttextures.com/patterns/diagonal-striped-brick.png");
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+
+  border-radius: 5px;
   overflow: hidden;
   box-shadow: 1px 1px 10px rgba(0, 0, 0);
 
@@ -25,16 +29,17 @@
       align-items: center;
       justify-content: center;
       width: 50%;
-      max-height: 100%;
+      max-height: 50%;
       // height: 100%;
-      background: #b0d7ff;
-      color: #2d3142;
+      background: transparent;
+
+      color: #4e5166;
       cursor: pointer;
       transition: all 0.3s;
 
       &:hover {
         color: #fff;
-        background: #b0d7ff;
+        // background: #FFD7D7;
       }
     }
 

@@ -1,11 +1,10 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 
 import styles from "./SignIn.module.scss";
-import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { apiUser } from "../../Api/Api";
 
@@ -13,6 +12,8 @@ export default function Login({ setLogin }) {
   // Variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [firstname, setFirstname] = useState("");
+  const [lastname, setLastname] = useState("");
 
   // Contexts
   const { isAuthenticated } = useContext(AuthContext);
@@ -23,14 +24,15 @@ export default function Login({ setLogin }) {
       .post(`${apiUser}/signin`, {
         email,
         password,
+        name: firstname,
+        lastname,
       })
       .then((res) => {
         toast.success("Votre compte a été créé avec succès !");
         setLogin(true);
       })
       .catch((error) => {
-        toast.error(error.response.data.msg);
-        console.log(error.response.data);
+        toast.error(error.response.data.msg || error.response.data.error);
       });
   };
 
@@ -49,9 +51,19 @@ export default function Login({ setLogin }) {
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
-        type="text"
+        type="password"
         placeholder="Mot de passe"
         onChange={(e) => setPassword(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Nom"
+        onChange={(e) => setLastname(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Prénom"
+        onChange={(e) => setFirstname(e.target.value)}
       />
       <input
         type="button"

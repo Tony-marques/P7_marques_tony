@@ -5,10 +5,21 @@ import SignIn from "../../components/SignIn/SignIn";
 import styles from "./Home.module.scss";
 import icon from "../../assets/icon-left-font-monochrome-white.svg";
 import MetaHead from "../../components/MetaHead/MetaHead";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Home() {
   // Variables
   const [login, setLogin] = useState(true);
+  const navigate = useNavigate();
+
+  // Context
+  const { isAuthenticated } = useContext(AuthContext);
+
+  if (isAuthenticated) {
+    navigate("/news");
+  }
 
   return (
     <main className={styles.home}>
