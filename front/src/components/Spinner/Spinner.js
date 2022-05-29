@@ -18,7 +18,3 @@ export default function Spinner() {
     </svg>
   );
 }
-
-{
-  /* <div className={styles.spinner}></div> */
-}

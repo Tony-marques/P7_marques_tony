@@ -23,11 +23,11 @@ db.user.hasMany(db.post, { foreignKey: "userId", onDelete: "cascade" });
 db.post.belongsTo(db.user, { foreignKey: "userId" });
 
 // Relation user / comment
-db.user.hasMany(db.comment);
+db.user.hasMany(db.comment, { onDelete: "cascade" });
 db.comment.belongsTo(db.user);
 
 // Relation post / comment
-db.post.hasMany(db.comment);
+db.post.hasMany(db.comment, { onDelete: "cascade" });
 db.comment.belongsTo(db.post);
 
 db.sequelize.sync({ force: false }).then(() => {

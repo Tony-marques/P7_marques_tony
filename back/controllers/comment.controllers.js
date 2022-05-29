@@ -50,7 +50,6 @@ exports.getCommentsByPosts = (req, res) => {
 };
 
 exports.deleteComment = (req, res) => {
-  console.log(req.params);
   CommentModel.destroy({
     where: {
       id: req.params.commentId,

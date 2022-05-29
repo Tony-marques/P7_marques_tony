@@ -1,8 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useEffect, useState, useContext } from "react";
-import { setHeaders } from "../../../Api/Api";
 
+import { setHeaders } from "../../../Api/Api";
 import { AuthContext } from "../../../contexts/AuthContext";
 import User from "../User/User";
 import styles from "./AllUsers.module.scss";
@@ -12,6 +12,7 @@ export default function AllUsers() {
   const [listOfUsers, setListOfUsers] = useState([]);
   const token = Cookies.get("token");
 
+  // Contexts
   const { USER_ID, userDeleted, isProfilUpdating } = useContext(AuthContext);
 
   // Functions

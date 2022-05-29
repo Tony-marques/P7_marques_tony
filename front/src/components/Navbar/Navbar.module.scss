@@ -5,9 +5,7 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
-  // background: #fd2d01;
   background-color: #ffd7d7;
-  // background-image: url("https://www.transparenttextures.com/patterns/diagonal-striped-brick.png");
   background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
 
   border-radius: 5px;
@@ -30,7 +28,6 @@
       justify-content: center;
       width: 50%;
       max-height: 50%;
-      // height: 100%;
       background: transparent;
 
       color: #4e5166;
@@ -39,7 +36,6 @@
 
       &:hover {
         color: #fff;
-        // background: #FFD7D7;
       }
     }
 

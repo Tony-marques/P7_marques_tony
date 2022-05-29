@@ -18,7 +18,7 @@ export default function Login({ setLogin }) {
   // Contexts
   const { setIsAuthenticated } = useContext(AuthContext);
 
-  // Fonctions
+  // Functions
   const handleForm = () => {
     axios
       .post(`${apiUser}/login`, {

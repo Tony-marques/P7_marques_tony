@@ -1,10 +1,10 @@
 .postContainer {
   width: 100%;
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .post {
-  // border: 1px solid rgb(176, 215, 255);
   border-radius: 5px;
   background: white;
   padding: 1rem;
@@ -12,13 +12,17 @@
   transition: box-shadow 0.3s;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   width: 100%;
-  // border: 1px solid #fd2d01;
+  // max-height: auto;
 
   .imgUrl {
     max-width: 100%;
-    width: 100%;
-    margin-top: 1rem;
-    // height: 100px;
+    min-width: 50%;
+    // width: 100%;
+    object-fit: cover;
+    // max-height: 100%;
+    // max-height: 600px;
+    background-size: cover;
+    margin: 1rem 0;
   }
 
   .postHeader {
@@ -39,6 +43,7 @@
 
       img {
         width: 40px;
+        height: 40px;
         border-radius: 50%;
         border: 2px solid #ffd7d7;
       }
@@ -46,8 +51,58 @@
   }
 
   .postBody {
-    padding: 1rem 0;
+    padding: 1rem;
     text-align: left;
+    min-height: 150px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    margin-top: 0.25rem;
+  }
+
+  textarea {
+    border-color: #4e5166 !important;
+    width: 100%;
+    resize: none;
+    outline: none;
+
+    &:focus {
+      border-color: #fd2d01 !important;
+    }
+  }
+
+  .imgContainer {
+    border: 1px solid red;
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .inputImgContainer {
+      border: 1px solid blue;
+      // display: flex;
+      // justify-content: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      input {
+        display: none;
+      }
+
+      label {
+        i {
+          font-size: 4rem;
+          background: red;
+          width: 100px;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          color: #fff;
+        }
+      }
+    }
   }
 
   button {
@@ -64,11 +119,41 @@
     &:hover {
       background: white;
       border: 1px solid #fd2d01;
-      box-shadow: 1px 1px 10px #fd2d01;
+      // box-shadow: 1px 1px 10px #fd2d01;
 
       i {
         color: #fd2d01;
       }
+    }
+  }
+
+  .updateButton {
+    background: green;
+
+    &:hover {
+      border-color: green;
+      background: #fff;
+
+      i {
+        color: green;
+      }
+    }
+  }
+
+  .btnChevron {
+    background: transparent;
+    color: #fd2d01;
+    padding: 0.5rem;
+    margin-left: 1rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      color: #4e5166;
     }
   }
 
@@ -104,13 +189,12 @@
   .btnContainer {
     display: flex;
     justify-content: flex-end;
-    // align-items: center;
+    margin-bottom: 1rem;
 
     .comments {
       flex-grow: 1;
       padding: 1rem;
       border-radius: 5px;
-      // border: 1px solid #dddfe2;
       outline: none;
       transition: border-color 0.3s;
       width: 80%;
@@ -135,11 +219,9 @@
   width: 95%;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   margin: 0.25rem auto 0 auto;
-  // opacity: 0;
   transform: translateY(-100%);
   transition: all 0.5s;
   position: relative;
-  // top: -10px;
 }
 
 .appear {

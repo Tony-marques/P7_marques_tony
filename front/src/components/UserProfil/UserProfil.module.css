@@ -188,4 +188,52 @@
   -webkit-box-shadow: 1px 1px 20px #ffd7d7;
           box-shadow: 1px 1px 20px #ffd7d7;
 }
+
+.profilContainer .fileContainer {
+  width: 150px;
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.profilContainer input[type="file"] {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.profilContainer label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 200px;
+  height: 200px;
+  padding: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  font-size: 1.2rem;
+  border-radius: 50%;
+  color: #fd2d01;
+}
+
+.pictureContainer {
+  position: relative;
+}
 /*# sourceMappingURL=UserProfil.module.css.map */

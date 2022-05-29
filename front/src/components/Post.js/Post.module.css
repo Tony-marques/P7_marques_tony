@@ -1,6 +1,7 @@
 .postContainer {
   width: 100%;
   margin-bottom: 1rem;
+  position: relative;
 }
 
 .post {
@@ -19,8 +20,11 @@
 
 .post .imgUrl {
   max-width: 100%;
-  width: 100%;
-  margin-top: 1rem;
+  min-width: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  background-size: cover;
+  margin: 1rem 0;
 }
 
 .post .postHeader {
@@ -53,13 +57,71 @@
 
 .post .postHeader .postProfil img {
   width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 2px solid #ffd7d7;
 }
 
 .post .postBody {
-  padding: 1rem 0;
+  padding: 1rem;
   text-align: left;
+  min-height: 150px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  margin-top: 0.25rem;
+}
+
+.post textarea {
+  border-color: #4e5166 !important;
+  width: 100%;
+  resize: none;
+  outline: none;
+}
+
+.post textarea:focus {
+  border-color: #fd2d01 !important;
+}
+
+.post .imgContainer {
+  border: 1px solid red;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.post .imgContainer .inputImgContainer {
+  border: 1px solid blue;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.post .imgContainer .inputImgContainer input {
+  display: none;
+}
+
+.post .imgContainer .inputImgContainer label i {
+  font-size: 4rem;
+  background: red;
+  width: 100px;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 50%;
+  color: #fff;
 }
 
 .post button {
@@ -78,12 +140,42 @@
 .post button:hover {
   background: white;
   border: 1px solid #fd2d01;
-  -webkit-box-shadow: 1px 1px 10px #fd2d01;
-          box-shadow: 1px 1px 10px #fd2d01;
 }
 
 .post button:hover i {
   color: #fd2d01;
+}
+
+.post .updateButton {
+  background: green;
+}
+
+.post .updateButton:hover {
+  border-color: green;
+  background: #fff;
+}
+
+.post .updateButton:hover i {
+  color: green;
+}
+
+.post .btnChevron {
+  background: transparent;
+  color: #fd2d01;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.post .btnChevron:hover {
+  color: #4e5166;
 }
 
 .post .addComment {
@@ -125,6 +217,7 @@
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 
 .post .btnContainer .comments {

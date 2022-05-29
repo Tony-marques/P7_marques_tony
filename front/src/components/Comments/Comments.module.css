@@ -26,6 +26,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 1rem;
 }
 
 .commentsContainer .comment .commentProfil {
@@ -39,6 +40,7 @@
 
 .commentsContainer .comment .commentProfil img {
   width: 35px;
+  height: 35px;
   border-radius: 50%;
   border: 2px solid #ffd7d7;
   margin-right: 0.5rem;

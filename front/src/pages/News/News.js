@@ -1,5 +1,4 @@
-import React from "react";
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -8,22 +7,18 @@ import styles from "./News.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import Post from "../../components/Post.js/Post";
 import { apiPost, setHeaders } from "../../Api/Api";
-import { useNavigate } from "react-router-dom";
 
 export default function News() {
   // Variables
   const [listOfPosts, setListOfPosts] = useState([]);
   const [isDataLoading, setIsDataLoading] = useState(false);
   const token = Cookies.get("token");
-  const navigate = useNavigate();
 
   // Contexts
   const {
     isPostUpdating,
     USER_ID,
     isAuthenticated,
-    profil,
-    setProfilCompleted,
   } = useContext(AuthContext);
 
   // Functions
@@ -42,16 +37,6 @@ export default function News() {
   useEffect(() => {
     fetchData();
   }, [isAuthenticated, isPostUpdating, USER_ID]);
-
-  // console.log();
-  // useEffect(() => {
-  //   if (profil.name == null || profil.lastname == null) {
-  //     navigate(`/profil/${USER_ID}`);
-  //     setProfilCompleted(false);
-  //   } else {
-  //     setProfilCompleted(true);
-  //   }
-  // }, []);
 
   return (
     <main className={styles.news}>

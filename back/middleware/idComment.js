@@ -3,7 +3,6 @@ const CommentModel = db.comment;
 
 module.exports = async (req, res, next) => {
   const comment = await CommentModel.findByPk(req.params.commentId);
-  // console.log(comment);
   if (
     (comment.userId && comment.userId == req.token.userId) ||
     req.token.admin

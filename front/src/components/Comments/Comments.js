@@ -1,20 +1,20 @@
-import React from "react";
-import { formatDate } from "../../Utils/formatDate";
-import pp from "../../assets/DefaultProfil.jpg";
-
-import styles from "./Comments.module.scss";
+import React, { useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
-import { useContext } from "react";
+
+import styles from "./Comments.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
+import { formatDate } from "../../Utils/formatDate";
+import pp from "../../assets/DefaultProfil.jpg";
 
 export default function Comments({ item, showComments, setShowComments }) {
   // Variables
   const token = Cookies.get("token");
 
   // Contexts
-  const { USER_ID, setIsPostUpdating, isAdmin } = useContext(AuthContext);
+  const { USER_ID, setIsPostUpdating, isAdmin, profilData } =
+    useContext(AuthContext);
 
   // Functions
   const deleteComment = () => {
@@ -36,18 +36,13 @@ export default function Comments({ item, showComments, setShowComments }) {
       });
     setIsPostUpdating(false);
   };
-  // console.log(item);
-
-  // if (!item) {
-  //   setShowComments(false);
-  // }
 
   return (
     <div className={styles.commentsContainer}>
       <div className={styles.comment}>
         <div className={styles.commentHead}>
           <div className={styles.commentProfil}>
-            <img src={pp} alt="" />
+            <img src={profilData.image ? profilData.image : pp} alt="" />
             <div className={styles.name}>{item.user.name}</div>
           </div>
           <div className={styles.date}>{formatDate(item.createdAt)}</div>

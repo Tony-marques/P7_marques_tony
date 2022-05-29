@@ -17,12 +17,6 @@ exports.getAllPosts = (req, res) => {
       return res.status(200).json(posts);
     })
     .catch((err) => res.status(500).json(err));
-
-  // PostModel.findAll()
-  //   .then((posts) => {
-  //     return res.status(200).json(posts);
-  //   })
-  //   .catch((err) => res.status(500).json(err));
 };
 
 exports.getPersonnalPosts = (req, res) => {
@@ -43,14 +37,11 @@ exports.getPersonnalPosts = (req, res) => {
 };
 
 exports.createPost = (req, res) => {
-  const { author, content, userId } = req.body;
+  const { content } = req.body;
   UserModel.findByPk(req.params.id)
     .then((user) => {
       PostModel.create({
         author: `${user.name} - ${user.lastname}`,
-        // user.name && user.lastname
-        //   ? user.name + " " + user.lastname
-        //   : user.email,
         content,
         image: req.file
           ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
@@ -67,21 +58,47 @@ exports.createPost = (req, res) => {
     .catch(() => res.status(401).json());
 };
 
-exports.deletePost = (req, res, next) => {
+exports.deletePost = (req, res) => {
+  console.log(req.message);
   // S'il y a une image dans le post, il faut d'abord supprimé l'image du backend
-  if (req.file) {
-    PostModel.findOne({ id: req.params.id }).then((post) => {
+  PostModel.findOne({ where: { id: req.params.id } }).then((post) => {
+    if (post.image) {
       const filename = post.image.split("/images/")[1];
       fs.unlink(`images/${filename}`, () => {
         PostModel.destroy({ where: { id: req.params.id } })
-          .then(() => res.status(200).json({ message: "Message supprimé !" }))
+          .then(() => res.status(200).json({ msg: req.message }))
           .catch((error) => res.status(400).json({ error }));
       });
-    });
-  } else {
-    // S'il n'y a pas d'image
-    PostModel.destroy({ where: { id: req.params.id } })
-      .then(() => res.status(200).json({ message: "Message supprimé !" }))
-      .catch((error) => res.status(400).json({ error }));
-  }
+    } else {
+      // S'il n'y a pas d'image
+      PostModel.destroy({ where: { id: req.params.id } })
+        .then(() => res.status(200).json({ msg: req.message }))
+        .catch((error) => res.status(400).json({ error }));
+    }
+  });
+};
+
+exports.updatePost = (req, res) => {
+  // console.log(req.message);
+  // console.log(req.body);
+  // console.log(req.file);
+  const { postId } = req.params;
+  PostModel.findOne({
+    where: {
+      id: postId,
+    },
+  })
+    .then((post) => {
+      post.update({
+        ...req.body,
+        userId: post.userId,
+        image: req.file
+          ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+          : post.image,
+      });
+    })
+    .then(() => {
+      return res.status(200).json({ msg: req.message });
+    })
+    .catch((err) => res.status(401).json(err));
 };

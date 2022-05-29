@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 import styles from "./UserProfil.module.scss";
@@ -9,7 +9,6 @@ import "./UserProfil.scss";
 import pp from "../../assets/DefaultProfil.jpg";
 import { AuthContext } from "../../contexts/AuthContext";
 import { apiUser, setHeaders } from "../../Api/Api";
-import { useEffect } from "react";
 
 export default function UserProfil({ user }) {
   // Variables
@@ -18,6 +17,7 @@ export default function UserProfil({ user }) {
   const [editLastName, setEditLastName] = useState("");
   const [editAge, setEditAge] = useState("");
   const [editBio, setEditBio] = useState("");
+  const [editPicture, setEditPicture] = useState("");
   const navigate = useNavigate();
   const token = Cookies.get("token");
 
@@ -26,9 +26,6 @@ export default function UserProfil({ user }) {
     setIsAuthenticated,
     setIsProfilUpdating,
     USER_ID,
-    setProfilCompleted,
-
-    profil,
   } = useContext(AuthContext);
 
   // Functions
@@ -38,18 +35,19 @@ export default function UserProfil({ user }) {
 
   const EditHandler = () => {
     const id = USER_ID;
+    const formData = new FormData();
+    formData.append("name", editFirstName ? editFirstName : user.name);
+    formData.append("lastname", editLastName ? editLastName : user.lastname);
+    formData.append("age", editAge ? editAge : user.age);
+    formData.append("bio", editBio ? editBio : user.bio);
+    formData.append("image", editPicture ? editPicture : user.picture);
     setEditInput(!editInput);
-    if (editFirstName || editLastName || editAge || editBio) {
+    if (editFirstName || editLastName || editAge || editBio || editPicture) {
       axios
         .put(
           `${apiUser}/updateuser/${id}`,
-          {
-            name: editFirstName ? editFirstName : user.name,
-            lastname: editLastName ? editLastName : user.lastname,
-            age: editAge ? editAge : user.age,
-            bio: editBio ? editBio : user.bio,
-          },
-          setHeaders(token) // ??
+          formData,
+          setHeaders(token)
         )
         .then(() => {
           toast.success("Votre profil a été mis à jour");
@@ -71,8 +69,8 @@ export default function UserProfil({ user }) {
         "Etes-vous sur de vouloir supprimer votre compte ? \nCeci entrainera également la suppression de vos données."
       )
     ) {
-      setIsAuthenticated(false);
       Cookies.remove("token");
+      setIsAuthenticated(false);
       axios
         .delete(`${apiUser}/deletemyprofil/${user.id}`, {
           headers: {
@@ -82,19 +80,12 @@ export default function UserProfil({ user }) {
             userId: USER_ID,
           },
         })
-        .then(() => {});
+        .then(() => {
+          setIsAuthenticated(false);
+        });
       navigate("/");
     }
   };
-
-  // useEffect(() => {
-  //   if (profil.name == null || profil.lastname == null) {
-  //     // navigate(`/profil/${USER_ID}`);
-  //     setProfilCompleted(false);
-  //   } else {
-  //     setProfilCompleted(true);
-  //   }
-  // }, []);
 
   return (
     <div className={styles.profilContainer}>
@@ -103,8 +94,19 @@ export default function UserProfil({ user }) {
       ) : (
         <i className="fa-solid fa-check" onClick={EditHandler}></i>
       )}
-
-      <img src={pp} alt="" />
+      <div className={styles.pictureContainer}>
+        <img src={user.image ? user.image : pp} alt="profil-image"></img>
+        {editInput && (
+          <div className={styles.fileContainer}>
+            <label htmlFor="profil-picture">Choisir une photo...</label>
+            <input
+              type="file"
+              name="profil-picture"
+              onChange={(e) => setEditPicture(e.target.files[0])}
+            ></input>
+          </div>
+        )}
+      </div>
       <div className={styles.infosContainer}>
         <div className={styles.firstnameContainer}>
           <div className={styles.lastname}>Nom: </div>
@@ -200,9 +202,3 @@ export default function UserProfil({ user }) {
   );
 }
 
-const options = {
-  headers: {
-    Authorization: "Bearer my-token",
-    "My-Custom-Header": "foobar",
-  },
-};

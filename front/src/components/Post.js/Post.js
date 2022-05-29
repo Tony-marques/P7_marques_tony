@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
@@ -6,11 +6,9 @@ import { toast } from "react-toastify";
 import styles from "./Post.module.scss";
 import pp from "../../assets/DefaultProfil.jpg";
 import { formatDate } from "../../Utils/formatDate";
-import { apiPost } from "../../Api/Api";
+import { apiPost, setHeaders } from "../../Api/Api";
 import { AuthContext } from "../../contexts/AuthContext";
 import Comments from "../Comments/Comments";
-import { useState } from "react";
-import { useEffect } from "react";
 
 export default function Post({ item }) {
   // Variables
@@ -18,9 +16,12 @@ export default function Post({ item }) {
   const [comments, setComments] = useState([]);
   const [showComments, setShowComments] = useState(false);
   const [addComment, setAddComment] = useState("");
+  const [edit, setEdit] = useState(false);
+  const [editContent, setEditContent] = useState("");
+  const [editImage, setEditImage] = useState("");
 
   // Contexts
-  const { setIsPostUpdating, isPostUpdating, USER_ID, isAdmin } =
+  const { setIsPostUpdating, isPostUpdating, USER_ID, isAdmin, profilData } =
     useContext(AuthContext);
 
   // Functions
@@ -34,9 +35,9 @@ export default function Post({ item }) {
           userId: USER_ID,
         },
       })
-      .then(() => {
+      .then((res) => {
         setIsPostUpdating(true);
-        toast.success("Votre post à été supprimé !");
+        toast.success(res.data.msg);
       })
       .catch((err) => toast.error(err.response.data.message));
     setIsPostUpdating(false);
@@ -74,24 +75,100 @@ export default function Post({ item }) {
     setIsPostUpdating(false);
   };
 
+  const updatePost = () => {
+    setEdit(false);
 
+    const formData = new FormData();
+    formData.append("image", editImage);
+    console.log(formData.get("image"));
+    formData.append("content", editContent ? editContent : item.content);
+    formData.append("userId", USER_ID);
+    if (!editImage && editContent) {
+      axios
+        .put(
+          `${apiPost}/updatepost/${item.id}`,
+          {
+            content: editContent ? editContent : item.content,
+            userId: USER_ID,
+          },
+          setHeaders(token)
+        )
+        .then((res) => {
+          toast.success(res.data.msg);
+          setIsPostUpdating(true);
+        })
+        .catch((err) => console.log(err));
+    } else if ((editImage && editContent) || editImage) {
+      console.log("test");
+      axios
+        .put(`${apiPost}/updatepost/${item.id}`, formData, setHeaders(token))
+        .then(() => {
+          setIsPostUpdating(true);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      toast.error("Post non modifié");
+    }
+    setIsPostUpdating(false);
+  };
 
   return (
     <div className={styles.postContainer}>
       <div className={styles.post}>
         <div className={styles.postHeader}>
           <div className={styles.postProfil}>
-            <img src={pp} alt="" />
-            <p>{item.author}</p>
+            <img src={profilData.image ? profilData.image : pp} alt="" />
+            <p>
+              {profilData.name} - {profilData.lastname}
+            </p>
           </div>
           <div className={styles.postTitle}>
             <p>{formatDate(item.createdAt)}</p>
           </div>
         </div>
-        {item.image && (
-          <img src={item.image} className={styles.imgUrl} alt="" />
+        <div className={styles.imgContainer}>
+          {!edit && item.image && (
+            <img
+              src={item.image}
+              className={styles.imgUrl}
+              alt="photo de profil"
+            />
+          )}
+          {edit && item.image && (
+            <>
+              <img
+                src={item.image}
+                className={styles.imgUrl}
+                alt="photo de profil"
+              />
+              <div className={styles.inputImgContainer}>
+                <label htmlFor="img-input">
+                  <i className="fa-solid fa-file-image"></i>
+                </label>
+                <input
+                  type="file"
+                  id="img-input"
+                  onChange={(e) => setEditImage(e.target.files[0])}
+                />
+              </div>
+            </>
+          )}
+        </div>
+        {!edit && (
+          <div className={styles.postBody}>
+            {editContent ? editContent : item.content}
+          </div>
         )}
-        <div className={styles.postBody}>{item.content}</div>
+        {edit && (
+          <textarea
+            onChange={(e) => {
+              setEditContent(e.target.value);
+            }}
+            className={styles.postBody}
+            defaultValue={editContent ? editContent : item.content}
+          ></textarea>
+        )}
+
         <div className={styles.btnContainer}>
           <div className={styles.inputContainer}>
             <input
@@ -105,6 +182,30 @@ export default function Post({ item }) {
               <i className="fa-solid fa-plus"></i>
             </button>
           </div>
+          {item.userId == USER_ID && !edit ? (
+            <button
+              onClick={() => setEdit(true)}
+              className={styles.updateButton}
+            >
+              <i className="fa-solid fa-pen-to-square"></i>
+            </button>
+          ) : item.userId == USER_ID && edit ? (
+            <button onClick={updatePost} className={styles.updateButton}>
+              <i className="fa-solid fa-circle-check"></i>
+            </button>
+          ) : isAdmin && !edit ? (
+            <button
+              onClick={() => setEdit(true)}
+              className={styles.updateButton}
+            >
+              <i className="fa-solid fa-pen-to-square"></i>
+            </button>
+          ) : isAdmin && edit ? (
+            <button onClick={updatePost} className={styles.updateButton}>
+              <i className="fa-solid fa-circle-check"></i>
+            </button>
+          ) : null}
+
           {item.userId == USER_ID ? (
             <button onClick={deletePost}>
               <i className="fa-solid fa-trash"></i>
@@ -115,13 +216,13 @@ export default function Post({ item }) {
             </button>
           ) : null}
           {!comments.length > 0 ? null : showComments ? (
-            <button onClick={handleShowComments}>
+            <div onClick={handleShowComments} className={styles.btnChevron}>
               <i className="fa-solid fa-chevron-up"></i>
-            </button>
+            </div>
           ) : (
-            <button onClick={handleShowComments}>
+            <div onClick={handleShowComments} className={styles.btnChevron}>
               <i className="fa-solid fa-chevron-down"></i>
-            </button>
+            </div>
           )}
         </div>
       </div>

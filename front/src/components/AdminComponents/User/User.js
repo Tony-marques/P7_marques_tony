@@ -81,8 +81,6 @@ export default function User({ item }) {
                     <option>Oui</option>
                   </>
                 )}
-                {/* <option>{item.admin ? "Oui" : "Non"}</option>
-                <option>{!item.admin ? "Oui" : "Non"}</option> */}
               </select>
             </td>
             <td className={styles.delete} onClick={deleteUser}>

@@ -4,6 +4,7 @@ const {
   createPost,
   deletePost,
   getPersonnalPosts,
+  updatePost,
 } = require("../controllers/post.controllers");
 const auth = require("../middleware/auth.middleware");
 const idPost = require("../middleware/idPost");
@@ -21,5 +22,8 @@ router.post("/createpost/:id", auth, multer, createPost);
 
 // Supprimer un post => ok
 router.delete("/deletepost/:id", auth, idPost, deletePost);
+
+// Mettre à jour un post => ok
+router.put("/updatepost/:postId", multer, auth, idPost, updatePost);
 
 module.exports = router;

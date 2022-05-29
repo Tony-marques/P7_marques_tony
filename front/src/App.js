@@ -4,6 +4,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import Cookies from "js-cookie";
 import { isExpired, decodeToken } from "react-jwt";
+import axios from "axios";
 
 import { AuthContext } from "./contexts/AuthContext";
 import "./App.scss";
@@ -18,7 +19,6 @@ import { ToggleAddContext } from "./contexts/ToggleAddContext";
 import PersonnalsPosts from "./pages/PersonnalsPosts/PersonnalsPosts";
 import AllUsers from "./components/AdminComponents/AllUsers/AllUsers";
 import { apiUser, setHeaders } from "./Api/Api";
-import axios from "axios";
 
 const App = () => {
   // Variables
@@ -27,6 +27,7 @@ const App = () => {
   const [isProfilUpdating, setIsProfilUpdating] = useState(null);
   const [profil, setProfil] = useState([]);
   const [isPostUpdating, setIsPostUpdating] = useState(false);
+  const [profilData, setProfilData] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [userDeleted, setUserDeleted] = useState(false);
   const [toggleAdd, setToggleAdd] = useState(null);
@@ -37,16 +38,12 @@ const App = () => {
     const decodedToken = decodeToken(token);
 
     if (!decodedToken) {
-      console.log(!decodedToken);
-      console.log("non decodé");
       Cookies.remove("token");
       Cookies.remove("userId");
       setIsAuthenticated(false);
     }
 
     if (decodedToken) {
-      console.log("decodé");
-
       const { userId } = decodedToken;
       const { admin } = decodedToken;
       setIsAdmin(admin);
@@ -65,6 +62,7 @@ const App = () => {
         .get(`${apiUser}/getoneprofil/${USER_ID}`, setHeaders(token))
         .then((res) => {
           setIsAdmin(res.data.admin);
+          setProfilData(res.data);
         })
         .catch((err) => {});
     }
@@ -72,15 +70,13 @@ const App = () => {
 
   useEffect(() => {
     fetchProfilData();
-  }, [isProfilUpdating, isAuthenticated, isAdmin]);
-
-  // USER_ID, isAdmin
+  }, [isProfilUpdating, isAuthenticated, isAdmin, USER_ID]);
 
   return (
     <AuthContext.Provider
       value={{
-        // profil,
-        // setProfil,
+        profilData,
+        setProfilData,
         userDeleted,
         setUserDeleted,
         isAuthenticated,
@@ -92,8 +88,6 @@ const App = () => {
         isPostUpdating,
         setIsPostUpdating,
         USER_ID,
-        // profilCompleted,
-        // setProfilCompleted,
       }}
     >
       <ToggleAddContext.Provider value={{ toggleAdd, setToggleAdd }}>
