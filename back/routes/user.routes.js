@@ -17,10 +17,10 @@ const isEmail = require("../middleware/isEmail");
 const multer = require("../middleware/multer");
 
 // Connexion // remettre isEmail
-router.post("/login", login);
+router.post("/login", isEmail, login);
 
 // Création de compte // remettre isEmail
-router.post("/signin", signIn);
+router.post("/signin", isEmail, signIn);
 
 // Obtenir son propre profil => ok
 router.get("/getoneprofil/:id", auth, getOneProfil);
@@ -28,8 +28,8 @@ router.get("/getoneprofil/:id", auth, getOneProfil);
 // Obtenir tous les users => ok
 router.post("/getallusers", auth, checkAdmin, getAllUsers);
 
-// Mettre à jour son profil => 
-router.put("/updateuser/:id",  multer, updateProfil);
+// Mettre à jour son profil =>
+router.put("/updateuser/:id", multer, updateProfil);
 
 // Changer le status admin => ok
 router.put("/toggleadmin/:id", auth, checkAdmin, toggleAdmin);

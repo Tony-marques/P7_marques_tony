@@ -1,7 +1,9 @@
 .profilContainer {
-  background-color: #ffd7d7;
+  // background-color: #ffd7d7;
+  // background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  background: #fd2d01;
   background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 1);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   padding: 2rem;
   margin: 0 auto;
@@ -15,6 +17,9 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
+  &:hover img{
+    box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.3);
+  }
   &::-webkit-scrollbar {
     display: none;
   }
@@ -37,23 +42,23 @@
     }
   }
 
-  .postsBtn {
-    background: #4e5166;
-    &:hover {
-      border: 1px solid #4e5166;
-      background: #fff;
-      color: #4e5166;
-    }
-  }
-
   .btn {
     color: #fff;
-    border: 1px solid transparent;
     cursor: pointer;
     padding: 0.75rem 1.25rem;
     border-radius: 5px;
     font-weight: bold;
     transition: all 0.3s;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    background: #ffd7d7;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+    color: #4e5166;
+    border: 1px solid #4e5166;
+    &:hover {
+      border: 1px solid #4e5166;
+      background: #fff;
+      color: #4e5166;
+    }
   }
 
   .lastnameContainer,
@@ -72,6 +77,13 @@
     .role {
       padding: 0.75rem 1.25rem;
       margin-left: 1rem;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    input {
+      color: black;
     }
 
     .lastname,
@@ -96,17 +108,19 @@
 
     display: flex;
     align-items: center;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
   }
 
   img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    border: 2px solid #4e5166;
+    border: 3px solid #4e5166;
     transition: box-shadow 0.3s;
-    &:hover {
-      box-shadow: 1px 1px 20px #ffd7d7;
-    }
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+
   }
 
   .fileContainer {

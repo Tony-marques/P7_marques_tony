@@ -5,12 +5,12 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
-  background-color: #ffd7d7;
+  background: #fd2d01;
   background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
 
   border-radius: 5px;
   overflow: hidden;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 
   .navcontainer {
     width: 100%;
@@ -29,8 +29,7 @@
       width: 50%;
       max-height: 50%;
       background: transparent;
-
-      color: #4e5166;
+      color: #FFD7D7;
       cursor: pointer;
       transition: all 0.3s;
 

@@ -34,7 +34,7 @@
     align-items: center;
     padding: 1rem 1rem;
     color: white;
-    border: 2px solid #fd2d01;
+    border: 2px solid #ffd7d7;
 
     .postProfil {
       display: flex;
@@ -71,13 +71,13 @@
   }
 
   .imgContainer {
-    border: 1px solid red;
+    // border: 1px solid red;
     position: relative;
     display: flex;
     justify-content: center;
 
     .inputImgContainer {
-      border: 1px solid blue;
+      // border: 1px solid blue;
       // display: flex;
       // justify-content: center;
       position: absolute;
@@ -107,6 +107,7 @@
 
   button {
     background: #fd2d01;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
     padding: 0.75rem 1.25rem;
     border: none;
     border-radius: 5px;
@@ -129,6 +130,7 @@
 
   .updateButton {
     background: green;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
 
     &:hover {
       border-color: green;
@@ -162,7 +164,8 @@
     top: 50%;
     transform: translateY(-50%);
     right: 0;
-    background: #4e5166;
+    background-color: #4e5166;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
     height: 100%;
     border: 1px solid transparent;
     transition: all 0.3s;
@@ -170,11 +173,10 @@
 
     &:hover {
       background: white;
-      border: 1px solid #ffd7d7;
-      box-shadow: 1px 1px 10px rgba(176, 215, 255, 01);
+      border: 1px solid #4e5166;
 
       i {
-        color: #ffd7d7;
+        color: #4e5166;
       }
     }
   }
@@ -213,8 +215,12 @@
 }
 
 .commentsWall {
-  padding: 0.5rem;
-  background: #fff;
+  padding: 1rem;
+  // background: #fff;
+  // background-color: #4e5166;
+  // background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
   border-radius: 5px;
   width: 95%;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);

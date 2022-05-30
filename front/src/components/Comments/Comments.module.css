@@ -1,11 +1,13 @@
 .commentsContainer {
-  background: #fff;
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
   margin: 0 auto;
-  padding: 0.5rem 0.5rem;
+  padding: 0.5rem 0rem;
 }
 
 .commentsContainer .comment {
   padding: 0.75rem;
+  background: white;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -48,7 +50,7 @@
 
 .commentsContainer .comment .commentHead {
   background-color: #4e5166;
-  border: 2px solid #fd2d01;
+  border: 2px solid #ffd7d7;
   border-radius: 5px;
   background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
   display: -webkit-box;

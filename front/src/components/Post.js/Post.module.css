@@ -42,7 +42,7 @@
           align-items: center;
   padding: 1rem 1rem;
   color: white;
-  border: 2px solid #fd2d01;
+  border: 2px solid #ffd7d7;
 }
 
 .post .postHeader .postProfil {
@@ -83,7 +83,6 @@
 }
 
 .post .imgContainer {
-  border: 1px solid red;
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -94,7 +93,6 @@
 }
 
 .post .imgContainer .inputImgContainer {
-  border: 1px solid blue;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -243,8 +241,9 @@
 }
 
 .commentsWall {
-  padding: 0.5rem;
-  background: #fff;
+  padding: 1rem;
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
   border-radius: 5px;
   width: 95%;
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);

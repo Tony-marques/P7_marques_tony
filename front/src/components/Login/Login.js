@@ -48,7 +48,7 @@ export default function Login({ setLogin }) {
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
-        type="text"
+        type="password"
         placeholder="Mot de passe"
         onChange={(e) => setPassword(e.target.value)}
       />

@@ -31,7 +31,7 @@
           flex-direction: column;
   position: relative;
   padding: 1rem;
-  background: #ffd7d7;
+  background: #fd2d01;
   background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
 }
 
@@ -75,7 +75,8 @@
 
 .overlay form .btnContainer input[type="button"] {
   cursor: pointer;
-  background: #fd2d01;
+  background-color: #4e5166;
+  background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
   color: white;
   font-weight: bold;
   font-size: 1.2rem;
@@ -88,6 +89,6 @@
 .overlay form .btnContainer input[type="button"]:hover {
   background: #fff;
   color: #fd2d01;
-  border-color: #fd2d01;
+  border-color: #fff;
 }
 /*# sourceMappingURL=AddForm.module.css.map */

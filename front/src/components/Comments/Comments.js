@@ -8,7 +8,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { formatDate } from "../../Utils/formatDate";
 import pp from "../../assets/DefaultProfil.jpg";
 
-export default function Comments({ item, showComments, setShowComments }) {
+export default function Comments({ item }) {
   // Variables
   const token = Cookies.get("token");
 

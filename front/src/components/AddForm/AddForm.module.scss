@@ -10,7 +10,6 @@
   align-items: center;
   justify-content: center;
 
-
   form {
     width: 500px;
     height: 500px;
@@ -21,11 +20,12 @@
     flex-direction: column;
     position: relative;
     padding: 1rem;
-    background: #ffd7d7;
+    background: #fd2d01;
     background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
 
     input,
-    textarea {
+    textarea,
+    label {
       padding: 1rem;
       outline: none;
       border: 1px solid rgba(0, 0, 0, 0.5);
@@ -36,12 +36,25 @@
       }
     }
 
-    input[type="file"] {
+    label {
       margin-bottom: 1rem;
       background-color: #4e5166;
       background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
       color: white;
       cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      justify-content: center;
+      font-size: 1.5rem;
+      &:hover {
+        background: #fff;
+        color: #fd2d01;
+        border-color: #fff;
+      }
+    }
+
+    input[type="file"] {
+      display: none;
     }
 
     textarea {
@@ -56,7 +69,8 @@
 
       input[type="button"] {
         cursor: pointer;
-        background: #fd2d01;
+        background-color: #4e5166;
+        background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
         color: white;
         font-weight: bold;
         font-size: 1.2rem;
@@ -67,7 +81,7 @@
         &:hover {
           background: #fff;
           color: #fd2d01;
-          border-color: #fd2d01;
+          border-color: #fff;
         }
       }
     }

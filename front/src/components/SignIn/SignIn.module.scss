@@ -5,10 +5,12 @@
   width: 400px;
   height: 450px;
   align-items: center;
-  background: white;
+  // background: white;
+  background: #fd2d01;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
   padding: 1rem;
   border-radius: 5px;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.7);
 
   input {
     width: 100%;
@@ -19,7 +21,7 @@
     transition: border-color 0.3s;
 
     &:focus {
-      border-color: #fd2d01;
+      border-color: black;
     }
   }
 
@@ -28,7 +30,7 @@
   }
   hr {
     height: 1px;
-    background-color: #dddfe2;
+    background-color: #4e5166;
     width: 100%;
     border: none;
   }
@@ -38,8 +40,10 @@
     background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
     color: white;
     font-weight: bold;
+    border: 1px solid transparent;
     font-size: 1.1rem;
     transition: all 0.3s;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
 
     &:hover {
       background: white;
@@ -52,13 +56,15 @@
     width: 50%;
     background: #ffd7d7;
     background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+    // border: 1px solid #4e5166;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
     color: #4e5166;
     font-weight: bold;
     transition: all 0.3s;
 
     &:hover {
       background: white;
-      border-color: #ffd7d7;
+      // border-color: 4e5166;
     }
   }
 }

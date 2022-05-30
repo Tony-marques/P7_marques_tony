@@ -9,7 +9,7 @@
 }
 
 .news .postsContainer {
-  background-color: #ffd7d7;
+  background: #fd2d01;
   background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
   -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
           box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);

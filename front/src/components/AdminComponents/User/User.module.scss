@@ -1,5 +1,5 @@
 .userContainer {
-  border: 1px solid #fd2d01;
+  border: 1px solid #ffd7d7;
   border-radius: 5px;
   display: flex;
   align-items: center;
@@ -15,6 +15,9 @@ table td {
   text-align: center;
   padding: 1rem 0;
   border: 1px solid #fd2d01;
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  border-radius: 5px;
 }
 
 .delete {
