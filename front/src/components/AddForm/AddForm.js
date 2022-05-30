@@ -12,6 +12,8 @@ export default function AddForm() {
   // Variables
   const [content, setContent] = useState("");
   const [image, setImage] = useState("");
+  const [errors, setErrors] = useState("");
+  const [path, setPath] = useState("");
   const token = Cookies.get("token");
 
   // Contexts
@@ -33,12 +35,17 @@ export default function AddForm() {
 
     axios
       .post(`${apiPost}/createpost/${USER_ID}`, formData, options)
-      .then(
-        () => setIsPostUpdating(true),
-        toast.success("Post créé avec succès !")
-      )
-      .catch(() => {});
-    setToggleAdd(false);
+      .then(() => {
+        setIsPostUpdating(true);
+        toast.success("Post créé avec succès !");
+        setToggleAdd(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrors(error.response.data.errors);
+        setPath(error.response.data.path);
+      });
+
     setIsPostUpdating(false);
   };
 
@@ -62,6 +69,7 @@ export default function AddForm() {
           placeholder="Contenu"
           onChange={(e) => setContent(e.target.value)}
         />
+        {errors && path == "content" && <span>{errors}</span>}
         <input type="file" onChange={uploadImg} id="postImg" />
         <label htmlFor="postImg">Choisir un fichier</label>
         <div className={styles.btnContainer}>

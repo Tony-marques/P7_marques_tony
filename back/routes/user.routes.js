@@ -13,14 +13,16 @@ const {
 const auth = require("../middleware/auth.middleware");
 const checkAdmin = require("../middleware/checkAdmin");
 const idUser = require("../middleware/idUser");
-const isEmail = require("../middleware/isEmail");
 const multer = require("../middleware/multer");
+const rateLimit = require("../middleware/rateLimit");
+const loginValid = require("../middleware/Yup/loginValidation");
+const registerValid = require("../middleware/Yup/registerValidation");
 
-// Connexion // remettre isEmail
-router.post("/login", login);
+// Connexion //
+router.post("/login",rateLimit, loginValid, login);
 
-// Création de compte // remettre isEmail
-router.post("/signin", signIn);
+// Création de compte //
+router.post("/signin", rateLimit, registerValid, signIn);
 
 // Obtenir son propre profil => ok
 router.get("/getoneprofil/:id", auth, getOneProfil);

@@ -57,6 +57,16 @@
       display: none;
     }
 
+    span {
+      background: #fff;
+      border: 1px solid #4e5166;
+      margin-bottom: 1rem;
+      padding: 1rem;
+      font-weight: 700;
+      color: #fd2d01;
+      border-radius: 5px;
+    }
+
     textarea {
       flex-grow: 1;
       margin-bottom: 1rem;

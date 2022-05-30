@@ -9,6 +9,7 @@ const {
 const auth = require("../middleware/auth.middleware");
 const idPost = require("../middleware/idPost");
 const multer = require("../middleware/multer");
+const postValid = require("../middleware/Yup/postValidation");
 const router = express.Router();
 
 // Récupération de tous les posts => ok
@@ -18,7 +19,7 @@ router.post("/getallposts", auth, getAllPosts);
 router.post("/getpersonnalposts/:id", auth, getPersonnalPosts);
 
 // Créer un post => ok
-router.post("/createpost/:id", auth, multer, createPost);
+router.post("/createpost/:id", auth, multer, postValid, createPost);
 
 // Supprimer un post => ok
 router.delete("/deletepost/:id", auth, idPost, deletePost);

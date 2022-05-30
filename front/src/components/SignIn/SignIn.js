@@ -13,7 +13,10 @@ export default function Login({ setLogin }) {
   const [password, setPassword] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
+  const [errors, setErrors] = useState("");
+  const [path, setPath] = useState("");
 
+  console.log(errors);
   // Contexts
   const { isAuthenticated } = useContext(AuthContext);
 
@@ -31,7 +34,10 @@ export default function Login({ setLogin }) {
         setLogin(true);
       })
       .catch((error) => {
-        toast.error(error.response.data.msg || error.response.data.error);
+        // toast.error(error.response.data.msg || error.response.data.error);
+        setErrors(error.response.data.errors);
+        setPath(error.response.data.path);
+        toast.error(error.response.data);
       });
   };
 
@@ -49,21 +55,25 @@ export default function Login({ setLogin }) {
         placeholder="E-mail"
         onChange={(e) => setEmail(e.target.value)}
       />
+      {errors && path == "email" && <span>{errors}</span>}
       <input
         type="password"
         placeholder="Mot de passe"
         onChange={(e) => setPassword(e.target.value)}
       />
+      {errors && path == "password" && <span>{errors}</span>}
       <input
         type="text"
         placeholder="Nom"
         onChange={(e) => setLastname(e.target.value)}
       />
+      {errors && path == "lastname" && <span>{errors}</span>}
       <input
         type="text"
         placeholder="Prénom"
         onChange={(e) => setFirstname(e.target.value)}
       />
+      {errors && path == "name" && <span>{errors}</span>}
       <input
         type="button"
         value="Créer mon compte"

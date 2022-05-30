@@ -13,6 +13,8 @@ export default function Login({ setLogin }) {
   // Variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState("");
+  const [path, setPath] = useState("");
   const navigate = useNavigate();
 
   // Contexts
@@ -33,6 +35,9 @@ export default function Login({ setLogin }) {
       })
       .catch((error) => {
         toast.error(error.response.data.msg || error.response.data.error);
+        setErrors(error.response.data.errors);
+        setPath(error.response.data.path);
+        toast.error(error.response.data);
       });
   };
 
@@ -47,11 +52,14 @@ export default function Login({ setLogin }) {
         placeholder="E-mail"
         onChange={(e) => setEmail(e.target.value)}
       />
+      {errors && path == "email" && <span>{errors}</span>}
+
       <input
         type="password"
         placeholder="Mot de passe"
         onChange={(e) => setPassword(e.target.value)}
       />
+      {errors && path == "password" && <span>{errors}</span>}
       <input
         type="button"
         value="Se connecter"
