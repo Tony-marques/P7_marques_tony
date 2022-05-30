@@ -17,10 +17,10 @@ const isEmail = require("../middleware/isEmail");
 const multer = require("../middleware/multer");
 
 // Connexion // remettre isEmail
-router.post("/login", isEmail, login);
+router.post("/login", login);
 
 // Création de compte // remettre isEmail
-router.post("/signin", isEmail, signIn);
+router.post("/signin", signIn);
 
 // Obtenir son propre profil => ok
 router.get("/getoneprofil/:id", auth, getOneProfil);
