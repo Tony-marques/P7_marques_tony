@@ -1,6 +1,6 @@
 const express = require("express");
 require("dotenv").config({ path: "./config/.env" });
-// require("./config/db");
+// require("./config/db");//
 const userRoute = require("./routes/user.routes");
 const postRoute = require("./routes/post.routes");
 const commentRoute = require("./routes/comment.routes");
