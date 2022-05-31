@@ -32,7 +32,7 @@ const App = () => {
   const [userDeleted, setUserDeleted] = useState(false);
   const [toggleAdd, setToggleAdd] = useState(null);
   const [USER_ID, setUSER_ID] = useState(null);
-  const [profilCompleted, setProfilCompleted] = useState(false);
+
   // Fonctions
   const checkToken = () => {
     const decodedToken = decodeToken(token);

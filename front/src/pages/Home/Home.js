@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
 import Login from "../../components/Login/Login";
-import SignIn from "../../components/SignIn/SignIn";
+import SignUp from "../../components/SignUp/SignUp";
 import styles from "./Home.module.scss";
 import icon from "../../assets/icon-left-font-monochrome-white.svg";
 import MetaHead from "../../components/MetaHead/MetaHead";
@@ -37,7 +37,7 @@ export default function Home() {
           {login ? (
             <Login setLogin={setLogin} />
           ) : (
-            <SignIn setLogin={setLogin} />
+            <SignUp setLogin={setLogin} />
           )}
         </div>
       </div>

@@ -9,7 +9,7 @@ exports.getAllPosts = (req, res) => {
     include: [
       {
         model: UserModel,
-        attributes: ["name", "lastname", "id", "admin", "age"],
+        attributes: ["name", "lastname", "id", "admin", "age", "image"],
       },
     ],
   })
@@ -41,7 +41,7 @@ exports.createPost = (req, res) => {
   UserModel.findByPk(req.params.id)
     .then((user) => {
       PostModel.create({
-        author: `${user.name} - ${user.lastname}`,
+        // author: `${user.name} - ${user.lastname}`,
         content,
         image: req.file
           ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
@@ -59,7 +59,6 @@ exports.createPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-  console.log(req.message);
   // S'il y a une image dans le post, il faut d'abord supprimé l'image du backend
   PostModel.findOne({ where: { id: req.params.id } }).then((post) => {
     if (post.image) {
@@ -79,9 +78,6 @@ exports.deletePost = (req, res) => {
 };
 
 exports.updatePost = (req, res) => {
-  // console.log(req.message);
-  // console.log(req.body);
-  // console.log(req.file);
   const { postId } = req.params;
   PostModel.findOne({
     where: {

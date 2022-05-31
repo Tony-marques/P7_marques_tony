@@ -3,7 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Navigate } from "react-router-dom";
 
-import styles from "./SignIn.module.scss";
+import styles from "./SignUp.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import { apiUser } from "../../Api/Api";
 
@@ -16,14 +16,13 @@ export default function Login({ setLogin }) {
   const [errors, setErrors] = useState("");
   const [path, setPath] = useState("");
 
-  console.log(errors);
   // Contexts
   const { isAuthenticated } = useContext(AuthContext);
 
   // Functions
   const handleForm = () => {
     axios
-      .post(`${apiUser}/signin`, {
+      .post(`${apiUser}/signup`, {
         email,
         password,
         name: firstname,
@@ -34,7 +33,6 @@ export default function Login({ setLogin }) {
         setLogin(true);
       })
       .catch((error) => {
-        // toast.error(error.response.data.msg || error.response.data.error);
         setErrors(error.response.data.errors);
         setPath(error.response.data.path);
         toast.error(error.response.data);

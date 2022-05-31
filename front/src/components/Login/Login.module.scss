@@ -5,7 +5,6 @@
   width: 400px;
   height: 350px;
   align-items: center;
-  // background: white;
   background: #fd2d01;
   background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
   padding: 1rem;
@@ -16,7 +15,6 @@
     width: 100%;
     padding: 1rem;
     border-radius: 5px;
-    // border: 1px solid #dddfe2;
     border: 1px solid #ffd7d7;
     transition: border-color 0.3s;
     outline: none;
@@ -57,7 +55,6 @@
     width: 50%;
     background: #ffd7d7;
     background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-    // border: 1px solid #4e5166;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
     color: #4e5166;
     font-weight: bold;
@@ -65,7 +62,6 @@
 
     &:hover {
       background: white;
-      // border-color: 4e5166;
     }
   }
 }

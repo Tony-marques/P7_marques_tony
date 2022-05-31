@@ -9,7 +9,6 @@ const postSchema = yup.object().shape({
 });
 
 const postValid = async (req, res, next) => {
-  console.log(req.body);
   try {
     await postSchema.validate({ ...req.body });
     next();

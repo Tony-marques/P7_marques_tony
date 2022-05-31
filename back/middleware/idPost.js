@@ -12,7 +12,6 @@ module.exports = async (req, res, next) => {
           break;
         }
         case "DELETE": {
-          console.log("DELETE");
           req.message = "Votre post a été supprimé";
           next();
           break;

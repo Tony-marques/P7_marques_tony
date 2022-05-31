@@ -5,9 +5,7 @@ module.exports = (req, res, next) => {
     // on vérifie que le token est présent et valide
     const token = req.headers.authorization.split(" ")[1];
     req.token = jwt.verify(token, process.env.SECRET_KEY);
-    console.log(req.body);
-    console.log(req.file);
-    console.log(token);
+
     /* si le corps de la requête contient un UserId on vérifie qu'il correspond au
     USER_ID contenu dans le payload du token */
     if (

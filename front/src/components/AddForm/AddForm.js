@@ -41,7 +41,6 @@ export default function AddForm() {
         setToggleAdd(false);
       })
       .catch((error) => {
-        console.log(error);
         setErrors(error.response.data.errors);
         setPath(error.response.data.path);
       });

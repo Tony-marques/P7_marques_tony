@@ -38,7 +38,10 @@ exports.getCommentsByPosts = (req, res) => {
     },
     order: [["createdAt", "DESC"]],
     include: [
-      { model: UserModel, attributes: ["name", "id", "lastname", "age"] },
+      {
+        model: UserModel,
+        attributes: ["name", "id", "lastname", "age", "image"],
+      },
     ],
   })
     .then((comments) => {

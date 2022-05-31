@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const UserModel = db.user;
 
-exports.signIn = (req, res) => {
+exports.signUp = (req, res) => {
   const { password, email, name, lastname } = req.body;
   bcrypt
     .hash(password, 10)
@@ -71,7 +71,6 @@ exports.getAllUsers = (req, res) => {
 };
 
 exports.updateProfil = (req, res) => {
-  console.log(req.body);
   UserModel.findByPk(req.params.id).then((user) => {
     user
       .update({

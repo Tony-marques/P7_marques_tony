@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const {
   login,
-  signIn,
+  signUp,
   getOneProfil,
   updateProfil,
   getAllUsers,
@@ -22,7 +22,7 @@ const registerValid = require("../middleware/Yup/registerValidation");
 router.post("/login",rateLimit, loginValid, login);
 
 // Création de compte //
-router.post("/signin", rateLimit, registerValid, signIn);
+router.post("/signup", rateLimit, registerValid, signUp);
 
 // Obtenir son propre profil => ok
 router.get("/getoneprofil/:id", auth, getOneProfil);

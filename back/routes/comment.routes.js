@@ -7,13 +7,15 @@ const {
 } = require("../controllers/comment.controllers");
 const auth = require("../middleware/auth.middleware");
 const idComment = require("../middleware/idComment");
+const commentValid = require("../middleware/Yup/commentValidation");
 const router = express.Router();
 
-router.get("/getallcomments", getAllComments);
+router.get("/getallcomments", auth, getAllComments);
 
-router.get("/getcommentsbyposts/:postId", getCommentsByPosts);
+// Récupérer tous les commentaires d'un post
+router.post("/getcommentsbyposts/:postId", auth, getCommentsByPosts);
 
-router.post("/createcomment/:postId", createComment);
+router.post("/createcomment/:postId", auth, commentValid, createComment);
 
 router.delete("/deletecomment/:commentId", auth, idComment, deleteComment);
 

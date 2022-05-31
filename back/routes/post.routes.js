@@ -25,6 +25,6 @@ router.post("/createpost/:id", auth, multer, postValid, createPost);
 router.delete("/deletepost/:id", auth, idPost, deletePost);
 
 // Mettre à jour un post => ok
-router.put("/updatepost/:postId", multer, auth, idPost, updatePost);
+router.put("/updatepost/:postId", multer, auth, idPost, postValid, updatePost);
 
 module.exports = router;

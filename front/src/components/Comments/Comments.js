@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
@@ -32,7 +32,6 @@ export default function Comments({ item }) {
         toast.success("Le commentaire a été supprimé.");
       })
       .catch((err) => {
-        console.log(err);
       });
     setIsPostUpdating(false);
   };
@@ -42,8 +41,10 @@ export default function Comments({ item }) {
       <div className={styles.comment}>
         <div className={styles.commentHead}>
           <div className={styles.commentProfil}>
-            <img src={profilData.image ? profilData.image : pp} alt="" />
-            <div className={styles.name}>{item.user.name}</div>
+            <img src={item.user.image ? item.user.image : pp} alt="" />
+            <div className={styles.name}>
+              {item.user.name} - {item.user.lastname}
+            </div>
           </div>
           <div className={styles.date}>{formatDate(item.createdAt)}</div>
         </div>

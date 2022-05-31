@@ -19,6 +19,9 @@ export default function Post({ item }) {
   const [edit, setEdit] = useState(false);
   const [editContent, setEditContent] = useState("");
   const [editImage, setEditImage] = useState("");
+  const [errors, setErrors] = useState(false);
+  const [errorsComment, setErrorsComment] = useState(false);
+  const [path, setPath] = useState("");
 
   // Contexts
   const { setIsPostUpdating, isPostUpdating, USER_ID, isAdmin, profilData } =
@@ -44,11 +47,16 @@ export default function Post({ item }) {
   };
 
   const getCommentsByPost = () => {
-    axios
-      .get(`http://localhost:3000/api/comment/getcommentsbyposts/${item.id}`)
-      .then((res) => {
-        setComments(res.data.comments);
-      });
+    axios({
+      method: "post",
+      url: `http://localhost:3000/api/comment/getcommentsbyposts/${item.id}`,
+      data: {
+        userId: USER_ID,
+      },
+      headers: { authorization: `Bearer ${token}` },
+    }).then((res) => {
+      setComments(res.data.comments);
+    });
   };
 
   useEffect(() => {
@@ -61,16 +69,25 @@ export default function Post({ item }) {
 
   const handleAddComment = () => {
     axios
-      .post(`http://localhost:3000/api/comment/createcomment/${item.id}`, {
-        content: addComment,
-        userId: USER_ID,
-      })
+      .post(
+        `http://localhost:3000/api/comment/createcomment/${item.id}`,
+        {
+          content: addComment,
+          userId: USER_ID,
+        },
+        setHeaders(token)
+      )
       .then((res) => {
         setIsPostUpdating(true);
         if (showComments == false) {
           setShowComments(!showComments);
         }
         setAddComment("");
+        setErrorsComment(false);
+      })
+      .catch((error) => {
+        setErrorsComment(error.response.data.errors);
+        setPath(error.response.data.path);
       });
     setIsPostUpdating(false);
   };
@@ -80,7 +97,6 @@ export default function Post({ item }) {
 
     const formData = new FormData();
     formData.append("image", editImage);
-    console.log(formData.get("image"));
     formData.append("content", editContent ? editContent : item.content);
     formData.append("userId", USER_ID);
     if (!editImage && editContent) {
@@ -96,16 +112,24 @@ export default function Post({ item }) {
         .then((res) => {
           toast.success(res.data.msg);
           setIsPostUpdating(true);
+          setErrors(false);
         })
-        .catch((err) => console.log(err));
+        .catch((error) => {
+          setErrors(error.response.data.errors);
+          setPath(error.response.data.path);
+        });
     } else if ((editImage && editContent) || editImage) {
-      console.log("test");
       axios
         .put(`${apiPost}/updatepost/${item.id}`, formData, setHeaders(token))
-        .then(() => {
+        .then((res) => {
+          toast.success(res.data.msg);
           setIsPostUpdating(true);
+          setErrors(false);
         })
-        .catch((err) => console.log(err));
+        .catch((error) => {
+          setErrors(error.response.data.errors);
+          setPath(error.response.data.path);
+        });
     } else {
       toast.error("Post non modifié");
     }
@@ -117,9 +141,9 @@ export default function Post({ item }) {
       <div className={styles.post}>
         <div className={styles.postHeader}>
           <div className={styles.postProfil}>
-            <img src={profilData.image ? profilData.image : pp} alt="" />
+            <img src={item.user.image ? item.user.image : pp} alt="" />
             <p>
-              {profilData.name} - {profilData.lastname}
+              {item.user.name} - {item.user.lastname}
             </p>
           </div>
           <div className={styles.postTitle}>
@@ -156,7 +180,7 @@ export default function Post({ item }) {
         </div>
         {!edit && (
           <div className={styles.postBody}>
-            {editContent ? editContent : item.content}
+            {errors ? item.content : editContent ? editContent : item.content}
           </div>
         )}
         {edit && (
@@ -165,9 +189,12 @@ export default function Post({ item }) {
               setEditContent(e.target.value);
             }}
             className={styles.postBody}
-            defaultValue={editContent ? editContent : item.content}
+            defaultValue={
+              errors ? item.content : editContent ? editContent : item.content
+            }
           ></textarea>
         )}
+        {errors && path == "content" && <span>{errors}</span>}
 
         <div className={styles.btnContainer}>
           <div className={styles.inputContainer}>
@@ -215,6 +242,7 @@ export default function Post({ item }) {
               <i className="fa-solid fa-trash"></i>
             </button>
           ) : null}
+
           {!comments.length > 0 ? null : showComments ? (
             <div onClick={handleShowComments} className={styles.btnChevron}>
               <i className="fa-solid fa-chevron-up"></i>
@@ -225,6 +253,7 @@ export default function Post({ item }) {
             </div>
           )}
         </div>
+        {errorsComment && path == "content" && <span>{errorsComment}</span>}
       </div>
       {showComments && (
         <div
