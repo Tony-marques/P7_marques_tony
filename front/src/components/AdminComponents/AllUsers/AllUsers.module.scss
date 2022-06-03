@@ -12,10 +12,9 @@
 
 table {
   border-collapse: collapse;
- 
 }
 
-thead{
+thead {
   border-radius: 5px;
 }
 
@@ -27,15 +26,50 @@ td {
   width: 5%;
 }
 
-.admin{
+.admin {
   width: 7.5%;
 }
 
-.email{
+.email {
   width: 25%;
-
 }
 
 .usersContainer::-webkit-scrollbar {
   display: none;
+}
+
+@media only screen and (max-width: 900px) {
+  .usersContainer {
+    width: 70%;
+    padding: 0.5rem;
+    .admin {
+      width: 9%;
+    }
+    .email {
+      width: 30%;
+    }
+    td {
+      // word-break: break-all;
+      // height: 4rem;
+      font-size: 0.7rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .usersContainer {
+    width: 95%;
+    padding: 0.5rem;
+    .admin {
+      width: 9%;
+    }
+    .email {
+      width: 30%;
+    }
+    td {
+      // word-break: break-all;
+      // height: 4rem;
+      font-size: 0.7rem;
+    }
+  }
 }

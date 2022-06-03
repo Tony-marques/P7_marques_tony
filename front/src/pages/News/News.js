@@ -15,13 +15,10 @@ export default function News() {
   const token = Cookies.get("token");
 
   // Contexts
-  const {
-    isPostUpdating,
-    USER_ID,
-    isAuthenticated,
-  } = useContext(AuthContext);
+  const { isPostUpdating, USER_ID, isAuthenticated } = useContext(AuthContext);
 
-  // Functions
+  // Functions // attends je te fais un console log
+  console.log(listOfPosts);
   const fetchData = () => {
     if (USER_ID != null) {
       const userId = USER_ID;
@@ -30,7 +27,9 @@ export default function News() {
         .then((res) => {
           setListOfPosts(res.data);
         })
-        .catch(() => {});
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 

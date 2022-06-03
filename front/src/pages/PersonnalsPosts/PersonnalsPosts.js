@@ -30,6 +30,9 @@ export default function PersonnalsPosts() {
         )
         .then((res) => {
           setPersonnalsPosts(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     }
   };
@@ -40,20 +43,22 @@ export default function PersonnalsPosts() {
 
   return (
     <div className={styles.personnalsPosts}>
-      {personnalsPosts.length > 0 ? (
-        personnalsPosts
-          .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
-          .map((item) => {
-            return <Post item={item} key={item.id} />;
-          })
-      ) : (
-        <div className={styles.emptyPost}>
-          <p>Vous n'avez pas encore créé de post</p>
-          <button onClick={() => setToggleAdd(true)}>
-            Créer votre premier post
-          </button>
-        </div>
-      )}
+      <div className={styles.postsContainer}>
+        {personnalsPosts.length > 0 ? (
+          personnalsPosts
+            .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+            .map((item) => {
+              return <Post item={item} key={item.id} />;
+            })
+        ) : (
+          <div className={styles.emptyPost}>
+            <p>Vous n'avez pas encore créé de post</p>
+            <button onClick={() => setToggleAdd(true)}>
+              Créer votre premier post
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

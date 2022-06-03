@@ -22,14 +22,14 @@
     min-height: 200px;
 
     a,
-    button {
+    button, li {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 50%;
       max-height: 50%;
       background: transparent;
-      color: #FFD7D7;
+      color: #ffd7d7;
       cursor: pointer;
       transition: all 0.3s;
 
@@ -38,8 +38,31 @@
       }
     }
 
-    button {
-      border: none;
+    // button {
+    //   border: none;
+    // }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .navbar {
+
+    width: 150px;
+
+
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .navbar {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    flex-wrap: nowrap;
+
+    ul {
+      flex-wrap: nowrap;
     }
   }
 }

@@ -29,29 +29,31 @@ export default function Navbar() {
         <nav className={styles.navbar}>
           <div className={`${styles.navcontainer}`}>
             <ul>
-              <NavLink to="/news">
-                <li>
+              <li>
+                <NavLink to="/news" aria-label="news">
                   <i className="fa-solid fa-newspaper"></i>
-                </li>
-              </NavLink>
-              <NavLink to={`/profil/${USER_ID}`}>
-                <li>
-                  <i className="fa-solid fa-user"></i>
-                </li>
-              </NavLink>
-
-              <button className={styles.add} onClick={toggleForm}>
-                <i className="fa-solid fa-square-plus"></i>
-              </button>
-              {isAdmin && (
-                <NavLink to="/allusers">
-                  <i className="fa-solid fa-users"></i>
                 </NavLink>
+              </li>
+              <li>
+                <NavLink to={`/profil/${USER_ID}`} aria-label="profil">
+                  <i className="fa-solid fa-user"></i>
+                </NavLink>
+              </li>
+
+              <li className={styles.add} onClick={toggleForm}>
+                <i className="fa-solid fa-square-plus"></i>
+              </li>
+              {isAdmin && (
+                <li>
+                  <NavLink to="/allusers" aria-label="all users">
+                    <i className="fa-solid fa-users"></i>
+                  </NavLink>
+                </li>
               )}
-              {toggleAdd && <AddForm />}
-              <button onClick={logoutHandle} className={styles.button}>
+              {/* {toggleAdd && <AddForm />} */}
+              <li onClick={logoutHandle} className={styles.button}>
                 <i className="fa-solid fa-right-from-bracket"></i>
-              </button>
+              </li>
             </ul>
           </div>
         </nav>

@@ -4,7 +4,7 @@
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   padding: 2rem;
-  margin: 0 auto;
+  // margin: 0 auto;
   width: 100%;
   width: 700px;
   height: 50vh;
@@ -15,7 +15,7 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-  &:hover img{
+  &:hover img {
     box-shadow: 1px 1px 30px rgba(0, 0, 0, 0.3);
   }
   &::-webkit-scrollbar {
@@ -118,7 +118,6 @@
     border: 3px solid #4e5166;
     transition: box-shadow 0.3s;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
-
   }
 
   .fileContainer {
@@ -161,4 +160,82 @@
 }
 .pictureContainer {
   position: relative;
+
+  img {
+    background: #fff;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .profilContainer {
+    width: 70%;
+    margin: 0;
+    // border: 1px solid orange;
+    // .postsContainer {
+    //   // width: 50%;
+    //   padding: 0.75rem;
+    // }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .profilContainer {
+    height: calc(100vh - 80px);
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .profilContainer {
+
+    .pictureContainer{
+      img{
+        width: 150px;
+        height: 150px;
+      }
+    }
+    .infosContainer {
+      // border: 1px solid blue;
+
+      .lastname,
+      .firstname,
+      .age,
+      .bio,
+      .role {
+        width: 30%;
+        // border: 1px solid black;
+        align-items: center;
+        justify-content: center;
+      }
+
+      input {
+        width: 50%;
+      }
+    }
+    .btnContainer {
+      flex-direction: column;
+      align-items: center;
+
+      button {
+        width: 60%;
+        margin-top: 0.5rem;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .profilContainer {
+    padding: 1rem;
+    .btnContainer {
+      button {
+        width: 80%;
+        padding: 0.5rem;
+      }
+    }
+  }
 }

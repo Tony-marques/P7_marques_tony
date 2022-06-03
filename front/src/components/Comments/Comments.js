@@ -32,6 +32,7 @@ export default function Comments({ item }) {
         toast.success("Le commentaire a été supprimé.");
       })
       .catch((err) => {
+        console.log(err);
       });
     setIsPostUpdating(false);
   };
@@ -41,7 +42,7 @@ export default function Comments({ item }) {
       <div className={styles.comment}>
         <div className={styles.commentHead}>
           <div className={styles.commentProfil}>
-            <img src={item.user.image ? item.user.image : pp} alt="" />
+            <img src={item.user.image ? item.user.image : pp} alt="photo de profil" />
             <div className={styles.name}>
               {item.user.name} - {item.user.lastname}
             </div>

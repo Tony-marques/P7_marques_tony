@@ -42,7 +42,7 @@
       display: flex;
       align-items: center;
       color: #fff;
-      font-weight: 700;
+      // font-weight: 700;
       justify-content: space-between;
       padding: 0.5rem;
       margin-bottom: 0.5rem;
@@ -73,6 +73,43 @@
 
       i {
         color: #fd2d01;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .commentsContainer {
+    padding: 0;
+    padding-bottom: 0.5rem;
+    .comment {
+      padding: 0.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .commentsContainer {
+    padding: 0;
+    padding-bottom: 0.5rem;
+    .comment {
+      padding: 0.5rem;
+      .commentProfil {
+        img {
+          background: #fff;
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .commentsContainer {
+    .comment {
+      .commentHead {
+        font-size: 0.8rem;
       }
     }
   }

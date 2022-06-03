@@ -44,11 +44,13 @@
         height: 40px;
         border-radius: 50%;
         border: 2px solid #ffd7d7;
+        background: #fff;
       }
     }
   }
 
   .postBody {
+    word-break: break-all;
     padding: 1rem;
     text-align: left;
     min-height: 150px;
@@ -61,7 +63,7 @@
   span {
     background: #fff;
     border: 1px solid #4e5166;
-    margin: 1rem 0;
+    margin-bottom: 1rem;
     padding: 1rem;
     font-weight: 700;
     color: #fd2d01;
@@ -97,7 +99,7 @@
       label {
         i {
           font-size: 4rem;
-          background: red;
+          background: #fd2d01;
           width: 100px;
           height: 100px;
           display: flex;
@@ -135,7 +137,8 @@
   .updateButton {
     background: green;
     background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-
+    // padding: 1rem 1.25rem;
+    // height: 100%;
     &:hover {
       border-color: green;
       background: #fff;
@@ -197,6 +200,10 @@
     justify-content: flex-end;
     margin-bottom: 1rem;
 
+    .btn {
+      display: flex;
+    }
+
     .comments {
       flex-grow: 1;
       padding: 1rem;
@@ -235,4 +242,117 @@
   opacity: 1;
   transform: translateY(0);
   transition: all 0.5s;
+}
+
+.heartContainer {
+  // padding: 0.5rem 1.25rem;
+  margin-left: 0.5rem;
+
+  i {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    color: red;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .postContainer {
+    .post {
+      padding: 0.5rem;
+      .postHeader {
+        padding: 0.75rem;
+        img {
+        }
+      }
+
+      .btnContainer {
+        button {
+          padding: 0 1rem;
+        }
+      }
+
+      .postBody {
+        min-height: 100px;
+      }
+    }
+    span {
+      // margin: 0;
+    }
+    .btnChevron {
+      bottom: -5px;
+    }
+    .commentsWall {
+      padding: 0.5rem;
+    }
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .postContainer {
+
+    .post {
+      // padding: 0.5rem;
+      .postHeader {
+        padding: 0.5rem;
+
+        img {
+          height: 30px;
+          width: 30px;
+        }
+      }
+
+      .postBody {
+        min-height: 75px;
+      }
+    }
+    span {
+      // margin: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .postContainer {
+    .post {
+      // padding: 0.5rem;
+      .postHeader {
+        font-size: 0.8rem;
+        img {
+        }
+      }
+
+      .postBody {
+        max-height: 160px;
+        overflow: hidden;
+      }
+
+      .btnContainer {
+        flex-direction: column;
+
+        .btn {
+          margin-top: 0.5rem;
+          display: flex;
+          justify-content: center;
+
+          button,
+          div {
+            width: 33%;
+          }
+
+          .heartContainer {
+            display: flex;
+            justify-content: center;
+          }
+        }
+      }
+    }
+    span {
+      // margin: 0;
+    }
+  }
 }

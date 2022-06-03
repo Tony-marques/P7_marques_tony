@@ -30,13 +30,33 @@
     h1,
     h2 {
       color: #4e5166;
+      // font-size: 1em;
     }
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 992px) {
   .home {
-    flex-direction: column;
-    padding: 0 1rem;
+    // flex-direction: column;
+    // padding: 0 1rem;
+
+    .homeWrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .homeTitle {
+        margin: 2rem 0;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .homeTitle {
+    max-width: 500px;
+    width: 90%;
+    margin: 2rem;
+    font-size: 0.6rem;
   }
 }

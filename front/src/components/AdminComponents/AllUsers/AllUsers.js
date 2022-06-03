@@ -27,6 +27,9 @@ export default function AllUsers() {
       )
       .then((res) => {
         setListOfUsers(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 

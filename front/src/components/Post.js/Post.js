@@ -54,9 +54,13 @@ export default function Post({ item }) {
         userId: USER_ID,
       },
       headers: { authorization: `Bearer ${token}` },
-    }).then((res) => {
-      setComments(res.data.comments);
-    });
+    })
+      .then((res) => {
+        setComments(res.data.comments);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -68,6 +72,7 @@ export default function Post({ item }) {
   };
 
   const handleAddComment = () => {
+    // et la fonction pour les commentaires
     axios
       .post(
         `http://localhost:3000/api/comment/createcomment/${item.id}`,
@@ -136,12 +141,28 @@ export default function Post({ item }) {
     setIsPostUpdating(false);
   };
 
+  const like = () => {
+    axios({
+      method: "post",
+      url: `http://localhost:3000/api/like/createlike/${item.id}`,
+      data: {
+        userId: USER_ID,
+      },
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    });
+  };
+
   return (
     <div className={styles.postContainer}>
       <div className={styles.post}>
         <div className={styles.postHeader}>
           <div className={styles.postProfil}>
-            <img src={item.user.image ? item.user.image : pp} alt="" />
+            <img
+              src={item.user.image ? item.user.image : pp}
+              alt="photo de profil"
+            />
             <p>
               {item.user.name} - {item.user.lastname}
             </p>
@@ -155,7 +176,7 @@ export default function Post({ item }) {
             <img
               src={item.image}
               className={styles.imgUrl}
-              alt="photo de profil"
+              alt="photo du post"
             />
           )}
           {edit && item.image && (
@@ -205,43 +226,63 @@ export default function Post({ item }) {
               value={addComment}
               onChange={(e) => setAddComment(e.target.value)}
             />
-            <button className={styles.addComment} onClick={handleAddComment}>
+            <button
+              className={styles.addComment}
+              onClick={handleAddComment}
+              aria-label="add comment"
+            >
               <i className="fa-solid fa-plus"></i>
             </button>
           </div>
-          {item.userId == USER_ID && !edit ? (
-            <button
-              onClick={() => setEdit(true)}
-              className={styles.updateButton}
-            >
-              <i className="fa-solid fa-pen-to-square"></i>
-            </button>
-          ) : item.userId == USER_ID && edit ? (
-            <button onClick={updatePost} className={styles.updateButton}>
-              <i className="fa-solid fa-circle-check"></i>
-            </button>
-          ) : isAdmin && !edit ? (
-            <button
-              onClick={() => setEdit(true)}
-              className={styles.updateButton}
-            >
-              <i className="fa-solid fa-pen-to-square"></i>
-            </button>
-          ) : isAdmin && edit ? (
-            <button onClick={updatePost} className={styles.updateButton}>
-              <i className="fa-solid fa-circle-check"></i>
-            </button>
-          ) : null}
+          <div className={styles.btn}>
+            {item.userId == USER_ID && !edit ? (
+              <button
+                aria-label="update"
+                onClick={() => setEdit(true)}
+                className={styles.updateButton}
+              >
+                <i className="fa-solid fa-pen-to-square"></i>
+              </button>
+            ) : item.userId == USER_ID && edit ? (
+              <button
+                onClick={updatePost}
+                aria-label="update"
+                className={styles.updateButton}
+              >
+                <i className="fa-solid fa-circle-check"></i>
+              </button>
+            ) : isAdmin && !edit ? (
+              <button
+                aria-label="update"
+                onClick={() => setEdit(true)}
+                className={styles.updateButton}
+              >
+                <i className="fa-solid fa-pen-to-square"></i>
+              </button>
+            ) : isAdmin && edit ? (
+              <button
+                onClick={updatePost}
+                aria-label="update"
+                className={styles.updateButton}
+              >
+                <i className="fa-solid fa-circle-check"></i>
+              </button>
+            ) : null}
 
-          {item.userId == USER_ID ? (
-            <button onClick={deletePost}>
-              <i className="fa-solid fa-trash"></i>
-            </button>
-          ) : isAdmin ? (
-            <button onClick={deletePost}>
-              <i className="fa-solid fa-trash"></i>
-            </button>
-          ) : null}
+            {item.userId == USER_ID ? (
+              <button onClick={deletePost} aria-label="delete">
+                <i className="fa-solid fa-trash"></i>
+              </button>
+            ) : isAdmin ? (
+              <button onClick={deletePost} aria-label="delete">
+                <i className="fa-solid fa-trash"></i>
+              </button>
+            ) : null}
+
+            <div className={styles.heartContainer} onClick={like}>
+              <i className="fa-regular fa-heart"></i>
+            </div>
+          </div>
 
           {!comments.length > 0 ? null : showComments ? (
             <div onClick={handleShowComments} className={styles.btnChevron}>

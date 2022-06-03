@@ -19,13 +19,14 @@ import { ToggleAddContext } from "./contexts/ToggleAddContext";
 import PersonnalsPosts from "./pages/PersonnalsPosts/PersonnalsPosts";
 import AllUsers from "./components/AdminComponents/AllUsers/AllUsers";
 import { apiUser, setHeaders } from "./Api/Api";
+import AddForm from "./components/AddForm/AddForm";
+
 
 const App = () => {
   // Variables
   const token = Cookies.get("token");
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(null); // la je l'initialise
   const [isProfilUpdating, setIsProfilUpdating] = useState(null);
-  const [profil, setProfil] = useState([]);
   const [isPostUpdating, setIsPostUpdating] = useState(false);
   const [profilData, setProfilData] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
@@ -72,7 +73,7 @@ const App = () => {
     fetchProfilData();
   }, [isProfilUpdating, isAuthenticated, isAdmin, USER_ID]);
 
-  return (
+  return ( // mon provider est ici, et du coup tout ce que je passe dedans, j'y ai accès partout
     <AuthContext.Provider
       value={{
         profilData,
@@ -87,7 +88,7 @@ const App = () => {
         setIsProfilUpdating,
         isPostUpdating,
         setIsPostUpdating,
-        USER_ID,
+        USER_ID, // non pas forcément, tu passes ce que tu veux, mais en gros toi tu parle du isAuthenticated
       }}
     >
       <ToggleAddContext.Provider value={{ toggleAdd, setToggleAdd }}>
@@ -96,9 +97,9 @@ const App = () => {
             <Navbar />
             <Routes>
               <Route exact path="/" element={<Home />} />
-              <Route element={<PrivateRoute />}>
-                <Route path="/news" element={<News />} />
-                <Route path="/profil/:id" element={<Profil />} />
+              <Route element={<PrivateRoute />}> 
+                <Route path="/news" element={<News />} /> 
+                <Route path="/profil/:id" element={<Profil />} /> 
                 <Route path="/myposts" element={<PersonnalsPosts />} />
                 <Route path="/:id" element={<Error404 />} />
                 <Route element={<PrivateAdminRoute />}>
@@ -109,6 +110,7 @@ const App = () => {
             <ToastContainer />
           </Router>
         </div>
+      {toggleAdd && <AddForm />}
       </ToggleAddContext.Provider>
     </AuthContext.Provider>
   );

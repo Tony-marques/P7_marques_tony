@@ -29,6 +29,9 @@ export default function User({ item }) {
       })
       .then(() => {
         setUserDeleted(true);
+      })
+      .catch((err) => {
+        console.log(err);
       });
     setUserDeleted(false);
   };
@@ -55,6 +58,9 @@ export default function User({ item }) {
             `L'utilisateur ${user.data.newUser.id} n'est plus admin.`
           );
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
     setIsProfilUpdating(false);
   };

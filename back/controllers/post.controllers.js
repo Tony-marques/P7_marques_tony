@@ -31,9 +31,13 @@ exports.getPersonnalPosts = (req, res) => {
         attributes: ["name", "lastname", "id", "admin"],
       },
     ],
-  }).then((posts) => {
-    return res.status(200).json(posts);
-  });
+  })
+    .then((posts) => {
+      return res.status(200).json(posts);
+    })
+    .catch((err) => {
+      return res.status(400).json(err);
+    });
 };
 
 exports.createPost = (req, res) => {
@@ -85,12 +89,16 @@ exports.updatePost = (req, res) => {
     },
   })
     .then((post) => {
-      post.update({
-        ...req.body,
-        userId: post.userId,
-        image: req.file
-          ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
-          : post.image,
+      const filename = post.image.split("/images/")[1];
+
+      fs.unlink(`images/${filename}`, () => {
+        post.update({
+          ...req.body,
+          userId: post.userId,
+          image: req.file
+            ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+            : post.image,
+        });
       });
     })
     .then(() => {

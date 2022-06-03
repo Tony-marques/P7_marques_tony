@@ -32,9 +32,9 @@ export default function Profil() {
   }, [isProfilUpdating, USER_ID, isAuthenticated]);
 
   return (
-    <div>
+    <>
       <MetaHead title="Profil - Groupomania" />
       <UserProfil user={profilData} key={profilData.id} />
-    </div>
+    </>
   );
 }

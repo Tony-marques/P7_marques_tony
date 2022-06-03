@@ -30,10 +30,10 @@ export default function Home() {
       <div className={styles.homeWrapper}>
         <div className={styles.homeTitle}>
           <h1>Bienvenue sur </h1>
-          <img src={icon} alt="" />
+          <img src={icon} alt="logo entreprise" />
           <h2>Votre réseau social d'entreprise</h2>
         </div>
-        <div>
+        <div className={styles.log}>
           {login ? (
             <Login setLogin={setLogin} />
           ) : (

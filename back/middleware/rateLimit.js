@@ -5,6 +5,6 @@ const rateLimit = require("express-rate-limit");
 const minutes = 15;
 module.exports = rateLimit({
   windowsMs: 15 * 60 * 1000,
-  max: 5,
+  max: 50,
   message: `trop de tentative, veuillez attendre ${minutes} minutes`,
 });

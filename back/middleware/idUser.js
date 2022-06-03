@@ -3,7 +3,7 @@ const UserModel = db.user;
 
 module.exports = async (req, res, next) => {
   const user = await UserModel.findByPk(req.params.id);
-  if (user.id && user.id == req.token.userId) {
+  if (user && user.id && user.id == req.token.userId) {
     next();
   } else {
     return res

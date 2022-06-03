@@ -19,7 +19,7 @@ const loginValid = require("../middleware/Yup/loginValidation");
 const registerValid = require("../middleware/Yup/registerValidation");
 
 // Connexion //
-router.post("/login",rateLimit, loginValid, login);
+router.post("/login", rateLimit, loginValid, login);
 
 // Création de compte //
 router.post("/signup", rateLimit, registerValid, signUp);
@@ -31,7 +31,7 @@ router.get("/getoneprofil/:id", auth, getOneProfil);
 router.post("/getallusers", auth, checkAdmin, getAllUsers);
 
 // Mettre à jour son profil =>
-router.put("/updateuser/:id", multer, updateProfil);
+router.put("/updateuser/:id", auth, idUser, multer, updateProfil);
 
 // Changer le status admin => ok
 router.put("/toggleadmin/:id", auth, checkAdmin, toggleAdmin);

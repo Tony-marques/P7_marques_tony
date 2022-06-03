@@ -22,11 +22,8 @@ export default function UserProfil({ user }) {
   const token = Cookies.get("token");
 
   // Contexts
-  const {
-    setIsAuthenticated,
-    setIsProfilUpdating,
-    USER_ID,
-  } = useContext(AuthContext);
+  const { setIsAuthenticated, setIsProfilUpdating, USER_ID } =
+    useContext(AuthContext);
 
   // Functions
   const toggleEditInput = () => {
@@ -44,14 +41,13 @@ export default function UserProfil({ user }) {
     setEditInput(!editInput);
     if (editFirstName || editLastName || editAge || editBio || editPicture) {
       axios
-        .put(
-          `${apiUser}/updateuser/${id}`,
-          formData,
-          setHeaders(token)
-        )
+        .put(`${apiUser}/updateuser/${id}`, formData, setHeaders(token))
         .then(() => {
           toast.success("Votre profil a été mis à jour");
           setIsProfilUpdating(true);
+        })
+        .catch((err) => {
+          console.log(err);
         });
     } else {
       toast.error("Les données sont identiques");
@@ -82,6 +78,9 @@ export default function UserProfil({ user }) {
         })
         .then(() => {
           setIsAuthenticated(false);
+        })
+        .catch((err) => {
+          console.log(err);
         });
       navigate("/");
     }
@@ -201,4 +200,3 @@ export default function UserProfil({ user }) {
     </div>
   );
 }
-
