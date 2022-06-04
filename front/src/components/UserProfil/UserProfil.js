@@ -9,6 +9,7 @@ import "./UserProfil.scss";
 import pp from "../../assets/DefaultProfil.jpg";
 import { AuthContext } from "../../contexts/AuthContext";
 import { apiUser, setHeaders } from "../../Api/Api";
+import HeaderLogo from "../Header/Header";
 
 export default function UserProfil({ user }) {
   // Variables
@@ -87,116 +88,119 @@ export default function UserProfil({ user }) {
   };
 
   return (
-    <div className={styles.profilContainer}>
-      {!editInput ? (
-        <i className="fa-solid fa-file-pen" onClick={toggleEditInput} />
-      ) : (
-        <i className="fa-solid fa-check" onClick={EditHandler}></i>
-      )}
-      <div className={styles.pictureContainer}>
-        <img src={user.image ? user.image : pp} alt="profil-image"></img>
-        {editInput && (
-          <div className={styles.fileContainer}>
-            <label htmlFor="profil-picture">Choisir une photo...</label>
-            <input
-              type="file"
-              name="profil-picture"
-              onChange={(e) => setEditPicture(e.target.files[0])}
-            ></input>
-          </div>
+    <>
+      {/* <HeaderLogo /> */}
+      <div className={styles.profilContainer}>
+        {!editInput ? (
+          <i className="fa-solid fa-file-pen" onClick={toggleEditInput} />
+        ) : (
+          <i className="fa-solid fa-check" onClick={EditHandler}></i>
         )}
-      </div>
-      <div className={styles.infosContainer}>
-        <div className={styles.firstnameContainer}>
-          <div className={styles.lastname}>Nom: </div>
-          {editInput ? (
-            <input
-              type="text"
-              placeholder=""
-              defaultValue={user.lastname}
-              onChange={(e) => setEditLastName(e.target.value)}
-            ></input>
-          ) : (
-            <>
-              {" "}
-              <div className={styles.lastnameInput}>{user.lastname}</div>
-            </>
+        <div className={styles.pictureContainer}>
+          <img src={user.image ? user.image : pp} alt="profil-image"></img>
+          {editInput && (
+            <div className={styles.fileContainer}>
+              <label htmlFor="profil-picture">Choisir une photo...</label>
+              <input
+                type="file"
+                name="profil-picture"
+                onChange={(e) => setEditPicture(e.target.files[0])}
+              ></input>
+            </div>
           )}
         </div>
+        <div className={styles.infosContainer}>
+          <div className={styles.firstnameContainer}>
+            <div className={styles.lastname}>Nom: </div>
+            {editInput ? (
+              <input
+                type="text"
+                placeholder=""
+                defaultValue={user.lastname}
+                onChange={(e) => setEditLastName(e.target.value)}
+              ></input>
+            ) : (
+              <>
+                {" "}
+                <div className={styles.lastnameInput}>{user.lastname}</div>
+              </>
+            )}
+          </div>
 
-        <div className={styles.firstnameContainer}>
-          <div className={styles.firstname}>Prénom: </div>
-          {editInput ? (
-            <input
-              type="text"
-              placeholder=""
-              defaultValue={user.name}
-              onChange={(e) => setEditFirstName(e.target.value)}
-            ></input>
-          ) : (
-            <>
-              {" "}
-              <div className={styles.firstnameInput}>{user.name} </div>
-            </>
-          )}
-        </div>
+          <div className={styles.firstnameContainer}>
+            <div className={styles.firstname}>Prénom: </div>
+            {editInput ? (
+              <input
+                type="text"
+                placeholder=""
+                defaultValue={user.name}
+                onChange={(e) => setEditFirstName(e.target.value)}
+              ></input>
+            ) : (
+              <>
+                {" "}
+                <div className={styles.firstnameInput}>{user.name} </div>
+              </>
+            )}
+          </div>
 
-        <div className={styles.ageContainer}>
-          <div className={styles.age}>Age: </div>
-          {editInput ? (
-            <input
-              type="text"
-              placeholder=""
-              defaultValue={user.age}
-              onChange={(e) => setEditAge(e.target.value)}
-            ></input>
-          ) : (
-            <>
-              {" "}
-              <div className={styles.ageInput}>
-                {user.age ? user.age + " " + "ans" : null}
-              </div>
-            </>
-          )}
-        </div>
-        <div className={styles.bioContainer}>
-          <div className={styles.bio}>Bio: </div>
-          {editInput ? (
-            <input
-              type="text"
-              placeholder=""
-              defaultValue={user.bio}
-              onChange={(e) => setEditBio(e.target.value)}
-            ></input>
-          ) : (
-            <>
-              {" "}
-              <div className={styles.bioInput}>{user.bio}</div>
-            </>
-          )}
-        </div>
-        <div className={styles.roleContainer}>
-          <div className={styles.role}>Rôle: </div>
+          <div className={styles.ageContainer}>
+            <div className={styles.age}>Age: </div>
+            {editInput ? (
+              <input
+                type="text"
+                placeholder=""
+                defaultValue={user.age}
+                onChange={(e) => setEditAge(e.target.value)}
+              ></input>
+            ) : (
+              <>
+                {" "}
+                <div className={styles.ageInput}>
+                  {user.age ? user.age + " " + "ans" : null}
+                </div>
+              </>
+            )}
+          </div>
+          <div className={styles.bioContainer}>
+            <div className={styles.bio}>Bio: </div>
+            {editInput ? (
+              <input
+                type="text"
+                placeholder=""
+                defaultValue={user.bio}
+                onChange={(e) => setEditBio(e.target.value)}
+              ></input>
+            ) : (
+              <>
+                {" "}
+                <div className={styles.bioInput}>{user.bio}</div>
+              </>
+            )}
+          </div>
+          <div className={styles.roleContainer}>
+            <div className={styles.role}>Rôle: </div>
 
-          <div className={styles.roleInput}>
-            {user.admin ? "Admin" : "User"}
+            <div className={styles.roleInput}>
+              {user.admin ? "Admin" : "User"}
+            </div>
           </div>
         </div>
+        <div className={styles.btnContainer}>
+          <button
+            onClick={showPersonnalPosts}
+            className={`${styles.btn} ${styles.postsBtn}`}
+          >
+            Voir mes posts
+          </button>
+          <button
+            onClick={deleteMyAccount}
+            className={`${styles.btn} ${styles.deleteBtn}`}
+          >
+            Supprimer mon compte
+          </button>
+        </div>
       </div>
-      <div className={styles.btnContainer}>
-        <button
-          onClick={showPersonnalPosts}
-          className={`${styles.btn} ${styles.postsBtn}`}
-        >
-          Voir mes posts
-        </button>
-        <button
-          onClick={deleteMyAccount}
-          className={`${styles.btn} ${styles.deleteBtn}`}
-        >
-          Supprimer mon compte
-        </button>
-      </div>
-    </div>
+    </>
   );
 }

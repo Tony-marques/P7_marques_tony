@@ -33,6 +33,7 @@
     padding: 1rem 1rem;
     color: white;
     border: 2px solid #ffd7d7;
+    position: relative;
 
     .postProfil {
       display: flex;
@@ -245,8 +246,17 @@
 }
 
 .heartContainer {
+  cursor: pointer;
   // padding: 0.5rem 1.25rem;
   margin-left: 0.5rem;
+  position: relative;
+
+  .length {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   i {
     width: 50px;
@@ -294,7 +304,6 @@
 
 @media only screen and (max-width: 750px) {
   .postContainer {
-
     .post {
       // padding: 0.5rem;
       .postHeader {
@@ -341,12 +350,17 @@
 
           button,
           div {
-            width: 33%;
+            width: 25%;
           }
 
           .heartContainer {
             display: flex;
             justify-content: center;
+
+            i {
+              font-size: 1rem;
+              height: 30px;
+            }
           }
         }
       }

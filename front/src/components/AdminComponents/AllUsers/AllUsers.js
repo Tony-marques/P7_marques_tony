@@ -39,7 +39,7 @@ export default function AllUsers() {
 
   return (
     <div className={styles.usersContainer}>
-      <table>
+      {/* <table>
         <thead>
           <tr>
             <td>Prénom</td>
@@ -49,7 +49,7 @@ export default function AllUsers() {
             <td className={styles.delete}></td>
           </tr>
         </thead>
-      </table>
+      </table> */}
       {listOfUsers &&
         listOfUsers.map((item) => {
           return <User item={item} key={item.id} />;

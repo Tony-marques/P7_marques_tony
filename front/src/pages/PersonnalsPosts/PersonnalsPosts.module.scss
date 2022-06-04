@@ -110,20 +110,19 @@
 @media only screen and (max-width: 750px) {
   .personnalsPosts {
     width: 100%;
-    // display: flex;
-    // align-items: center;
     position: absolute;
-    top: 2%;
+    // top: 5%;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     // justify-content: center;
     // border: 1px solid red;
     .postsContainer {
-      max-height: calc(100vh - 80px);
+      max-height: calc(95vh - 80px);
       // position: absolute;
       display: flex;
       align-items: center;
-      justify-content: center;
+      // justify-content: center;
       // top: 2%;
       // left: 50%;
       // transform: translateX(-50%);

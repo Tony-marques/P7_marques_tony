@@ -71,7 +71,7 @@ exports.getOneProfil = (req, res) => {
 
 exports.getAllUsers = (req, res) => {
   UserModel.findAll({
-    attributes: ["admin", "age", "bio", "email", "id", "name", "lastname"],
+    attributes: ["admin", "age", "bio", "email", "id", "name", "lastname", "image"],
   })
     .then((users) => res.status(200).json(users))
     .catch((err) => {

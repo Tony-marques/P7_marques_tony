@@ -5,13 +5,12 @@ module.exports = (req, res, next) => {
     // on vérifie que le token est présent et valide
     const token = req.headers.authorization.split(" ")[1];
     req.token = jwt.verify(token, process.env.SECRET_KEY);
-    // comment tu fais pour passer à ton next alors?
 
     /* si le corps de la requête contient un UserId on vérifie qu'il correspond au
     USER_ID contenu dans le payload du token */
     if (
       (req.body.userId && req.body.userId == req.token.userId) ||
-      (req.params.id && req.params.id == req.token.userId) // en gros pour les GET je me sert du params c'est pour ça j'ai la 2e ligne ici
+      (req.params.id && req.params.id == req.token.userId)
     ) {
       next();
     } else {

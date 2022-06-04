@@ -4,7 +4,7 @@ const postSchema = yup.object().shape({
   content: yup
     .string()
     .required("Le champs est requis")
-    .min(5, "Votre contenu doit faire 5 caractères minimum.")
+    .min(3, "Votre contenu doit faire 3 caractères minimum.")
     .max(150, "Votre contenu ne doit pas excéder 150 caractères."),
 });
 

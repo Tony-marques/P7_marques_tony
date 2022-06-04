@@ -9,6 +9,7 @@ import { formatDate } from "../../Utils/formatDate";
 import { apiPost, setHeaders } from "../../Api/Api";
 import { AuthContext } from "../../contexts/AuthContext";
 import Comments from "../Comments/Comments";
+import bg from "../../assets/icon-left-font.png";
 
 export default function Post({ item }) {
   // Variables
@@ -22,11 +23,16 @@ export default function Post({ item }) {
   const [errors, setErrors] = useState(false);
   const [errorsComment, setErrorsComment] = useState(false);
   const [path, setPath] = useState("");
+  const [userLike, setUserLike] = useState("");
+  const [changeLike, setChangeLike] = useState(false);
+  const [likeLength, setLikeLength] = useState(false);
 
   // Contexts
-  const { setIsPostUpdating, isPostUpdating, USER_ID, isAdmin, profilData } =
+  const { setIsPostUpdating, isPostUpdating, USER_ID, isAdmin } =
     useContext(AuthContext);
 
+  // console.log(userLike);
+  // console.log(USER_ID);
   // Functions
   const deletePost = () => {
     axios
@@ -144,13 +150,48 @@ export default function Post({ item }) {
   const like = () => {
     axios({
       method: "post",
-      url: `http://localhost:3000/api/like/createlike/${item.id}`,
+      url: `http://localhost:3000/api/like/createlike/${item.id}&${USER_ID}`,
       data: {
         userId: USER_ID,
       },
       headers: {
         authorization: `Bearer ${token}`,
       },
+    }).then(() => {
+      setChangeLike(true);
+    });
+    setChangeLike(false);
+  };
+
+  const getOneLikePost = () => {
+    axios({
+      url: `http://localhost:3000/api/like/getonelikeofpost/${item.id}&${USER_ID}`,
+      method: "get",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      console.log(res.data.like);
+      setUserLike(res.data);
+    });
+  };
+
+  useEffect(() => {
+    getOneLikePost();
+    getAllLikeOfPost();
+  }, [changeLike]);
+
+  const getAllLikeOfPost = () => {
+    axios({
+      url: `http://localhost:3000/api/like/getalllikes/${item.id}/${USER_ID}`,
+      method: "get",
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      console.log(res.data.length);
+      setLikeLength(res.data.length);
+      // setUserLike(res.data);
     });
   };
 
@@ -280,7 +321,20 @@ export default function Post({ item }) {
             ) : null}
 
             <div className={styles.heartContainer} onClick={like}>
-              <i className="fa-regular fa-heart"></i>
+              {/* userLike.like.userId && userLike.like.userId == USER_ID ? */}
+              {userLike.like && userLike.like.userId == USER_ID ? (
+                <>
+                  <i className="fa-solid fa-heart"></i>
+                  <div className={styles.length}>{likeLength}</div>
+                </>
+              ) : (
+                <>
+                  <i className="fa-regular fa-heart"></i>
+                  <div className={styles.length}>
+                    {likeLength.length > 0 && likeLength}
+                  </div>
+                </>
+              )}
             </div>
           </div>
 

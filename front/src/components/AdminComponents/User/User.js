@@ -7,6 +7,7 @@ import { apiUser } from "../../../Api/Api";
 import { AuthContext } from "../../../contexts/AuthContext";
 import styles from "./User.module.scss";
 import { setHeaders } from "../../../Api/Api";
+import pp from "../../../assets/DefaultProfil.jpg";
 
 export default function User({ item }) {
   // Variables
@@ -67,34 +68,41 @@ export default function User({ item }) {
 
   return (
     <div className={styles.user}>
-      <table>
+      {/* <table>
         <tbody>
-          <tr>
-            <td>{item.name}</td>
-            <td>{item.lastname}</td>
-            <td className={styles.email}>{item.email}</td>
-            <td className={styles.admin}>
-              <select onChange={toggleAdmin}>
-                {item.admin && (
-                  <>
-                    <option>Oui</option>
-                    <option>Non</option>
-                  </>
-                )}
-                {!item.admin && (
-                  <>
-                    <option>Non</option>
-                    <option>Oui</option>
-                  </>
-                )}
-              </select>
-            </td>
-            <td className={styles.delete} onClick={deleteUser}>
-              <i className="fa-solid fa-trash"></i>
-            </td>
-          </tr>
+          <tr> */}
+      <img src={item.image ? item.image : pp} alt="" className={styles.pp} />
+      <div className={styles.userInfos}>
+        <div className={styles.top}>
+          <div className={styles.name}>{item.name}</div>
+          <div className={styles.lastname}>{item.lastname}</div>
+        </div>
+        <div className={styles.bottom}>
+          <div className={styles.email}>{item.email}</div>
+          <div className={styles.admin}>
+            <select onChange={toggleAdmin}>
+              {item.admin && (
+                <>
+                  <option>Admin</option>
+                  <option>User</option>
+                </>
+              )}
+              {!item.admin && (
+                <>
+                  <option>User</option>
+                  <option>Admin</option>
+                </>
+              )}
+            </select>
+          </div>
+          <div className={styles.delete} onClick={deleteUser}>
+            <i className="fa-solid fa-trash"></i>
+          </div>
+        </div>
+      </div>
+      {/* </tr>
         </tbody>
-      </table>
+      </table> */}
     </div>
   );
 }

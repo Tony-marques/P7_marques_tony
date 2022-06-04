@@ -4,7 +4,7 @@ const commentSchema = yup.object().shape({
   content: yup
     .string()
     .required("Un commentaire est requis")
-    .min(5, "Votre commentaire doit contenir un minimum de 5 caractères"),
+    .min(3, "Votre commentaire doit contenir un minimum de 3 caractères"),
 });
 
 const commentValid = async (req, res, next) => {

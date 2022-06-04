@@ -1,12 +1,12 @@
 const db = require("../models");
-const userModel = db.user;
+const UserModel = db.user;
 const PostModel = db.post;
 const LikeModel = db.like;
 
 exports.createLike = async (req, res) => {
   try {
     let existingLike = await LikeModel.findOne({
-      where: { postId: req.params.postId },
+      where: { postId: req.params.postId, userId: req.params.userId },
     });
     // si user a déjà liké, supprimer le like
     if (existingLike) {
@@ -19,6 +19,7 @@ exports.createLike = async (req, res) => {
     else {
       await LikeModel.create({
         postId: req.params.postId,
+        userId: req.params.userId,
       });
       res.status(201).json({ message: "Like ajouté!" });
     }
@@ -28,19 +29,30 @@ exports.createLike = async (req, res) => {
 };
 
 exports.getAllLikes = (req, res) => {
+  console.log(req.params);
+  console.log(req.token);
   LikeModel.findAll({
     where: { postId: req.params.postId },
     include: [
       {
         model: PostModel,
         attributes: ["id"],
-        include: [{ model: userModel, attributes: ["id"] }],
+        include: [{ model: UserModel, attributes: ["id"] }],
       },
     ],
   })
     .then((likes) => {
-      console.log(likes);
+      // console.log(likes);
       return res.status(200).json(likes);
     })
     .catch(() => {});
+};
+
+exports.getOneLikeOfPost = (req, res, next) => {
+  LikeModel.findOne({
+    where: { postId: req.params.postId, userId: req.params.userId },
+    // include: UserModel,
+  })
+    .then((like) => res.status(200).json({ like }))
+    .catch((error) => res.status(404).json({ error }));
 };

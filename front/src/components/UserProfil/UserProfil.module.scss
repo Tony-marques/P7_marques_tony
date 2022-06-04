@@ -112,6 +112,7 @@
   }
 
   img {
+    
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -128,6 +129,8 @@
     left: 0;
     bottom: 0;
     right: 0;
+
+
   }
 
   input[type="file"] {
@@ -139,6 +142,10 @@
     bottom: 0;
     right: 0;
     opacity: 0;
+    @media only screen and (max-width: 600px){
+      width: 150px;
+      height:150px;
+    }
   }
 
   label {
@@ -156,6 +163,12 @@
     font-size: 1.2rem;
     border-radius: 50%;
     color: #fd2d01;
+    @media only screen and (max-width: 600px){
+      width: 150px;
+      height:150px;
+      // font-size: 1rem;
+      text-align: center;
+    }
   }
 }
 .pictureContainer {
@@ -180,12 +193,14 @@
 
 @media only screen and (max-width: 750px) {
   .profilContainer {
-    height: calc(100vh - 80px);
+    height: calc(95vh - 80px);
     position: absolute;
     top: 2%;
     left: 50%;
     transform: translateX(-50%);
     width: 95%;
+    display: flex;
+    align-items: center;
   }
 }
 

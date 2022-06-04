@@ -7,27 +7,38 @@
   z-index: 1;
   background: #fd2d01;
   background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-
+  position: relative;
   border-radius: 5px;
-  overflow: hidden;
+  // overflow: hidden;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+
+  @media only screen and (max-width: 750px) {
+    // position: unset;
+  }
 
   .navcontainer {
     width: 100%;
+    // border: 1px solid blue;
   }
   ul {
     display: flex;
     flex-wrap: wrap;
     list-style: none;
     min-height: 200px;
+    @media only screen and (max-width: 750px) {
+      min-height: auto;
+    }
 
     a,
-    button, li {
+    button,
+    li {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 50%;
       max-height: 50%;
+      position: relative;
+      z-index: 1;
       background: transparent;
       color: #ffd7d7;
       cursor: pointer;
@@ -44,25 +55,79 @@
   }
 }
 
+.bgContainer {
+  // border: 4px solid orange;
+  filter: drop-shadow(0 0 1rem black);
+  position: absolute;
+  height: auto;
+  max-width: 100%;
+  top: 0;
+  transform: translateY(-50%);
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  @media only screen and (max-width: 992px) {
+    // border: 4px solid orange;
+    // position: absolute;
+    // top: -37%;
+    // transform: translateY(-37%);
+
+    // height: 100%;
+    // left: 0;
+    // bottom: 0;
+    // right: 0;
+  }
+
+  @media only screen and (max-width: 750px) {
+    // border: 1px solid orange;
+    // background: black;
+    max-height: auto;
+    max-width: 150px;
+    top: 25px;
+    object-fit: cover;
+    margin: 0 auto;
+    filter:none;
+  }
+}
+
 @media only screen and (max-width: 992px) {
   .navbar {
-
     width: 150px;
-
-
   }
 }
 
 @media only screen and (max-width: 750px) {
   .navbar {
+    overflow: hidden;
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 100px;
     flex-wrap: nowrap;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // border: 1px solid blue;
+    background: none;
+  box-shadow: none;
+
+
+    .navcontainer {
+      // background: red;
+      background: #fd2d01;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+
+      height: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
     ul {
       flex-wrap: nowrap;
+      // border: 1px solid black;
+      width: 100%;
     }
   }
 }

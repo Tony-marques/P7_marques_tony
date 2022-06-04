@@ -6,6 +6,8 @@ import MetaHead from "../../components/MetaHead/MetaHead";
 import UserProfil from "../../components/UserProfil/UserProfil";
 import { apiUser, setHeaders } from "../../Api/Api";
 import { AuthContext } from "../../contexts/AuthContext";
+import Header from "../../components/Header/Header";
+import styles from "./Profil.module.scss"
 
 
 export default function Profil() {
@@ -32,8 +34,9 @@ export default function Profil() {
   }, [isProfilUpdating, USER_ID, isAuthenticated]);
 
   return (
-    <>
+    < >
       <MetaHead title="Profil - Groupomania" />
+      {/* <Header/> */}
       <UserProfil user={profilData} key={profilData.id} />
     </>
   );

@@ -6,6 +6,7 @@ import styles from "./Navbar.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import AddForm from "../AddForm/AddForm";
 import { ToggleAddContext } from "../../contexts/ToggleAddContext";
+import bg from "../../assets/icon-left-font-monochrome-white.png";
 
 export default function Navbar() {
   // Contexts
@@ -27,6 +28,17 @@ export default function Navbar() {
     <>
       {isAuthenticated && (
         <nav className={styles.navbar}>
+          <div
+            className={styles.bgContainerold}
+            // style={{
+            //   backgroundImage: `url(${bg})`,
+            //   backgroundRepeat: "no-repeat",
+            //   backgroundSize: "contain",
+            //   backgroundPosition: "center"
+            // }}
+          >
+            <img className={styles.bgContainer} src={bg} alt="" />
+          </div>
           <div className={`${styles.navcontainer}`}>
             <ul>
               <li>

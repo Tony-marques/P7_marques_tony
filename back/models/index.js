@@ -35,10 +35,17 @@ db.comment.belongsTo(db.post);
 db.post.hasMany(db.like, { onDelete: "cascade" });
 db.like.belongsTo(db.post);
 
-db.sequelize.sync({ force: false }).then(() => {
-  console.log("yes re-sync done!");
-}).catch(() => {
-  console.log("No sync");
-})
+// Relation user / like
+db.user.hasMany(db.like, { onDelete: "cascade" });
+db.like.belongsTo(db.user);
+
+db.sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("yes re-sync done!");
+  })
+  .catch(() => {
+    console.log("No sync");
+  });
 
 module.exports = db;

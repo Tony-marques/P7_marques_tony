@@ -1,65 +1,140 @@
-.userContainer {
-  border: 1px solid #ffd7d7;
+// .userContainer {
+//   border: 1px solid #ffd7d7;
+//   border-radius: 5px;
+//   display: flex;
+//   align-items: center;
+//   padding: 1rem;
+// }
+
+.user {
+  // border: 1px solid black;
   border-radius: 5px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 1rem;
-}
-
-table {
-  width: 100%;
-  font-size: 0.8rem;
-}
-
-table td {
-  text-align: center;
-  padding: 1rem 0;
-  border: 1px solid #fd2d01;
-  background: #ffd7d7;
+  height: 125px;
+  background-color: #ffd7d7;
   background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+
+
+  @media only screen and (max-width: 500px) {
+    padding: 0.5rem;
+  }
+
+  img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid #4e5166;
+
+    @media only screen and (max-width: 500px) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .userInfos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    // align-items: center;
+    color: #fff;
+    width: 85%;
+    // border: 1px solid black;
+    border-radius: 5px;
+    background-color: #4e5166;
+    background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
+    height: 100%;
+
+    .top,
+    .bottom {
+      display: flex;
+      justify-content: space-evenly;
+
+      .name,
+      .lastname {
+        width: 50%;
+      }
+
+      .email {
+        width: 60%;
+      }
+    }
+
+    .bottom {
+      display: flex;
+
+      @media only screen and (max-width: 500px) {
+        flex-direction: column;
+      }
+
+      select {
+        // padding: 1rem;
+        color: #fff;
+        background-color: #4e5166;
+        border: none;
+        background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
+      }
+    }
+
+    .pp,
+    .name,
+    .lastname,
+    .email,
+    .admin,
+    .delete {
+      // border: 1px solid blue;
+      // text-align: center;
+      padding: 0.75rem 1.25rem;
+      @media only screen and (max-width: 500px) {
+        padding: 0 1.25rem;
+      }
+    }
+  }
 }
 
-.delete {
-  width: 5%;
-  cursor: pointer;
-}
+// table {
+//   width: 100%;
+//   font-size: 0.8rem;
+// }
 
-.admin {
-  width: 7.5%;
-}
-.email {
-  width: 25%;
-}
+// table td {
+//   text-align: center;
+//   padding: 1rem 0;
+//   border: 1px solid #fd2d01;
+//   background: #ffd7d7;
+//   background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+//   border-radius: 5px;
+// }
 
-select {
-  background: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  border: none;
-  outline: none;
-  cursor: pointer;
-}
+// .delete {
+//   width: 5%;
+//   cursor: pointer;
+// }
 
-option {
-  padding: 1rem;
-}
+// .admin {
+//   width: 7.5%;
+// }
+// .email {
+//   width: 25%;
+// }
+
+// select {
+//   background: #ffd7d7;
+//   background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+//   border: none;
+//   outline: none;
+//   cursor: pointer;
+// }
+
+// option {
+//   padding: 1rem;
+// }
 
 @media only screen and (max-width: 900px) {
-  // .userContainer {
-    // width: 70%;
-    // padding: 0.5rem;
-    .admin {
-      width: 9%;
-    }
-    .email {
-      width: 30%;
-    }
-    td {
-      // word-break: break-all;
-      // height: 4rem;
-      font-size: 0.7rem;
-    }
-  // }
 }
 
 // @media only screen and (max-width: 750px) {
