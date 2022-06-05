@@ -42,7 +42,6 @@ exports.getAllLikes = (req, res) => {
     ],
   })
     .then((likes) => {
-      // console.log(likes);
       return res.status(200).json(likes);
     })
     .catch(() => {});
@@ -50,7 +49,7 @@ exports.getAllLikes = (req, res) => {
 
 exports.getOneLikeOfPost = (req, res, next) => {
   LikeModel.findOne({
-    where: { postId: req.params.postId, userId: req.params.userId },
+    where: { postId: req.params.postId, userId: req.params.id },
     // include: UserModel,
   })
     .then((like) => res.status(200).json({ like }))

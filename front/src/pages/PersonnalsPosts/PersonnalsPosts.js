@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 import React, { useState, useEffect, useContext } from "react";
 
 import { apiPost, setHeaders } from "../../Api/Api";
-import Header from "../../components/Header/Header";
 import Post from "../../components/Post.js/Post";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ToggleAddContext } from "../../contexts/ToggleAddContext";
@@ -19,14 +18,15 @@ export default function PersonnalsPosts() {
   const { setToggleAdd } = useContext(ToggleAddContext);
 
   // Functions
+  // Récupérerses propres posts
   const fetchPersonnalsPosts = () => {
     if (USER_ID != null) {
       axios
-        .post(
+        .get(
           `${apiPost}/getpersonnalposts/${USER_ID}`,
-          {
-            userId: USER_ID,
-          },
+          // {
+          //   userId: USER_ID,
+          // },
           setHeaders(token)
         )
         .then((res) => {
@@ -44,7 +44,6 @@ export default function PersonnalsPosts() {
 
   return (
     <div className={styles.personnalsPosts}>
-      {/* <Header/> */}
       <div className={styles.postsContainer}>
         {personnalsPosts.length > 0 ? (
           personnalsPosts

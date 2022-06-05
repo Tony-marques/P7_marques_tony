@@ -2,6 +2,7 @@ const db = require("../models");
 const PostModel = db.post;
 const UserModel = db.user;
 const fs = require("fs");
+const { log } = require("console");
 
 exports.getAllPosts = (req, res) => {
   PostModel.findAll({
@@ -83,26 +84,53 @@ exports.deletePost = (req, res) => {
 
 exports.updatePost = (req, res) => {
   const { postId } = req.params;
+  console.log(req.body);
   PostModel.findOne({
     where: {
       id: postId,
     },
   })
     .then((post) => {
-      const filename = post.image.split("/images/")[1];
-
-      fs.unlink(`images/${filename}`, () => {
-        post.update({
-          ...req.body,
-          userId: post.userId,
-          image: req.file
-            ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
-            : post.image,
+      // Si un fichier est envoyé est que le post a déjà une image
+      if (req.file && post.image) {
+        const filename = post.image.split("/images/")[1];
+        // Alors on supprime en 1er l'image
+        fs.unlink(`images/${filename}`, () => {
+          post
+            .update({
+              ...req.body,
+              userId: post.userId,
+              image: req.file
+                ? `${req.protocol}://${req.get("host")}/images/${
+                    req.file.filename
+                  }`
+                : post.image,
+            })
+            .then((postUpdate) => {
+              return res.status(201).json({ msg: req.message });
+            })
+            .catch((err) => {
+              return res.status(401).json(err);
+            });
         });
-      });
-    })
-    .then(() => {
-      return res.status(200).json({ msg: req.message });
+      } else {
+        post
+          .update({
+            ...req.body,
+            userId: post.userId,
+            image: req.file
+              ? `${req.protocol}://${req.get("host")}/images/${
+                  req.file.filename
+                }`
+              : post.image,
+          })
+          .then((postUpdate) => {
+            return res.status(201).json({ msg: req.message, postUpdate });
+          })
+          .catch((err) => {
+            return res.status(400).json(err);
+          });
+      }
     })
     .catch((err) => res.status(401).json(err));
 };

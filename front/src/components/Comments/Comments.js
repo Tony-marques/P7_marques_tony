@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
@@ -7,19 +7,20 @@ import styles from "./Comments.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import { formatDate } from "../../Utils/formatDate";
 import pp from "../../assets/DefaultProfil.jpg";
+import { apiComment } from "../../Api/Api";
 
 export default function Comments({ item }) {
   // Variables
   const token = Cookies.get("token");
 
   // Contexts
-  const { USER_ID, setIsPostUpdating, isAdmin, profilData } =
-    useContext(AuthContext);
+  const { USER_ID, setIsPostUpdating, isAdmin } = useContext(AuthContext);
 
   // Functions
+  // Supprimer un commentaire
   const deleteComment = () => {
     axios
-      .delete(`http://localhost:3000/api/comment/deletecomment/${item.id}`, {
+      .delete(`${apiComment}/deletecomment/${item.id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -42,7 +43,10 @@ export default function Comments({ item }) {
       <div className={styles.comment}>
         <div className={styles.commentHead}>
           <div className={styles.commentProfil}>
-            <img src={item.user.image ? item.user.image : pp} alt="photo de profil" />
+            <img
+              src={item.user.image ? item.user.image : pp}
+              alt="photo de profil"
+            />
             <div className={styles.name}>
               {item.user.name} - {item.user.lastname}
             </div>

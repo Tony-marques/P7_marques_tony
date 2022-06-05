@@ -11,6 +11,6 @@ router.post("/createlike/:postId&:userId", auth, createLike);
 
 router.get("/getalllikes/:postId/:id", auth, getAllLikes);
 
-router.get("/getonelikeofpost/:postId&:userId", getOneLikeOfPost);
+router.get("/getonelikeofpost/:postId&:id", auth, getOneLikeOfPost);
 
 module.exports = router;

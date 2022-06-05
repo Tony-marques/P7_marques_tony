@@ -113,6 +113,33 @@
     }
   }
 
+  .imgContainerbis {
+    position: relative;
+    display: flex;
+    justify-content: center;
+
+    .inputImgContainerbis {
+
+      input {
+        display: none;
+      }
+
+      label {
+        i {
+          font-size: 4rem;
+          background: #fd2d01;
+          width: 100px;
+          height: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          color: #fff;
+        }
+      }
+    }
+  }
+
   button {
     background: #fd2d01;
     background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
@@ -138,8 +165,6 @@
   .updateButton {
     background: green;
     background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-    // padding: 1rem 1.25rem;
-    // height: 100%;
     &:hover {
       border-color: green;
       background: #fff;
@@ -247,7 +272,6 @@
 
 .heartContainer {
   cursor: pointer;
-  // padding: 0.5rem 1.25rem;
   margin-left: 0.5rem;
   position: relative;
 
@@ -290,9 +314,7 @@
         min-height: 100px;
       }
     }
-    span {
-      // margin: 0;
-    }
+
     .btnChevron {
       bottom: -5px;
     }
@@ -305,7 +327,6 @@
 @media only screen and (max-width: 750px) {
   .postContainer {
     .post {
-      // padding: 0.5rem;
       .postHeader {
         padding: 0.5rem;
 
@@ -319,16 +340,12 @@
         min-height: 75px;
       }
     }
-    span {
-      // margin: 0;
-    }
   }
 }
 
 @media only screen and (max-width: 480px) {
   .postContainer {
     .post {
-      // padding: 0.5rem;
       .postHeader {
         font-size: 0.8rem;
         img {
@@ -365,8 +382,6 @@
         }
       }
     }
-    span {
-      // margin: 0;
-    }
+
   }
 }

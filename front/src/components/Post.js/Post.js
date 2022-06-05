@@ -6,10 +6,9 @@ import { toast } from "react-toastify";
 import styles from "./Post.module.scss";
 import pp from "../../assets/DefaultProfil.jpg";
 import { formatDate } from "../../Utils/formatDate";
-import { apiPost, setHeaders } from "../../Api/Api";
+import { apiComment, apiLike, apiPost, setHeaders } from "../../Api/Api";
 import { AuthContext } from "../../contexts/AuthContext";
 import Comments from "../Comments/Comments";
-import bg from "../../assets/icon-left-font.png";
 
 export default function Post({ item }) {
   // Variables
@@ -31,9 +30,8 @@ export default function Post({ item }) {
   const { setIsPostUpdating, isPostUpdating, USER_ID, isAdmin } =
     useContext(AuthContext);
 
-  // console.log(userLike);
-  // console.log(USER_ID);
   // Functions
+  // Supprimer un post
   const deletePost = () => {
     axios
       .delete(`${apiPost}/deletepost/${item.id}`, {
@@ -52,13 +50,11 @@ export default function Post({ item }) {
     setIsPostUpdating(false);
   };
 
+  // Récupérer tous les commentaires d'un post
   const getCommentsByPost = () => {
     axios({
-      method: "post",
-      url: `http://localhost:3000/api/comment/getcommentsbyposts/${item.id}`,
-      data: {
-        userId: USER_ID,
-      },
+      method: "get",
+      url: `${apiComment}/getcommentsbyposts/${item.id}/${USER_ID}`,
       headers: { authorization: `Bearer ${token}` },
     })
       .then((res) => {
@@ -69,19 +65,21 @@ export default function Post({ item }) {
       });
   };
 
+  // Chaque fois que le post est mis à jour relance la fonction
   useEffect(() => {
     getCommentsByPost();
   }, [isPostUpdating]);
 
+  // Toggle montrer / masquer les commentaires
   const handleShowComments = () => {
     setShowComments(!showComments);
   };
 
+  // Créer un commentaire
   const handleAddComment = () => {
-    // et la fonction pour les commentaires
     axios
       .post(
-        `http://localhost:3000/api/comment/createcomment/${item.id}`,
+        `${apiComment}/createcomment/${item.id}`,
         {
           content: addComment,
           userId: USER_ID,
@@ -103,6 +101,7 @@ export default function Post({ item }) {
     setIsPostUpdating(false);
   };
 
+  // Mettre à jour un post
   const updatePost = () => {
     setEdit(false);
 
@@ -121,6 +120,8 @@ export default function Post({ item }) {
           setHeaders(token)
         )
         .then((res) => {
+          console.log(res);
+
           toast.success(res.data.msg);
           setIsPostUpdating(true);
           setErrors(false);
@@ -133,11 +134,13 @@ export default function Post({ item }) {
       axios
         .put(`${apiPost}/updatepost/${item.id}`, formData, setHeaders(token))
         .then((res) => {
+          console.log(res);
           toast.success(res.data.msg);
           setIsPostUpdating(true);
           setErrors(false);
         })
         .catch((error) => {
+          console.log(error);
           setErrors(error.response.data.errors);
           setPath(error.response.data.path);
         });
@@ -147,10 +150,11 @@ export default function Post({ item }) {
     setIsPostUpdating(false);
   };
 
+  // Créer un like
   const like = () => {
     axios({
       method: "post",
-      url: `http://localhost:3000/api/like/createlike/${item.id}&${USER_ID}`,
+      url: `${apiLike}/createlike/${item.id}&${USER_ID}`,
       data: {
         userId: USER_ID,
       },
@@ -163,35 +167,35 @@ export default function Post({ item }) {
     setChangeLike(false);
   };
 
+  // Récupérer le like d'un utilisateur sur un post
   const getOneLikePost = () => {
     axios({
-      url: `http://localhost:3000/api/like/getonelikeofpost/${item.id}&${USER_ID}`,
+      url: `${apiLike}/getonelikeofpost/${item.id}&${USER_ID}`,
       method: "get",
       headers: {
         authorization: `Bearer ${token}`,
       },
     }).then((res) => {
-      console.log(res.data.like);
       setUserLike(res.data);
     });
   };
 
+  // Chaque fois que le toggle changeLike change, relance les fonctions de récupérations des likes
   useEffect(() => {
     getOneLikePost();
     getAllLikeOfPost();
   }, [changeLike]);
 
+  // Récupérer tous les likes d'un post
   const getAllLikeOfPost = () => {
     axios({
-      url: `http://localhost:3000/api/like/getalllikes/${item.id}/${USER_ID}`,
+      url: `${apiLike}/getalllikes/${item.id}/${USER_ID}`,
       method: "get",
       headers: {
         authorization: `Bearer ${token}`,
       },
     }).then((res) => {
-      console.log(res.data.length);
       setLikeLength(res.data.length);
-      // setUserLike(res.data);
     });
   };
 
@@ -245,16 +249,32 @@ export default function Post({ item }) {
             {errors ? item.content : editContent ? editContent : item.content}
           </div>
         )}
+        {edit && !item.image && (
+          <div className={styles.imgContainerbis}>
+            <div className={styles.inputImgContainerbis}>
+              <label htmlFor="img-input">
+                <i className="fa-solid fa-file-image"></i>
+              </label>
+              <input
+                type="file"
+                id="img-input"
+                onChange={(e) => setEditImage(e.target.files[0])}
+              />
+            </div>
+          </div>
+        )}
         {edit && (
-          <textarea
-            onChange={(e) => {
-              setEditContent(e.target.value);
-            }}
-            className={styles.postBody}
-            defaultValue={
-              errors ? item.content : editContent ? editContent : item.content
-            }
-          ></textarea>
+          <>
+            <textarea
+              onChange={(e) => {
+                setEditContent(e.target.value);
+              }}
+              className={styles.postBody}
+              defaultValue={
+                errors ? item.content : editContent ? editContent : item.content
+              }
+            ></textarea>
+          </>
         )}
         {errors && path == "content" && <span>{errors}</span>}
 
@@ -321,7 +341,6 @@ export default function Post({ item }) {
             ) : null}
 
             <div className={styles.heartContainer} onClick={like}>
-              {/* userLike.like.userId && userLike.like.userId == USER_ID ? */}
               {userLike.like && userLike.like.userId == USER_ID ? (
                 <>
                   <i className="fa-solid fa-heart"></i>

@@ -16,6 +16,7 @@ export default function Home() {
   // Context
   const { isAuthenticated } = useContext(AuthContext);
 
+  // Si authentifié, rediriger vers /news
   if (isAuthenticated) {
     navigate("/news");
   }

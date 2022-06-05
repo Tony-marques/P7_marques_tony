@@ -7,7 +7,6 @@ import styles from "./News.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import Post from "../../components/Post.js/Post";
 import { apiPost, setHeaders } from "../../Api/Api";
-import Header from "../../components/Header/Header";
 
 export default function News() {
   // Variables
@@ -19,14 +18,13 @@ export default function News() {
   const { isPostUpdating, USER_ID, isAuthenticated, changeLike } =
     useContext(AuthContext);
 
-  console.log(changeLike);
-  // Functions // attends je te fais un console log
-  // console.log(listOfPosts);
+  // Functions
+  // Récupérer tous les posts
   const fetchData = () => {
     if (USER_ID != null) {
       const userId = USER_ID;
       axios
-        .post(`${apiPost}/getallposts`, { userId: userId }, setHeaders(token))
+        .get(`${apiPost}/getallposts/${userId}`, setHeaders(token))
         .then((res) => {
           setListOfPosts(res.data);
         })
@@ -42,7 +40,7 @@ export default function News() {
 
   return (
     <main className={styles.news}>
-      <MetaHead title="Actualité - Groupomania" /> {/* <Header/> */}
+      <MetaHead title="Actualité - Groupomania" />
       <div className={styles.postsContainer}>
         {listOfPosts.length > 0 ? (
           listOfPosts

@@ -10,10 +10,11 @@ const idComment = require("../middleware/idComment");
 const commentValid = require("../middleware/Yup/commentValidation");
 const router = express.Router();
 
+// Non utilisé
 router.get("/getallcomments", auth, getAllComments);
 
 // Récupérer tous les commentaires d'un post
-router.post("/getcommentsbyposts/:postId", auth, getCommentsByPosts);
+router.get("/getcommentsbyposts/:postId/:id", auth, getCommentsByPosts);
 
 router.post("/createcomment/:postId", auth, commentValid, createComment);
 

@@ -21,6 +21,7 @@ export default function Login({ setLogin }) {
   const { setIsAuthenticated } = useContext(AuthContext);
 
   // Functions
+  // Soumettre la connexion
   const handleForm = () => {
     axios
       .post(`${apiUser}/login`, {
@@ -34,13 +35,17 @@ export default function Login({ setLogin }) {
         navigate("/news");
       })
       .catch((error) => {
-        toast.error(error.response.data.msg || error.response.data.error);
+        const msg = error.response.data.errors
+        console.log(error.response.data.errors);
+        // const errorMsg = error.response.data.error
+        toast.error(msg)
+        toast.error(error.response.data.msg || error.response.data.errors);
         setErrors(error.response.data.errors);
         setPath(error.response.data.path);
-        toast.error(error.response.data);
       });
   };
 
+  // Bascule entre login / signUp
   const toggleLoginHandle = () => {
     setLogin(false);
   };

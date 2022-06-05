@@ -8,6 +8,6 @@ module.exports = async (req, res, next) => {
   } else {
     return res
       .status(401)
-      .json({ message: "Vous n'êtes pas le propriétaire du post" });
+      .json({ message: "Suppression impossible" });
   }
 };

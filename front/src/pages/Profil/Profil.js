@@ -1,4 +1,4 @@
-import React, {  useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -6,9 +6,6 @@ import MetaHead from "../../components/MetaHead/MetaHead";
 import UserProfil from "../../components/UserProfil/UserProfil";
 import { apiUser, setHeaders } from "../../Api/Api";
 import { AuthContext } from "../../contexts/AuthContext";
-import Header from "../../components/Header/Header";
-import styles from "./Profil.module.scss"
-
 
 export default function Profil() {
   // Variables
@@ -19,6 +16,7 @@ export default function Profil() {
     useContext(AuthContext);
 
   // Functions
+  // Récupérer son profil
   const fetchProfilData = async () => {
     if (USER_ID != null && profilData.id != "undefined") {
       const res = await axios.get(
@@ -34,9 +32,8 @@ export default function Profil() {
   }, [isProfilUpdating, USER_ID, isAuthenticated]);
 
   return (
-    < >
+    <>
       <MetaHead title="Profil - Groupomania" />
-      {/* <Header/> */}
       <UserProfil user={profilData} key={profilData.id} />
     </>
   );

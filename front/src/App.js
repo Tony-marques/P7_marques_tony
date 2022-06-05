@@ -34,15 +34,18 @@ const App = () => {
   const [USER_ID, setUSER_ID] = useState(null);
 
   // Fonctions
+  // Contrôlé l'état du token
   const checkToken = () => {
+    // Décoder le token
     const decodedToken = decodeToken(token);
 
+    // Si le token non décodé, supprimer le token des cookies et authentifié false
     if (!decodedToken) {
       Cookies.remove("token");
-      Cookies.remove("userId");
       setIsAuthenticated(false);
     }
 
+    // Si token décodé, on stock la donnée admin et userId, et authentifié true
     if (decodedToken) {
       const { userId } = decodedToken;
       const { admin } = decodedToken;
@@ -52,10 +55,12 @@ const App = () => {
     }
   };
 
+  // Si la variables d'authentification change, relance la fonction
   useEffect(() => {
     checkToken();
   }, [isAuthenticated]);
 
+  // Récupérer les données du profil
   const fetchProfilData = () => {
     if (USER_ID != null) {
       axios
@@ -109,7 +114,7 @@ const App = () => {
             <ToastContainer />
           </Router>
         </div>
-        {toggleAdd && <AddForm />}
+        <AddForm />
       </ToggleAddContext.Provider>
     </AuthContext.Provider>
   );

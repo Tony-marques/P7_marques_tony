@@ -9,7 +9,6 @@ import "./UserProfil.scss";
 import pp from "../../assets/DefaultProfil.jpg";
 import { AuthContext } from "../../contexts/AuthContext";
 import { apiUser, setHeaders } from "../../Api/Api";
-import HeaderLogo from "../Header/Header";
 
 export default function UserProfil({ user }) {
   // Variables
@@ -31,6 +30,7 @@ export default function UserProfil({ user }) {
     setEditInput(!editInput);
   };
 
+  // Modifier son profil
   const EditHandler = () => {
     const id = USER_ID;
     const formData = new FormData();
@@ -56,10 +56,12 @@ export default function UserProfil({ user }) {
     setIsProfilUpdating(false);
   };
 
+  // Voir ses publications
   const showPersonnalPosts = () => {
     navigate("/myposts");
   };
 
+  // Supprimer mon compte
   const deleteMyAccount = () => {
     if (
       window.confirm(
@@ -89,7 +91,6 @@ export default function UserProfil({ user }) {
 
   return (
     <>
-      {/* <HeaderLogo /> */}
       <div className={styles.profilContainer}>
         {!editInput ? (
           <i className="fa-solid fa-file-pen" onClick={toggleEditInput} />

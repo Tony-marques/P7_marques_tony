@@ -20,6 +20,7 @@ export default function Login({ setLogin }) {
   const { isAuthenticated } = useContext(AuthContext);
 
   // Functions
+  // Soumettre l'enregistrement du compte
   const handleForm = () => {
     axios
       .post(`${apiUser}/signup`, {
@@ -39,6 +40,7 @@ export default function Login({ setLogin }) {
       });
   };
 
+  // Bascule login / signUp
   const toggleLoginHandle = () => {
     setLogin(true);
   };

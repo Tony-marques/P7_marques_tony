@@ -30,15 +30,12 @@
     h1,
     h2 {
       color: #4e5166;
-      // font-size: 1em;
     }
   }
 }
 
 @media only screen and (max-width: 992px) {
   .home {
-    // flex-direction: column;
-    // padding: 0 1rem;
 
     .homeWrapper {
       display: flex;
@@ -62,6 +59,5 @@
 
   .log {
     width: 100%;
-    // border: 1px solid blue;
   }
 }

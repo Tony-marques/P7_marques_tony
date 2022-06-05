@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { createPortal } from "react-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
@@ -6,7 +7,7 @@ import { toast } from "react-toastify";
 import styles from "./AddForm.module.scss";
 import { ToggleAddContext } from "../../contexts/ToggleAddContext";
 import { AuthContext } from "../../contexts/AuthContext";
-import { apiPost } from "../../Api/Api";
+import { apiPost, setHeaders } from "../../Api/Api";
 
 export default function AddForm() {
   // Variables
@@ -17,24 +18,19 @@ export default function AddForm() {
   const token = Cookies.get("token");
 
   // Contexts
-  const { setToggleAdd } = useContext(ToggleAddContext);
+  const { setToggleAdd, toggleAdd } = useContext(ToggleAddContext);
   const { USER_ID, setIsPostUpdating } = useContext(AuthContext);
 
   // Functions
+  // Créer un post
   const handleSend = () => {
     const formData = new FormData();
     formData.append("image", image);
     formData.append("content", content);
     formData.append("userId", USER_ID);
 
-    const options = {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    };
-
     axios
-      .post(`${apiPost}/createpost/${USER_ID}`, formData, options)
+      .post(`${apiPost}/createpost/${USER_ID}`, formData, setHeaders(token))
       .then(() => {
         setIsPostUpdating(true);
         toast.success("Post créé avec succès !");
@@ -48,34 +44,38 @@ export default function AddForm() {
     setIsPostUpdating(false);
   };
 
+  // Toggle pour ouvrir / fermer la création d'un post
   const closeAddForm = () => {
     setToggleAdd(false);
   };
 
+  // Récupérer l'image
   const uploadImg = (e) => {
     setImage(e.target.files[0]);
   };
 
-  const addPost = (e) => {
-    e.stopPropagation();
-  };
-
-  return (
-    <div className={styles.overlay} onClick={closeAddForm}>
-      <form onClick={addPost}>
-        <textarea
-          type="text"
-          placeholder="Contenu"
-          onChange={(e) => setContent(e.target.value)}
-        />
-        {errors && path == "content" && <span>{errors}</span>}
-        <input type="file" onChange={uploadImg} id="postImg" />
-        <label htmlFor="postImg">Choisir un fichier</label>
-        <div className={styles.btnContainer}>
-          <input type="button" value="Annuler" onClick={closeAddForm} />
-          <input type="button" value="Publier" onClick={handleSend} />
+  return createPortal(
+    <>
+      {toggleAdd && (
+        <div className={styles.overlay} onClick={closeAddForm}>
+          <form onClick={(e) => e.stopPropagation()}>
+            <textarea
+              type="text"
+              placeholder="Contenu"
+              onChange={(e) => setContent(e.target.value)}
+            />
+            {errors && path == "content" && <span>{errors}</span>}
+            <input type="file" onChange={uploadImg} id="postImg" />
+            <label htmlFor="postImg">Choisir un fichier</label>
+            <div className={styles.btnContainer}>
+              <input type="button" value="Annuler" onClick={closeAddForm} />
+              <input type="button" value="Publier" onClick={handleSend} />
+            </div>
+          </form>
         </div>
-      </form>
-    </div>
+      )}
+    </>,
+    document.getElementById("modal-root")
   );
 }
+

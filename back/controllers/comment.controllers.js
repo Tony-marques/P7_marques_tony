@@ -3,6 +3,7 @@ const CommentModel = db.comment;
 const UserModel = db.user;
 const PostModel = db.post;
 
+// Créer un commentaire
 exports.createComment = (req, res) => {
   PostModel.findByPk(req.params.postId).then((post) => {
     //

@@ -18,9 +18,10 @@ export default function User({ item }) {
     useContext(AuthContext);
 
   // Functions
+  // Supprimer un user
   const deleteUser = () => {
     axios
-      .delete(`http://localhost:3000/api/user/deleteuser/${item.id}`, {
+      .delete(`${apiUser}/deleteuser/${item.id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -37,6 +38,7 @@ export default function User({ item }) {
     setUserDeleted(false);
   };
 
+  // changement status admin / user
   const toggleAdmin = () => {
     axios
       .put(
@@ -68,9 +70,6 @@ export default function User({ item }) {
 
   return (
     <div className={styles.user}>
-      {/* <table>
-        <tbody>
-          <tr> */}
       <img src={item.image ? item.image : pp} alt="" className={styles.pp} />
       <div className={styles.userInfos}>
         <div className={styles.top}>
@@ -100,9 +99,6 @@ export default function User({ item }) {
           </div>
         </div>
       </div>
-      {/* </tr>
-        </tbody>
-      </table> */}
     </div>
   );
 }

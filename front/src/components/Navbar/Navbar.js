@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 
 import styles from "./Navbar.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
-import AddForm from "../AddForm/AddForm";
 import { ToggleAddContext } from "../../contexts/ToggleAddContext";
 import bg from "../../assets/icon-left-font-monochrome-white.png";
 
@@ -12,14 +11,16 @@ export default function Navbar() {
   // Contexts
   const { isAuthenticated, setIsAuthenticated, USER_ID, isAdmin } =
     useContext(AuthContext);
-  const { toggleAdd, setToggleAdd } = useContext(ToggleAddContext);
+  const { setToggleAdd } = useContext(ToggleAddContext);
 
   // Functions
+  // Se deconnecter
   const logoutHandle = () => {
     Cookies.remove("token");
     setIsAuthenticated(false);
   };
 
+  // Permet de gérer la modale ajouter un post
   const toggleForm = () => {
     setToggleAdd(true);
   };
@@ -30,12 +31,6 @@ export default function Navbar() {
         <nav className={styles.navbar}>
           <div
             className={styles.bgContainerold}
-            // style={{
-            //   backgroundImage: `url(${bg})`,
-            //   backgroundRepeat: "no-repeat",
-            //   backgroundSize: "contain",
-            //   backgroundPosition: "center"
-            // }}
           >
             <img className={styles.bgContainer} src={bg} alt="" />
           </div>
@@ -62,7 +57,6 @@ export default function Navbar() {
                   </NavLink>
                 </li>
               )}
-              {/* {toggleAdd && <AddForm />} */}
               <li onClick={logoutHandle} className={styles.button}>
                 <i className="fa-solid fa-right-from-bracket"></i>
               </li>

@@ -8,8 +8,6 @@
   width: 700px;
   max-height: 95vh;
   overflow: auto;
-  // min-height: 90vh;
-  // border: 1px solid blue;
 
   @media only screen and (max-width: 992px) {
     padding: 0.75rem;
@@ -21,27 +19,8 @@
   display: none;
 }
 
-// @media only screen and (max-width: 900px) {
-//   .usersContainer {
-//     width: 70%;
-//     padding: 0.5rem;
-//     .admin {
-//       width: 9%;
-//     }
-//     .email {
-//       width: 30%;
-//     }
-//     td {
-//       // word-break: break-all;
-//       // height: 4rem;
-//       font-size: 0.7rem;
-//     }
-//   }
-// }
-
 @media only screen and (max-width: 750px) {
   .usersContainer {
-    // position: absolute;
     width: 95%;
     max-height: calc(95vh - 80px);
     top: 2%;
@@ -51,11 +30,6 @@
     }
     .email {
       width: 30%;
-    }
-    td {
-      // word-break: break-all;
-      // height: 4rem;
-      font-size: 0.7rem;
     }
   }
 }

@@ -61,6 +61,7 @@ exports.login = (req, res) => {
     .catch((error) => res.status(401).json(error));
 };
 
+// Récupérer les infos du user connecté =>
 exports.getOneProfil = (req, res) => {
   UserModel.findByPk(req.params.id, {
     attributes: ["id", "name", "lastname", "age", "admin", "bio", "image"],
@@ -69,9 +70,19 @@ exports.getOneProfil = (req, res) => {
     .catch((err) => res.status(401).json("erreur"));
 };
 
+// Récupérer tous les utilisateurs
 exports.getAllUsers = (req, res) => {
   UserModel.findAll({
-    attributes: ["admin", "age", "bio", "email", "id", "name", "lastname", "image"],
+    attributes: [
+      "admin",
+      "age",
+      "bio",
+      "email",
+      "id",
+      "name",
+      "lastname",
+      "image",
+    ],
   })
     .then((users) => res.status(200).json(users))
     .catch((err) => {
@@ -79,14 +90,40 @@ exports.getAllUsers = (req, res) => {
     });
 };
 
+// Mettre à jour son profil => fonction ok
 exports.updateProfil = (req, res) => {
   UserModel.findByPk(req.params.id)
     .then((user) => {
-      const filename = user.image.split("/images/")[1];
-      fs.unlink(`images/${filename}`, () => {
+      const userPhoto = user.image;
+      // Si le user à déjà une photo de profil, on la supprime
+      if (req.file && userPhoto) {
+        const filename = user.image.split("/images/")[1];
+        fs.unlink(`images/${filename}`, () => {
+          user
+            .update({
+              name: req.body.name,
+              lastname: req.body.lastname,
+              bio: req.body.bio,
+              age: req.body.age,
+              image: req.file
+                ? `${req.protocol}://${req.get("host")}/images/${
+                    req.file.filename
+                  }`
+                : "",
+            })
+            .then((newUser) => res.status(201).json({ newUser }))
+            .catch((err) => {
+              res.status(401).json({ msg: "Profil non mise à jour." });
+            });
+        });
+      } else {
+        // Si le user n'a pas encore de photo de profil
         user
           .update({
-            ...req.body,
+            name: req.body.name,
+            lastname: req.body.lastname,
+            bio: req.body.bio,
+            age: req.body.age,
             image: req.file
               ? `${req.protocol}://${req.get("host")}/images/${
                   req.file.filename
@@ -97,13 +134,14 @@ exports.updateProfil = (req, res) => {
           .catch((err) => {
             res.status(401).json({ msg: "Profil non mise à jour." });
           });
-      });
+      }
     })
     .catch((err) => {
       return res.status(400).json({ msg: "Profil non trouvé" });
     });
 };
 
+// Supprimer un compte en étant admin => function ok
 exports.deleteUser = (req, res) => {
   const { id } = req.params;
   UserModel.findOne({
@@ -112,35 +150,68 @@ exports.deleteUser = (req, res) => {
     },
   })
     .then((user) => {
-      user
-        .destroy()
-        .then(() => {
-          return res
-            .status(200)
-            .json({ msg: "Le compte a été supprimé avec succès !" });
-        })
-        .catch((err) => {
-          return res.status(401).json({ msg: "Compte non supprimé" });
+      const userPhoto = user.image;
+      if (userPhoto) {
+        const filename = user.image.split("/images/")[1];
+        fs.unlink(`images/${filename}`, () => {
+          user
+            .destroy()
+            .then(() => {
+              return res
+                .status(200)
+                .json({ msg: "Le compte a été supprimé avec succès !" });
+            })
+            .catch((err) => {
+              return res.status(401).json({ msg: "Compte non supprimé" });
+            });
         });
+      } else {
+        user
+          .destroy()
+          .then(() => {
+            return res
+              .status(200)
+              .json({ msg: "Le compte a été supprimé avec succès !" });
+          })
+          .catch((err) => {
+            return res.status(401).json({ msg: "Compte non supprimé" });
+          });
+      }
     })
     .catch((err) => {
       return res.status(400).json({ msg: "Compte non trouvé" });
     });
 };
 
+// Supprimer son compte => function ok
 exports.deleteMyProfil = (req, res) => {
   const { id } = req.params;
+
   UserModel.findByPk(id)
     .then((user) => {
-      user.destroy();
+      const userPhoto = user.image;
+      if (userPhoto) {
+        // si il y a une photo de profil,
+        // Supprimer l'image de profil du user
+        const filename = user.image.split("/images/")[1];
+        fs.unlink(`images/${filename}`, () => {
+          user.destroy();
+        });
+      } else {
+        // Si pas de photo de profil
+        user.destroy();
+      }
     })
     .catch((err) => {
       return res.status(400).json({ msg: "Utilisateur non trouvé" });
     });
 };
 
+// Changer le status d'un compte => function ok
 exports.toggleAdmin = (req, res) => {
-  UserModel.findByPk(req.params.id)
+  UserModel.findByPk(req.params.id, {
+    attributes: ["admin", "id"],
+  })
     .then((user) => {
       user
         .update({ ...req.body })

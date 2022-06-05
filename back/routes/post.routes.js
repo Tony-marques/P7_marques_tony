@@ -13,10 +13,10 @@ const postValid = require("../middleware/Yup/postValidation");
 const router = express.Router();
 
 // Récupération de tous les posts => ok
-router.post("/getallposts", auth, getAllPosts);
+router.get("/getallposts/:id", auth, getAllPosts);
 
 // Récupération des posts appartenant à l'utilisateur => ok
-router.post("/getpersonnalposts/:id", auth, getPersonnalPosts);
+router.get("/getpersonnalposts/:id", auth, getPersonnalPosts);
 
 // Créer un post => ok
 router.post("/createpost/:id", auth, multer, postValid, createPost);
