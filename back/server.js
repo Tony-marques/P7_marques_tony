@@ -23,5 +23,3 @@ app.use("/api/like", likeRoute);
 app.listen(PORT, () => {
   console.log(`Serveur lancé sur http://localhost:${PORT}`);
 });
-
-// test
