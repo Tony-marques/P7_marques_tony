@@ -17,7 +17,7 @@ import Profil from "./pages/Profil/Profil";
 import Error404 from "./pages/Error404/Error404";
 import { ToggleAddContext } from "./contexts/ToggleAddContext";
 import PersonnalsPosts from "./pages/PersonnalsPosts/PersonnalsPosts";
-import AllUsers from "./components/AdminComponents/AllUsers/AllUsers";
+import AllUsers from "./pages/AllUsers/AllUsers";
 import { apiUser, setHeaders } from "./Api/Api";
 import AddForm from "./components/AddForm/AddForm";
 
@@ -111,7 +111,11 @@ const App = () => {
                 </Route>
               </Route>
             </Routes>
-            <ToastContainer />
+            <ToastContainer
+              limit={2}
+              pauseOnFocusLoss={false}
+              autoClose={2000}
+            />
           </Router>
         </div>
         <AddForm />

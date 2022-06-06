@@ -6,6 +6,7 @@ import styles from "./Navbar.module.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ToggleAddContext } from "../../contexts/ToggleAddContext";
 import bg from "../../assets/icon-left-font-monochrome-white.png";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
   // Contexts
@@ -18,6 +19,7 @@ export default function Navbar() {
   const logoutHandle = () => {
     Cookies.remove("token");
     setIsAuthenticated(false);
+    toast.info("Revenez vite sur la plateforme")
   };
 
   // Permet de gérer la modale ajouter un post

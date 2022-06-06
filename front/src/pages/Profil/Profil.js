@@ -33,7 +33,7 @@ export default function Profil() {
 
   return (
     <>
-      <MetaHead title="Profil - Groupomania" />
+      <MetaHead title={`Profil ${profilData.name} - Groupomania`} />
       <UserProfil user={profilData} key={profilData.id} />
     </>
   );

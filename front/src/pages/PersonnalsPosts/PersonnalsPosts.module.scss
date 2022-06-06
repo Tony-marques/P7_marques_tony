@@ -47,3 +47,31 @@
     }
   }
 }
+
+.emptyPost {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  border-radius: 5px;
+  padding: 1rem;
+  width: 100%;
+
+  button {
+    padding: 0.75rem 1.25rem;
+    background: #fd2d01;
+    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: #fff;
+
+    &:hover {
+      background: #fff;
+      border-color: #fd2d01;
+      color: black;
+    }
+  }
+}

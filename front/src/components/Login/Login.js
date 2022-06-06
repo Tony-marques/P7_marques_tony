@@ -31,15 +31,11 @@ export default function Login({ setLogin }) {
       .then((res) => {
         Cookies.set("token", res.data.token);
         setIsAuthenticated(true);
-        toast.success("Bienvenue sur votre espace !");
+        toast.info("Bienvenue sur votre espace !");
         navigate("/news");
       })
       .catch((error) => {
-        const msg = error.response.data.errors
-        console.log(error.response.data.errors);
-        // const errorMsg = error.response.data.error
-        toast.error(msg)
-        toast.error(error.response.data.msg || error.response.data.errors);
+        toast.error(error.response.data.msg || error.response.data.message);
         setErrors(error.response.data.errors);
         setPath(error.response.data.path);
       });

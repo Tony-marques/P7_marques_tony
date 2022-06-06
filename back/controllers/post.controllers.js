@@ -84,7 +84,6 @@ exports.deletePost = (req, res) => {
 
 exports.updatePost = (req, res) => {
   const { postId } = req.params;
-  console.log(req.body);
   PostModel.findOne({
     where: {
       id: postId,

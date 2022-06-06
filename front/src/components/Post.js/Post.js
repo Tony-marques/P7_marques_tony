@@ -120,8 +120,6 @@ export default function Post({ item }) {
           setHeaders(token)
         )
         .then((res) => {
-          console.log(res);
-
           toast.success(res.data.msg);
           setIsPostUpdating(true);
           setErrors(false);
@@ -134,7 +132,6 @@ export default function Post({ item }) {
       axios
         .put(`${apiPost}/updatepost/${item.id}`, formData, setHeaders(token))
         .then((res) => {
-          console.log(res);
           toast.success(res.data.msg);
           setIsPostUpdating(true);
           setErrors(false);

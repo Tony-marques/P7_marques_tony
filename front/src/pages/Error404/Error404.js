@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import MetaHead from "../../components/MetaHead/MetaHead";
 
 import styles from "./Error404.module.scss";
 
@@ -12,6 +13,7 @@ export default function Error404() {
   };
   return (
     <div className={styles.error404}>
+      <MetaHead title="Page innexistante - Groupomania" />
       <div>La page {id} n'existe pas</div>
       <button onClick={redirect}>Revenir à la page d'accueil</button>
     </div>

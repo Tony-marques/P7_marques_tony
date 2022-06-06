@@ -34,9 +34,9 @@ export default function Login({ setLogin }) {
         setLogin(true);
       })
       .catch((error) => {
+        toast.error(error.response.data.message);
         setErrors(error.response.data.errors);
         setPath(error.response.data.path);
-        toast.error(error.response.data);
       });
   };
 

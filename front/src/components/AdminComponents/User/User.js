@@ -31,9 +31,10 @@ export default function User({ item }) {
       })
       .then(() => {
         setUserDeleted(true);
+        toast.success(`L'utilisateur ${item.name} a été supprimé`);
       })
       .catch((err) => {
-        console.log(err);
+        toast.success(`Impossible de supprimer l'utilisateur`);
       });
     setUserDeleted(false);
   };

@@ -29,8 +29,6 @@ exports.createLike = async (req, res) => {
 };
 
 exports.getAllLikes = (req, res) => {
-  console.log(req.params);
-  console.log(req.token);
   LikeModel.findAll({
     where: { postId: req.params.postId },
     include: [

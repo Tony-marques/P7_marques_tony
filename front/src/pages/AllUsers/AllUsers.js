@@ -2,9 +2,10 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useEffect, useState, useContext } from "react";
 
-import { apiUser, setHeaders } from "../../../Api/Api";
-import { AuthContext } from "../../../contexts/AuthContext";
-import User from "../User/User";
+import { apiUser, setHeaders } from "../../Api/Api";
+import { AuthContext } from "../../contexts/AuthContext";
+import MetaHead from "../../components/MetaHead/MetaHead";
+import User from "../../components/AdminComponents/User/User";
 import styles from "./AllUsers.module.scss";
 
 export default function AllUsers() {
@@ -38,9 +39,9 @@ export default function AllUsers() {
   useEffect(() => {
     getAllUsers();
   }, [userDeleted, isProfilUpdating]);
-
   return (
     <div className={styles.usersContainer}>
+      <MetaHead title="Dashboard admin - Groupomania" />;
       {listOfUsers &&
         listOfUsers.map((item) => {
           return <User item={item} key={item.id} />;
