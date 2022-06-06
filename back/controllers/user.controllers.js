@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 
 const UserModel = db.user;
 
+// Créer son compte
 exports.signUp = (req, res) => {
   const { password, email, name, lastname } = req.body;
   bcrypt
@@ -24,6 +25,7 @@ exports.signUp = (req, res) => {
     .catch((err) => res.status(500).json(err));
 };
 
+// Se connecter
 exports.login = (req, res) => {
   UserModel.findOne({
     where: {
@@ -61,7 +63,7 @@ exports.login = (req, res) => {
     .catch((error) => res.status(401).json(error));
 };
 
-// Récupérer les infos du user connecté =>
+// Récupérer les infos du user connecté
 exports.getOneProfil = (req, res) => {
   UserModel.findByPk(req.params.id, {
     attributes: ["id", "name", "lastname", "age", "admin", "bio", "image"],
@@ -90,7 +92,7 @@ exports.getAllUsers = (req, res) => {
     });
 };
 
-// Mettre à jour son profil => fonction ok
+// Mettre à jour son profil
 exports.updateProfil = (req, res) => {
   UserModel.findByPk(req.params.id)
     .then((user) => {
@@ -109,7 +111,7 @@ exports.updateProfil = (req, res) => {
                 ? `${req.protocol}://${req.get("host")}/images/${
                     req.file.filename
                   }`
-                : "",
+                : user.image,
             })
             .then((newUser) => res.status(201).json({ newUser }))
             .catch((err) => {
@@ -128,7 +130,7 @@ exports.updateProfil = (req, res) => {
               ? `${req.protocol}://${req.get("host")}/images/${
                   req.file.filename
                 }`
-              : "",
+              : user.image,
           })
           .then((newUser) => res.status(201).json({ newUser }))
           .catch((err) => {
@@ -141,7 +143,7 @@ exports.updateProfil = (req, res) => {
     });
 };
 
-// Supprimer un compte en étant admin => function ok
+// Supprimer un compte en étant admin
 exports.deleteUser = (req, res) => {
   const { id } = req.params;
   UserModel.findOne({
@@ -183,7 +185,7 @@ exports.deleteUser = (req, res) => {
     });
 };
 
-// Supprimer son compte => function ok
+// Supprimer son compte
 exports.deleteMyProfil = (req, res) => {
   const { id } = req.params;
 
@@ -207,7 +209,7 @@ exports.deleteMyProfil = (req, res) => {
     });
 };
 
-// Changer le status d'un compte => function ok
+// Changer le status d'un compte
 exports.toggleAdmin = (req, res) => {
   UserModel.findByPk(req.params.id, {
     attributes: ["admin", "id"],

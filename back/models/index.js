@@ -2,13 +2,16 @@ const config = require("../config/db.js");
 
 const { Sequelize, DataTypes } = require("sequelize");
 
+// Création de la connexion
 const sequelize = new Sequelize({ ...config });
 
+// Connexion à la DB
 sequelize
   .authenticate()
   .then(() => console.log("Connecté à la BDD"))
   .catch((err) => console.log("Non connecté à la BDD"));
 
+// Création de l'objet ou l'on va stocker toutes les models
 const db = {};
 
 db.Sequelize = Sequelize;
@@ -39,6 +42,7 @@ db.like.belongsTo(db.post);
 db.user.hasMany(db.like, { onDelete: "cascade" });
 db.like.belongsTo(db.user);
 
+// Permet en phase de dev, de réinitialiser la BDD à chaque sauvegarde => si force: true
 db.sequelize
   .sync({ force: false })
   .then(() => {

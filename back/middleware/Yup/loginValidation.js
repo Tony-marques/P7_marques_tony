@@ -1,12 +1,6 @@
 // LIBRARIES
 const yup = require("yup");
 
-// regex pour les noms et prénoms
-const namesRegex =
-  /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð\s'.-]+$/;
-// regex pour les caractères interdits
-const forbiddenChars = /[$<>;]/;
-
 // schéma yup pour les données d'une inscription
 const loginSchema = yup.object().shape({
   password: yup

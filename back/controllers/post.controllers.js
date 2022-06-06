@@ -2,8 +2,8 @@ const db = require("../models");
 const PostModel = db.post;
 const UserModel = db.user;
 const fs = require("fs");
-const { log } = require("console");
 
+// Récupérer tous les posts
 exports.getAllPosts = (req, res) => {
   PostModel.findAll({
     // attributes: ["id", "author", "content", "userid"],
@@ -20,6 +20,7 @@ exports.getAllPosts = (req, res) => {
     .catch((err) => res.status(500).json(err));
 };
 
+// Récupérer tous les posts d'un utilisateur
 exports.getPersonnalPosts = (req, res) => {
   PostModel.findAll({
     where: {
@@ -41,6 +42,7 @@ exports.getPersonnalPosts = (req, res) => {
     });
 };
 
+// Créer un post
 exports.createPost = (req, res) => {
   const { content } = req.body;
   UserModel.findByPk(req.params.id)
@@ -63,6 +65,7 @@ exports.createPost = (req, res) => {
     .catch(() => res.status(401).json());
 };
 
+// Supprimer son post
 exports.deletePost = (req, res) => {
   // S'il y a une image dans le post, il faut d'abord supprimé l'image du backend
   PostModel.findOne({ where: { id: req.params.id } }).then((post) => {
@@ -82,6 +85,7 @@ exports.deletePost = (req, res) => {
   });
 };
 
+// Mettre à jour son post
 exports.updatePost = (req, res) => {
   const { postId } = req.params;
   PostModel.findOne({

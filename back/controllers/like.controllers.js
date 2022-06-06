@@ -3,6 +3,7 @@ const UserModel = db.user;
 const PostModel = db.post;
 const LikeModel = db.like;
 
+// Créer un like
 exports.createLike = async (req, res) => {
   try {
     let existingLike = await LikeModel.findOne({
@@ -28,6 +29,7 @@ exports.createLike = async (req, res) => {
   }
 };
 
+// Récupérer tous les likes d'un post
 exports.getAllLikes = (req, res) => {
   LikeModel.findAll({
     where: { postId: req.params.postId },
@@ -45,6 +47,7 @@ exports.getAllLikes = (req, res) => {
     .catch(() => {});
 };
 
+// Récupérer le like de l'utilisateur sur un post
 exports.getOneLikeOfPost = (req, res, next) => {
   LikeModel.findOne({
     where: { postId: req.params.postId, userId: req.params.id },

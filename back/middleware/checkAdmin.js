@@ -1,3 +1,4 @@
+// Middleware qui permet de vérifier si le token.admin est true
 module.exports = (req, res, next) => {
   try {
     if (req.token.admin) {

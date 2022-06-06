@@ -49,6 +49,7 @@ export default function UserProfil({ user }) {
         })
         .catch((err) => {
           console.log(err);
+          toast.error(err.response.data.message)
         });
     } else {
       toast.error("Les données sont identiques");

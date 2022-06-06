@@ -17,6 +17,7 @@ exports.createComment = (req, res) => {
   });
 };
 
+// Récupérer tous les commentaires => non utilisé
 exports.getAllComments = (req, res) => {
   CommentModel.findAll({
     include: [
@@ -32,6 +33,7 @@ exports.getAllComments = (req, res) => {
     .catch((err) => res.status(500).json(err));
 };
 
+// Récupérer tous les commentaires d'un post
 exports.getCommentsByPosts = (req, res) => {
   CommentModel.findAll({
     where: {
@@ -53,6 +55,7 @@ exports.getCommentsByPosts = (req, res) => {
     });
 };
 
+// Supprimer son commentaire ou supprimer par un admin
 exports.deleteComment = (req, res) => {
   CommentModel.destroy({
     where: {

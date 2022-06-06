@@ -5,11 +5,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true,
       allowNull: false,
-    },
-    // postId: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    // },
+    }
   });
   return like;
 };
