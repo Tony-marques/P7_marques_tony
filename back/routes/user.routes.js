@@ -19,11 +19,11 @@ const loginValid = require("../middleware/Yup/loginValidation");
 const registerValid = require("../middleware/Yup/registerValidation");
 const updateProfilValidation = require("../middleware/Yup/updateProfilValidation");
 
-// Création de compte , rateLimit, registerValid
-router.post("/signup", signUp);
+// Création de compte
+router.post("/signup", rateLimit, registerValid, signUp);
 
-// Connexion , rateLimit, loginValid
-router.post("/login", login);
+// Connexion
+router.post("/login", rateLimit, loginValid, login);
 
 // Obtenir son propre profil => ok
 router.get("/getoneprofil/:id", auth, getOneProfil);

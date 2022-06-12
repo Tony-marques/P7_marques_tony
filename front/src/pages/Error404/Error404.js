@@ -13,7 +13,7 @@ export default function Error404() {
   };
   return (
     <div className={styles.error404}>
-      <MetaHead title="Page innexistante - Groupomania" />
+      <MetaHead title="Page inexistante - Groupomania" />
       <div>La page {id} n'existe pas</div>
       <button onClick={redirect}>Revenir à la page d'accueil</button>
     </div>

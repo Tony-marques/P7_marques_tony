@@ -9,14 +9,9 @@
 }
 
 .news .postsContainer {
-  background: #fd2d01;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  padding: 1.5rem;
+  padding: 0.75rem;
   margin: 0 auto;
-  width: 100%;
   width: 700px;
   max-height: 95vh;
   overflow: auto;
@@ -34,5 +29,35 @@
 
 .news .postsContainer::-webkit-scrollbar {
   display: none;
+}
+
+@media only screen and (max-width: 992px) {
+  .news {
+    width: 70%;
+  }
+  .news .postsContainer {
+    padding: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .news {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  .news .postsContainer {
+    max-height: calc(95vh - 80px);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 95%;
+  }
 }
 /*# sourceMappingURL=News.module.css.map */

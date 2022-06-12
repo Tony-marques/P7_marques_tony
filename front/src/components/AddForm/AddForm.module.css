@@ -1,5 +1,6 @@
 .overlay {
   position: absolute;
+  z-index: 9999;
   top: 0;
   bottom: 0;
   left: 0;
@@ -30,38 +31,117 @@
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
-  padding: 1rem;
-  background: #fd2d01;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  padding: 0.75rem;
+  background: #4e5166;
+}
+
+@media only screen and (max-width: 550px) {
+  .overlay form {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .overlay form {
+    width: 300px;
+    height: 300px;
+    padding: 0.5rem;
+  }
 }
 
 .overlay form input,
-.overlay form textarea {
-  padding: 1rem;
+.overlay form textarea,
+.overlay form label {
+  padding: 0.75rem;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 5px;
 }
 
+@media only screen and (max-width: 550px) {
+  .overlay form input,
+  .overlay form textarea,
+  .overlay form label {
+    padding: 0.7rem;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .overlay form input,
+  .overlay form textarea,
+  .overlay form label {
+    padding: 0.5rem;
+  }
+}
+
 .overlay form input:focus,
-.overlay form textarea:focus {
-  border: 1px solid #ffd7d7;
+.overlay form textarea:focus,
+.overlay form label:focus {
+  border: 1px solid #fd2d01;
+}
+
+.overlay form label {
+  margin-bottom: 0.75rem;
+  background-color: #ffd7d7;
+  color: #4e5166;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.2rem;
+}
+
+@media only screen and (max-width: 550px) {
+  .overlay form label {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .overlay form label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.overlay form label:hover {
+  background: #4e5166;
+  color: #ffd7d7;
+  border-color: #ffd7d7;
 }
 
 .overlay form input[type="file"] {
+  display: none;
+}
+
+.overlay form span {
+  background: #fff;
+  border: 1px solid #fd2d01;
   margin-bottom: 1rem;
-  background-color: #4e5166;
-  background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
-  color: white;
-  cursor: pointer;
+  padding: 1rem;
+  font-weight: 700;
+  color: #fd2d01;
+  border-radius: 5px;
 }
 
 .overlay form textarea {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   resize: none;
+}
+
+@media only screen and (max-width: 420px) {
+  .overlay form textarea {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .overlay form .btnContainer {
@@ -75,20 +155,47 @@
 
 .overlay form .btnContainer input[type="button"] {
   cursor: pointer;
-  background-color: #4e5166;
-  background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
   color: white;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   width: 50%;
   margin: 0 1rem;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
-.overlay form .btnContainer input[type="button"]:hover {
-  background: #fff;
-  color: #fd2d01;
-  border-color: #fff;
+@media only screen and (max-width: 550px) {
+  .overlay form .btnContainer input[type="button"] {
+    padding: 0.7rem;
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .overlay form .btnContainer input[type="button"] {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+}
+
+.overlay form .btnContainer .cancel {
+  background: #fd2d01;
+  border: 1px solid transparent;
+}
+
+.overlay form .btnContainer .cancel:hover {
+  background: #4e5166;
+  border-color: #fd2d01;
+}
+
+.overlay form .btnContainer .publish {
+  border: none;
+  background: green;
+  border: 1px solid transparent;
+}
+
+.overlay form .btnContainer .publish:hover {
+  background: #4e5166;
+  border-color: green;
 }
 /*# sourceMappingURL=AddForm.module.css.map */

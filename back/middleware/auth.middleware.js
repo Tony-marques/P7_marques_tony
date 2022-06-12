@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
   try {
+    // res.cookie("tokennn", "token");
     // on vérifie que le token est présent et valide
     const token = req.headers.authorization.split(" ")[1];
     req.token = jwt.verify(token, process.env.SECRET_KEY);
@@ -10,7 +11,7 @@ module.exports = (req, res, next) => {
     if (
       (req.body.userId && req.body.userId == req.token.userId) ||
       (req.params.id && req.params.id == req.token.userId)
-      ) {
+    ) {
       next();
     } else {
       throw new Error("User Id non valable");

@@ -5,11 +5,13 @@
   width: 400px;
   height: 450px;
   align-items: center;
-  background: #fd2d01;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  background: #5d6079;
+  border: 1px solid #fd2d01;
   padding: 1rem;
   border-radius: 5px;
-  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.7);
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
 
   input {
     width: 100%;
@@ -29,20 +31,18 @@
   }
   hr {
     height: 1px;
-    background-color: #4e5166;
+    background-color: #FFD7D7;
     width: 100%;
     border: none;
   }
 
   .loginBtn {
-    background: #4e5166;
-    background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
-    color: white;
+    background: #ffd7d7;
+    color: #4e5166;
     font-weight: bold;
     border: 1px solid transparent;
     font-size: 1.1rem;
     transition: all 0.3s;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
 
     &:hover {
       background: white;
@@ -54,8 +54,6 @@
   .accountBtn {
     width: 50%;
     background: #ffd7d7;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
     color: #4e5166;
     font-weight: bold;
     transition: all 0.3s;

@@ -5,11 +5,11 @@
   align-items: center;
   justify-content: center;
   z-index: 1;
-  background: #fd2d01;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  background: #5D6079;
   position: relative;
   border-radius: 5px;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #ffd7d7;
 
   @media only screen and (max-width: 750px) {
   }
@@ -26,6 +26,19 @@
       min-height: auto;
     }
 
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    li {
+      a {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
     a,
     button,
     li {
@@ -33,7 +46,6 @@
       align-items: center;
       justify-content: center;
       width: 50%;
-      max-height: 50%;
       position: relative;
       z-index: 1;
       background: transparent;
@@ -49,10 +61,10 @@
 }
 
 .bgContainer {
-  filter: drop-shadow(0 0 1rem black);
   position: absolute;
   height: auto;
   max-width: 100%;
+  z-index: 1;
   top: 0;
   transform: translateY(-50%);
   left: 0;
@@ -88,11 +100,11 @@
     justify-content: space-between;
     background: none;
     box-shadow: none;
+    border: none;
 
     .navcontainer {
-      background: #fd2d01;
-      background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-
+      background: #5D6079;
+      border-top: 1px solid #ffd7d7;
       height: 50%;
       display: flex;
       align-items: center;

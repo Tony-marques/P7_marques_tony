@@ -6,8 +6,8 @@
 
 .post {
   border-radius: 5px;
-  background: white;
-  padding: 1rem;
+  background: #5d6079;
+  border: 1px solid #fd2d01;
   position: relative;
   transition: box-shadow 0.3s;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
@@ -24,27 +24,37 @@
   }
 
   .postHeader {
-    background-color: #4e5166;
-    background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
-    border-radius: 5px;
+    margin-bottom: 0.5rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 1rem;
+    padding: 0.5rem 1rem;
     color: white;
-    border: 2px solid #ffd7d7;
     position: relative;
+    border-bottom: 1px solid #75778d;
 
+    .delete {
+      margin-left: auto;
+      background: transparent;
+      font-size: 1.2rem;
+
+      &:hover {
+        color: #fd2d01;
+      }
+    }
+
+    .dates {
+      font-size: 0.8rem;
+    }
     .postProfil {
       display: flex;
       align-items: center;
       gap: 1rem;
+      margin-right: 1rem;
 
       img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        border: 2px solid #ffd7d7;
         background: #fff;
       }
     }
@@ -54,25 +64,27 @@
     word-break: break-all;
     padding: 1rem;
     text-align: left;
-    min-height: 150px;
+    max-height: 150px;
     border: 1px solid transparent;
     border-radius: 5px;
-    margin-top: 0.25rem;
+    margin: 0.5rem 0;
     flex-wrap: wrap;
+    color: #fff;
+  }
+
+  .postHeaderName {
+    font-weight: bold;
+    color: #ffd7d7;
   }
 
   span {
-    background: #fff;
-    border: 1px solid #4e5166;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    font-weight: 700;
-    color: #fd2d01;
-    border-radius: 5px;
+    margin: 0 1rem 1rem 1rem;
+    color: #ffd7d7;
+    font-size: 1.5rem;
   }
 
   textarea {
-    border-color: #4e5166 !important;
+    background: #75778d;
     width: 100%;
     resize: none;
     outline: none;
@@ -119,7 +131,6 @@
     justify-content: center;
 
     .inputImgContainerbis {
-
       input {
         display: none;
       }
@@ -141,33 +152,20 @@
   }
 
   button {
-    background: #fd2d01;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem;
     border: none;
-    border-radius: 5px;
     border: 1px solid transparent;
     color: white;
     cursor: pointer;
-    margin-left: 1rem;
     transition: all 0.3s;
-
-    &:hover {
-      background: white;
-      border: 1px solid #fd2d01;
-
-      i {
-        color: #fd2d01;
-      }
-    }
   }
 
   .updateButton {
-    background: green;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+    background: transparent;
+    font-size: 1.2rem;
+    transition: all 0.3s;
     &:hover {
-      border-color: green;
-      background: #fff;
+      color: green;
 
       i {
         color: green;
@@ -181,6 +179,7 @@
     padding: 0.5rem;
     margin-left: 1rem;
     position: absolute;
+    z-index: 1;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
@@ -193,20 +192,14 @@
   }
 
   .addComment {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
+    margin-left: auto;
     background-color: #4e5166;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-    height: 100%;
+    height: calc(100% + 2px);
     border: 1px solid transparent;
     transition: all 0.3s;
-    border-radius: 0 5px 5px 0;
 
     &:hover {
       background: white;
-      border: 1px solid #4e5166;
 
       i {
         color: #4e5166;
@@ -217,31 +210,35 @@
   .inputContainer {
     position: relative;
     width: 100%;
-    border: 1px solid #dddfe2;
     border-radius: 5px;
+    overflow: hidden;
+    background: #75778d;
   }
 
   .btnContainer {
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
 
     .btn {
       display: flex;
     }
 
+    .comments::placeholder {
+      color: #fff;
+    }
+
     .comments {
+      background: #75778d;
+      color: white;
       flex-grow: 1;
+      cursor: pointer;
       padding: 1rem;
-      border-radius: 5px;
       outline: none;
       transition: border-color 0.3s;
-      width: 80%;
+      width: calc(100% - 41px);
       border: none;
-
-      &:focus {
-        border-color: #fd2d01;
-      }
     }
   }
 
@@ -252,22 +249,23 @@
 }
 
 .commentsWall {
-  padding: 1rem;
-  background: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  border-radius: 5px;
   width: 95%;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-  margin: 0.25rem auto 0 auto;
+  margin: 0 auto 2rem auto;
+  padding-top: 1rem;
   transform: translateY(-100%);
   transition: all 0.5s;
   position: relative;
+  border-top: 1px solid #ffd7d7;
 }
 
 .appear {
   opacity: 1;
   transform: translateY(0);
   transition: all 0.5s;
+}
+
+.postTitle {
+  margin-right: auto;
 }
 
 .heartContainer {
@@ -277,20 +275,34 @@
 
   .length {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: -15px;
+    font-size: 0.8rem;
     transform: translate(-50%, -50%);
+    color: white;
+    background: red;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    font-weight: bold;
   }
 
   i {
-    width: 50px;
-    height: 50px;
+    padding: 0.75rem;
     cursor: pointer;
-    color: red;
-    font-size: 2rem;
+    position: relative;
+    color: #fff;
+    font-size: 1.2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
+  }
+  .like {
+    color: #ffd7d7;
   }
 }
 
@@ -301,12 +313,6 @@
       .postHeader {
         padding: 0.75rem;
         img {
-        }
-      }
-
-      .btnContainer {
-        button {
-          padding: 0 1rem;
         }
       }
 
@@ -358,7 +364,6 @@
       }
 
       .btnContainer {
-        flex-direction: column;
 
         .btn {
           margin-top: 0.5rem;
@@ -382,6 +387,5 @@
         }
       }
     }
-
   }
 }

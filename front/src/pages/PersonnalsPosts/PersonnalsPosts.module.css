@@ -1,4 +1,20 @@
 .personnalsPosts {
+  min-height: 90vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.personnalsPosts .postsContainer {
+  border-radius: 5px;
+  padding: 1.5rem;
+  margin: 0 auto;
+  width: 700px;
+  max-height: 95vh;
+  overflow: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6,19 +22,46 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  background: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  padding: 1.5rem;
-  width: 100%;
-  width: 700px;
-  max-height: 95vh;
-  overflow: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.personnalsPosts .emptyPost {
+.personnalsPosts .postsContainer::-webkit-scrollbar {
+  display: none !important;
+}
+
+@media only screen and (max-width: 992px) {
+  .personnalsPosts {
+    width: 70%;
+  }
+  .personnalsPosts .postsContainer {
+    padding: 0.75rem;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .personnalsPosts {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  .personnalsPosts .postsContainer {
+    max-height: calc(95vh - 80px);
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 95%;
+  }
+}
+
+.emptyPost {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -28,19 +71,28 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.personnalsPosts .emptyPost button {
-  width: 30%;
-  padding: 1rem;
-  cursor: pointer;
-  background: #fd2d01;
+  background: #ffd7d7;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
   border-radius: 5px;
-  color: #ffd7d7;
-  border: none;
+  padding: 1rem;
+  width: 100%;
 }
 
-.personnalsPosts::-webkit-scrollbar {
-  display: none;
+.emptyPost button {
+  padding: 0.75rem 1.25rem;
+  background: #fd2d01;
+  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  color: #fff;
+}
+
+.emptyPost button:hover {
+  background: #fff;
+  border-color: #fd2d01;
+  color: black;
 }
 /*# sourceMappingURL=PersonnalsPosts.module.css.map */

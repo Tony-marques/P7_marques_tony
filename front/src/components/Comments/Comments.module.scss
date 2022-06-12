@@ -1,18 +1,12 @@
 .commentsContainer {
-  background: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
   padding: 0.5rem 0rem;
 
   .comment {
-    padding: 0.75rem;
-    background: white;
+    background: #75778d;
+    border: 1px solid #ffd7d7;
     align-items: center;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    &:hover button {
-      right: 0px;
-    }
 
     .commentBottom {
       display: flex;
@@ -26,55 +20,57 @@
       align-items: center;
 
       img {
-      background: #fff;
+        background: #fff;
 
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        border: 2px solid #ffd7d7;
-        margin-right: 0.5rem;
+        margin-right: 1rem;
+      }
+    }
+
+    .commentName {
+      margin-right: auto;
+      
+      .name {
+        color: #ffd7d7;
+        font-weight: bold;
+      }
+
+      .date {
+        font-size: 0.8rem;
       }
     }
 
     .commentHead {
-      background-color: #4e5166;
-      border: 2px solid #ffd7d7;
-      border-radius: 5px;
-      background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
       display: flex;
       align-items: center;
       color: #fff;
-      justify-content: space-between;
       padding: 0.5rem;
-      margin-bottom: 0.5rem;
+      width: 100%;
+      border-bottom: 1px solid #87899d;
     }
 
     .commentBody {
+      color: #fff;
       margin-right: auto;
     }
   }
 
   button {
-    background: #fd2d01;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+    background: transparent;
     padding: 0.75rem 1.25rem;
+    font-size: 1.2rem;
     border: none;
     border-radius: 5px;
     border: 1px solid transparent;
     color: white;
     cursor: pointer;
-    margin-left: 1rem;
+    margin-left: auto !important;
     transition: all 0.3s;
-    position: relative;
-    right: -100%;
 
     &:hover {
-      background: white;
-      border: 1px solid #fd2d01;
-
-      i {
-        color: #fd2d01;
-      }
+      color: #fd2d01;
     }
   }
 }
@@ -97,7 +93,6 @@
       padding: 0.5rem;
       .commentProfil {
         img {
-
           width: 30px;
           height: 30px;
         }

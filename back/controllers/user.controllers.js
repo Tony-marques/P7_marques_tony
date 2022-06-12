@@ -51,7 +51,7 @@ exports.login = (req, res) => {
               );
               res.status(200).json({
                 userId: user.id,
-                token: token, // et
+                token: token,
               });
             }
           })

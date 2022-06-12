@@ -5,10 +5,10 @@
   justify-content: space-between;
   padding: 1rem;
   height: 125px;
-  background-color: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  background-color: #5D6079;
   margin-bottom: 0.5rem;
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #FD2D01;
 
 
   @media only screen and (max-width: 500px) {
@@ -19,7 +19,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    border: 2px solid #4e5166;
+    border: 2px solid #FFD7D7;
 
     @media only screen and (max-width: 500px) {
       width: 40px;
@@ -34,8 +34,8 @@
     color: #fff;
     width: 85%;
     border-radius: 5px;
-    background-color: #4e5166;
-    background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
+    background-color: #75778D;
+    border: 1px solid #FFD7D7;
     height: 100%;
 
     .top,
@@ -65,7 +65,7 @@
         color: #fff;
         background-color: #4e5166;
         border: none;
-        background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
+        background: #75778D;
       }
     }
 

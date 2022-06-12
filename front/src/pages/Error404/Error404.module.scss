@@ -2,8 +2,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  background: #5d6079;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   padding: 1.5rem;
@@ -11,11 +10,14 @@
   width: 700px;
   max-height: 95vh;
   overflow: auto;
+  position: relative;
+  z-index: 1;
+  border: 1px solid #fd2d01;
+  color: #fff;
 
   button {
     padding: 0.75rem 1.25rem;
     background: #fd2d01;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
     border: 1px solid transparent;
     border-radius: 5px;
     cursor: pointer;

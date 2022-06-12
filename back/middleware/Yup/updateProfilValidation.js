@@ -13,6 +13,7 @@ const updateProfilSchema = yup.object().shape({
 
   age: yup
     .number()
+    .typeError("L'age doit être un chiffre")
     .required("Votre age est requis.")
     .min(16, "L'age minimum est de 16 ans.")
     .max(70, "L'age maximum est de 70 ans."),

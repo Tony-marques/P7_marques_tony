@@ -2,15 +2,10 @@
 .fa-check {
   margin-left: 2rem;
   cursor: pointer;
-  color: #fd2d01;
+  color: #ffd7d7;
   position: absolute;
   top: 10%;
   right: 10%;
   font-size: 1.5rem;
-}
-
-label {
-  border: 1px solid red;
-  padding: 1rem;
 }
 /*# sourceMappingURL=UserProfil.css.map */

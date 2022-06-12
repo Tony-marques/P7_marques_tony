@@ -25,7 +25,7 @@ export default function AllUsers() {
         // {
         //   userId: USER_ID,
         // },
-        setHeaders(token)
+        setHeaders(token),
       )
       .then((res) => {
         setListOfUsers(res.data);
@@ -41,7 +41,7 @@ export default function AllUsers() {
   }, [userDeleted, isProfilUpdating]);
   return (
     <div className={styles.usersContainer}>
-      <MetaHead title="Dashboard admin - Groupomania" />;
+      <MetaHead title="Dashboard admin - Groupomania" />
       {listOfUsers &&
         listOfUsers.map((item) => {
           return <User item={item} key={item.id} />;

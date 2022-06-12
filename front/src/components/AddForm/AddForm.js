@@ -68,8 +68,8 @@ export default function AddForm() {
             <input type="file" onChange={uploadImg} id="postImg" />
             <label htmlFor="postImg">Choisir un fichier</label>
             <div className={styles.btnContainer}>
-              <input type="button" value="Annuler" onClick={closeAddForm} />
-              <input type="button" value="Publier" onClick={handleSend} />
+              <input type="button" value="Annuler" onClick={closeAddForm} className={styles.cancel}/>
+              <input type="button" value="Publier" onClick={handleSend} className={styles.publish}/>
             </div>
           </form>
         </div>

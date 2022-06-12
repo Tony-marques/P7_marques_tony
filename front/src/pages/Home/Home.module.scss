@@ -1,6 +1,5 @@
 .home {
   background-color: #4e5166;
-  background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
   height: 100vh;
   width: 100%;
 
@@ -15,21 +14,24 @@
 
   .homeTitle {
     border-radius: 5px;
-    background-color: #ffd7d7;
-    background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.7);
+    background: #5D6079;
+    border: 1px solid #FD2D01;
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
     gap: 1rem;
+    position: relative;
+    z-index: 1;
     img {
       width: 60%;
     }
 
     h1,
     h2 {
-      color: #4e5166;
+      color: #fff;
+      color: #FFD7D7;
     }
   }
 }

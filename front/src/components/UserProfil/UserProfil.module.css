@@ -1,11 +1,10 @@
 .profilContainer {
-  background-color: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  -webkit-box-shadow: 1px 1px 10px black;
-          box-shadow: 1px 1px 10px black;
+  background: #5d6079;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #fd2d01;
   border-radius: 5px;
   padding: 2rem;
-  margin: 0 auto;
   width: 100%;
   width: 700px;
   height: 50vh;
@@ -32,7 +31,9 @@
 }
 
 .profilContainer .infosContainer {
+  border-top: 1px solid #ffd7d7;
   width: 100%;
+  padding-top: 0.75rem;
 }
 
 .profilContainer .btnContainer {
@@ -43,37 +44,36 @@
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-}
-
-.profilContainer .deleteBtn {
-  background: #fd2d01;
-}
-
-.profilContainer .deleteBtn:hover {
-  border: 1px solid #fd2d01;
-  background: #fff;
-  color: #fd2d01;
-}
-
-.profilContainer .postsBtn {
-  background: #4e5166;
-}
-
-.profilContainer .postsBtn:hover {
-  border: 1px solid #4e5166;
-  background: #fff;
-  color: #4e5166;
+  border-top: 1px solid #ffd7d7;
+  border-bottom: 1px solid #ffd7d7;
 }
 
 .profilContainer .btn {
   color: #fff;
-  border: 1px solid transparent;
+  width: 50%;
   cursor: pointer;
-  padding: 0.75rem 1.25rem;
-  border-radius: 5px;
+  padding: 0.75rem 0;
   font-weight: bold;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.profilContainer .btn:hover {
+  background: #ffd7d7;
+  color: #4e5166;
+}
+
+.profilContainer .deleteBtn:hover {
+  background: #fd2d01;
+  color: #fff;
+}
+
+@media only screen and (max-width: 600px) {
+  .profilContainer .deleteBtn {
+    border-top: 1px solid #ffd7d7;
+  }
 }
 
 .profilContainer .lastnameContainer,
@@ -85,6 +85,7 @@
   display: -ms-flexbox;
   display: flex;
   width: 100%;
+  padding: 0.25rem;
 }
 
 .profilContainer .lastnameContainer input,
@@ -118,7 +119,27 @@
 .profilContainer .roleContainer .bio,
 .profilContainer .roleContainer .role {
   padding: 0.75rem 1.25rem;
-  margin-left: 1rem;
+  color: white;
+  font-weight: 700;
+}
+
+.profilContainer .lastnameContainer input,
+.profilContainer .firstnameContainer input,
+.profilContainer .ageContainer input,
+.profilContainer .bioContainer input,
+.profilContainer .roleContainer input {
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background: #75778d;
+}
+
+.profilContainer .lastnameContainer input:focus,
+.profilContainer .firstnameContainer input:focus,
+.profilContainer .ageContainer input:focus,
+.profilContainer .bioContainer input:focus,
+.profilContainer .roleContainer input:focus {
+  border: 1px dashed #fd2d01;
 }
 
 .profilContainer .lastnameContainer .lastname,
@@ -171,22 +192,20 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: white;
+  font-weight: 700;
 }
 
 .profilContainer img {
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  border: 2px solid #4e5166;
   -webkit-transition: -webkit-box-shadow 0.3s;
   transition: -webkit-box-shadow 0.3s;
   transition: box-shadow 0.3s;
   transition: box-shadow 0.3s, -webkit-box-shadow 0.3s;
-}
-
-.profilContainer img:hover {
-  -webkit-box-shadow: 1px 1px 20px #ffd7d7;
-          box-shadow: 1px 1px 20px #ffd7d7;
+  -webkit-box-shadow: 1px 1px 10px #ffd7d7;
+          box-shadow: 1px 1px 10px #ffd7d7;
 }
 
 .profilContainer .fileContainer {
@@ -208,6 +227,13 @@
   bottom: 0;
   right: 0;
   opacity: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .profilContainer input[type="file"] {
+    width: 150px;
+    height: 150px;
+  }
 }
 
 .profilContainer label {
@@ -233,7 +259,88 @@
   color: #fd2d01;
 }
 
+@media only screen and (max-width: 600px) {
+  .profilContainer label {
+    width: 150px;
+    height: 150px;
+    text-align: center;
+  }
+}
+
 .pictureContainer {
   position: relative;
+}
+
+.pictureContainer img {
+  background: #fff;
+}
+
+@media only screen and (max-width: 992px) {
+  .profilContainer {
+    width: 70%;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .profilContainer {
+    height: calc(95vh - 80px);
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    width: 95%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .profilContainer .pictureContainer img {
+    width: 150px;
+    height: 150px;
+  }
+  .profilContainer .infosContainer .lastname,
+  .profilContainer .infosContainer .firstname,
+  .profilContainer .infosContainer .age,
+  .profilContainer .infosContainer .bio,
+  .profilContainer .infosContainer .role {
+    width: 30%;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .profilContainer .infosContainer input {
+    width: 50%;
+  }
+  .profilContainer .btnContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .profilContainer .btnContainer button {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .profilContainer {
+    padding: 1rem;
+  }
+  .profilContainer .btnContainer button {
+    padding: 0.5rem;
+  }
 }
 /*# sourceMappingURL=UserProfil.module.css.map */

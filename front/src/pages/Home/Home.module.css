@@ -1,6 +1,5 @@
 .home {
   background-color: #4e5166;
-  background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
   height: 100vh;
   width: 100%;
 }
@@ -22,10 +21,10 @@
 
 .home .homeTitle {
   border-radius: 5px;
-  background-color: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  -webkit-box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.7);
-          box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.7);
+  background: #5D6079;
+  border: 1px solid #FD2D01;
+  -webkit-box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
+          box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -46,16 +45,37 @@
 
 .home .homeTitle h1,
 .home .homeTitle h2 {
-  color: #4e5166;
+  color: #fff;
+  color: #FFD7D7;
 }
 
-@media only screen and (max-width: 500px) {
-  .home {
+@media only screen and (max-width: 992px) {
+  .home .homeWrapper {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    padding: 0 1rem;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .home .homeWrapper .homeTitle {
+    margin: 2rem 0;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .homeTitle {
+    max-width: 500px;
+    width: 90%;
+    margin: 2rem;
+    font-size: 0.6rem;
+  }
+  .log {
+    width: 100%;
   }
 }
 /*# sourceMappingURL=Home.module.css.map */

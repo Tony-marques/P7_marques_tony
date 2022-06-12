@@ -13,8 +13,6 @@ export default function Login({ setLogin }) {
   // Variables
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState("");
-  const [path, setPath] = useState("");
   const navigate = useNavigate();
 
   // Contexts
@@ -24,10 +22,14 @@ export default function Login({ setLogin }) {
   // Soumettre la connexion
   const handleForm = () => {
     axios
-      .post(`${apiUser}/login`, {
-        email,
-        password,
-      })
+      .post(
+        `${apiUser}/login`,
+        {
+          email,
+          password,
+        },
+        { withCredentials: true },
+      )
       .then((res) => {
         Cookies.set("token", res.data.token);
         setIsAuthenticated(true);
@@ -36,8 +38,6 @@ export default function Login({ setLogin }) {
       })
       .catch((error) => {
         toast.error(error.response.data.msg || error.response.data.message);
-        setErrors(error.response.data.errors);
-        setPath(error.response.data.path);
       });
   };
 
@@ -53,14 +53,11 @@ export default function Login({ setLogin }) {
         placeholder="E-mail"
         onChange={(e) => setEmail(e.target.value)}
       />
-      {errors && path == "email" && <span>{errors}</span>}
-
       <input
         type="password"
         placeholder="Mot de passe"
         onChange={(e) => setPassword(e.target.value)}
       />
-      {errors && path == "password" && <span>{errors}</span>}
       <input
         type="button"
         value="Se connecter"

@@ -136,10 +136,10 @@ export default function Post({ item }) {
           setIsPostUpdating(true);
           setErrors(false);
         })
-        .catch((error) => {
-          console.log(error);
-          setErrors(error.response.data.errors);
-          setPath(error.response.data.path);
+        .catch((err) => {
+          console.log(err);
+          setErrors(err.response.data.errors);
+          setPath(err.response.data.path);
         });
     } else {
       toast.error("Post non modifié");
@@ -205,12 +205,81 @@ export default function Post({ item }) {
               src={item.user.image ? item.user.image : pp}
               alt="photo de profil"
             />
-            <p>
-              {item.user.name} - {item.user.lastname}
-            </p>
           </div>
           <div className={styles.postTitle}>
-            <p>{formatDate(item.createdAt)}</p>
+            <p className={styles.postHeaderName}>
+              {item.user.name} - {item.user.lastname}
+            </p>
+            <p className={styles.dates}>{formatDate(item.createdAt)}</p>
+          </div>
+          {item.userId == USER_ID ? (
+            <button
+              onClick={deletePost}
+              aria-label="delete"
+              className={styles.delete}
+            >
+              <i className="fa-solid fa-trash"></i>
+            </button>
+          ) : isAdmin ? (
+            <button
+              onClick={deletePost}
+              aria-label="delete"
+              className={styles.delete}
+            >
+              <i className="fa-solid fa-trash"></i>
+            </button>
+          ) : null}
+          {item.userId == USER_ID && !edit ? (
+            <button
+              aria-label="update"
+              onClick={() => setEdit(true)}
+              className={styles.updateButton}
+            >
+              <i className="fa-solid fa-pen-to-square"></i>
+            </button>
+          ) : item.userId == USER_ID && edit ? (
+            <button
+              onClick={updatePost}
+              aria-label="update"
+              className={styles.updateButton}
+            >
+              <i className="fa-solid fa-circle-check"></i>
+            </button>
+          ) : isAdmin && !edit ? (
+            <button
+              aria-label="update"
+              onClick={() => setEdit(true)}
+              className={styles.updateButton}
+            >
+              <i className="fa-solid fa-pen-to-square"></i>
+            </button>
+          ) : isAdmin && edit ? (
+            <button
+              onClick={updatePost}
+              aria-label="update"
+              className={styles.updateButton}
+            >
+              <i className="fa-solid fa-circle-check"></i>
+            </button>
+          ) : null}
+
+          <div className={styles.heartContainer} onClick={like}>
+            {/* Si c'est un like de l'user en cours*/}
+            {userLike.like && (
+              <>
+                <i className={`fa-solid fa-thumbs-up ${styles.like}`}></i>
+                <div className={styles.length}>{likeLength}</div>
+              </>
+            )}
+            {/* Si il n'y a pas de de like de l'user en cours */}
+            {!userLike.like && (
+              <>
+                <i className="fa-solid fa-thumbs-up"></i>
+                <div className={likeLength > 0 ? styles.length : null}>
+                  {likeLength > 0 && likeLength}
+                </div>
+              </>
+            )}
           </div>
         </div>
         <div className={styles.imgContainer}>
@@ -292,67 +361,7 @@ export default function Post({ item }) {
               <i className="fa-solid fa-plus"></i>
             </button>
           </div>
-          <div className={styles.btn}>
-            {item.userId == USER_ID && !edit ? (
-              <button
-                aria-label="update"
-                onClick={() => setEdit(true)}
-                className={styles.updateButton}
-              >
-                <i className="fa-solid fa-pen-to-square"></i>
-              </button>
-            ) : item.userId == USER_ID && edit ? (
-              <button
-                onClick={updatePost}
-                aria-label="update"
-                className={styles.updateButton}
-              >
-                <i className="fa-solid fa-circle-check"></i>
-              </button>
-            ) : isAdmin && !edit ? (
-              <button
-                aria-label="update"
-                onClick={() => setEdit(true)}
-                className={styles.updateButton}
-              >
-                <i className="fa-solid fa-pen-to-square"></i>
-              </button>
-            ) : isAdmin && edit ? (
-              <button
-                onClick={updatePost}
-                aria-label="update"
-                className={styles.updateButton}
-              >
-                <i className="fa-solid fa-circle-check"></i>
-              </button>
-            ) : null}
-
-            {item.userId == USER_ID ? (
-              <button onClick={deletePost} aria-label="delete">
-                <i className="fa-solid fa-trash"></i>
-              </button>
-            ) : isAdmin ? (
-              <button onClick={deletePost} aria-label="delete">
-                <i className="fa-solid fa-trash"></i>
-              </button>
-            ) : null}
-
-            <div className={styles.heartContainer} onClick={like}>
-              {userLike.like && userLike.like.userId == USER_ID ? (
-                <>
-                  <i className="fa-solid fa-heart"></i>
-                  <div className={styles.length}>{likeLength}</div>
-                </>
-              ) : (
-                <>
-                  <i className="fa-regular fa-heart"></i>
-                  <div className={styles.length}>
-                    {likeLength.length > 0 && likeLength}
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
+          <div className={styles.btn}></div>
 
           {!comments.length > 0 ? null : showComments ? (
             <div onClick={handleShowComments} className={styles.btnChevron}>
@@ -365,27 +374,27 @@ export default function Post({ item }) {
           )}
         </div>
         {errorsComment && path == "content" && <span>{errorsComment}</span>}
+        {showComments && (
+          <div
+            className={` ${
+              showComments
+                ? `${styles.commentsWall} ${styles.appear}`
+                : styles.commentsWall
+            }`}
+          >
+            {comments.map((item) => {
+              return (
+                <Comments
+                  item={item}
+                  key={item.id}
+                  showComments={showComments}
+                  setShowComments={setShowComments}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
-      {showComments && (
-        <div
-          className={` ${
-            showComments
-              ? `${styles.commentsWall} ${styles.appear}`
-              : styles.commentsWall
-          }`}
-        >
-          {comments.map((item) => {
-            return (
-              <Comments
-                item={item}
-                key={item.id}
-                showComments={showComments}
-                setShowComments={setShowComments}
-              />
-            );
-          })}
-        </div>
-      )}
     </div>
   );
 }

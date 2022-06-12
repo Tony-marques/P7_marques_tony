@@ -1,5 +1,4 @@
-.userContainer {
-  border: 1px solid #fd2d01;
+.user {
   border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7,42 +6,123 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 1rem;
+  height: 125px;
+  background-color: #5D6079;
+  margin-bottom: 0.5rem;
+  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #FD2D01;
 }
 
-table {
-  width: 100%;
-  font-size: 0.8rem;
+@media only screen and (max-width: 500px) {
+  .user {
+    padding: 0.5rem;
+  }
 }
 
-table td {
-  text-align: center;
-  padding: 1rem 0;
-  border: 1px solid #fd2d01;
+.user img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #FFD7D7;
 }
 
-.delete {
-  width: 5%;
+@media only screen and (max-width: 500px) {
+  .user img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.user .userInfos {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  color: #fff;
+  width: 85%;
+  border-radius: 5px;
+  background-color: #75778D;
+  border: 1px solid #FFD7D7;
+  height: 100%;
+}
+
+.user .userInfos .top,
+.user .userInfos .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.user .userInfos .top .name,
+.user .userInfos .top .lastname,
+.user .userInfos .bottom .name,
+.user .userInfos .bottom .lastname {
+  width: 50%;
+}
+
+.user .userInfos .top .email,
+.user .userInfos .bottom .email {
+  width: 60%;
+}
+
+.user .userInfos .bottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media only screen and (max-width: 500px) {
+  .user .userInfos .bottom {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+.user .userInfos .bottom select {
   cursor: pointer;
-}
-
-.admin {
-  width: 7.5%;
-}
-
-.email {
-  width: 25%;
-}
-
-select {
-  background: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
+  color: #fff;
+  background-color: #4e5166;
   border: none;
-  outline: none;
-  cursor: pointer;
+  background: #75778D;
 }
 
-option {
-  padding: 1rem;
+.user .userInfos .pp,
+.user .userInfos .name,
+.user .userInfos .lastname,
+.user .userInfos .email,
+.user .userInfos .admin,
+.user .userInfos .delete {
+  padding: 0.75rem 1.25rem;
+}
+
+@media only screen and (max-width: 500px) {
+  .user .userInfos .pp,
+  .user .userInfos .name,
+  .user .userInfos .lastname,
+  .user .userInfos .email,
+  .user .userInfos .admin,
+  .user .userInfos .delete {
+    padding: 0 1.25rem;
+  }
+}
+
+.user .userInfos .delete {
+  cursor: pointer;
 }
 /*# sourceMappingURL=User.module.css.map */

@@ -24,9 +24,6 @@ export default function PersonnalsPosts() {
       axios
         .get(
           `${apiPost}/getpersonnalposts/${USER_ID}`,
-          // {
-          //   userId: USER_ID,
-          // },
           setHeaders(token)
         )
         .then((res) => {

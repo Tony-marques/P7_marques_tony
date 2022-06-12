@@ -1,23 +1,15 @@
 .commentsContainer {
-  background: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  margin: 0 auto;
+  margin: 0 auto 0 auto;
   padding: 0.5rem 0rem;
 }
 
 .commentsContainer .comment {
-  padding: 0.75rem;
-  background: white;
+  background: #75778d;
+  border: 1px solid #ffd7d7;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-}
-
-.commentsContainer .comment:hover button {
-  right: 0px;
 }
 
 .commentsContainer .comment .commentBottom {
@@ -41,18 +33,27 @@
 }
 
 .commentsContainer .comment .commentProfil img {
+  background: #fff;
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  border: 2px solid #ffd7d7;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
+}
+
+.commentsContainer .comment .commentName {
+  margin-right: auto;
+}
+
+.commentsContainer .comment .commentName .name {
+  color: #ffd7d7;
+  font-weight: bold;
+}
+
+.commentsContainer .comment .commentName .date {
+  font-size: 0.8rem;
 }
 
 .commentsContainer .comment .commentHead {
-  background-color: #4e5166;
-  border: 2px solid #ffd7d7;
-  border-radius: 5px;
-  background-image: url("https://www.transparenttextures.com/patterns/classy-fabric.png");
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -60,41 +61,61 @@
       -ms-flex-align: center;
           align-items: center;
   color: #fff;
-  font-weight: 700;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   padding: 0.5rem;
-  margin-bottom: 0.5rem;
+  width: 100%;
+  border-bottom: 1px solid #87899d;
 }
 
 .commentsContainer .comment .commentBody {
+  color: #fff;
   margin-right: auto;
 }
 
 .commentsContainer button {
-  background: #fd2d01;
+  background: transparent;
   padding: 0.75rem 1.25rem;
+  font-size: 1.2rem;
   border: none;
   border-radius: 5px;
   border: 1px solid transparent;
   color: white;
   cursor: pointer;
-  margin-left: 1rem;
+  margin-left: auto !important;
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
-  position: relative;
-  right: -100%;
 }
 
 .commentsContainer button:hover {
-  background: white;
-  border: 1px solid #fd2d01;
-  -webkit-box-shadow: 1px 1px 10px #fd2d01;
-          box-shadow: 1px 1px 10px #fd2d01;
+  color: #fd2d01;
 }
 
-.commentsContainer button:hover i {
-  color: #fd2d01;
+@media only screen and (max-width: 992px) {
+  .commentsContainer {
+    padding: 0;
+    padding-bottom: 0.5rem;
+  }
+  .commentsContainer .comment {
+    padding: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .commentsContainer {
+    padding: 0;
+    padding-bottom: 0.5rem;
+  }
+  .commentsContainer .comment {
+    padding: 0.5rem;
+  }
+  .commentsContainer .comment .commentProfil img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .commentsContainer .comment .commentHead {
+    font-size: 0.8rem;
+  }
 }
 /*# sourceMappingURL=Comments.module.css.map */

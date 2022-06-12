@@ -1,13 +1,13 @@
 .usersContainer {
-  background: #fd2d01;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  background: transparent;
   border-radius: 5px;
-  padding: 1.5rem;
+  padding: 0.75rem;
   width: 100%;
   width: 700px;
   max-height: 95vh;
   overflow: auto;
+  position: relative;
+  z-index: 1;
 
   @media only screen and (max-width: 992px) {
     padding: 0.75rem;

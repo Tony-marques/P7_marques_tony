@@ -1,0 +1,93 @@
+.form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 400px;
+  height: 450px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #5d6079;
+  border: 1px solid #fd2d01;
+  padding: 1rem;
+  border-radius: 5px;
+  -webkit-box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
+          box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form input {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid #dddfe2;
+  outline: none;
+  -webkit-transition: border-color 0.3s;
+  transition: border-color 0.3s;
+}
+
+.form input:focus {
+  border-color: black;
+}
+
+.form input[type="button"] {
+  cursor: pointer;
+}
+
+.form hr {
+  height: 1px;
+  background-color: #FFD7D7;
+  width: 100%;
+  border: none;
+}
+
+.form .loginBtn {
+  background: #ffd7d7;
+  color: #4e5166;
+  font-weight: bold;
+  border: 1px solid transparent;
+  font-size: 1.1rem;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.form .loginBtn:hover {
+  background: white;
+  color: #4e5166;
+  border-color: #4e5166;
+}
+
+.form .accountBtn {
+  width: 50%;
+  background: #ffd7d7;
+  color: #4e5166;
+  font-weight: bold;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.form .accountBtn:hover {
+  background: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .form {
+    max-width: 500px;
+    width: 90%;
+    margin: 2rem auto;
+    font-size: 0.6rem;
+  }
+  .form .accountBtn {
+    width: 100% !important;
+  }
+  .form .loginBtn {
+    font-size: 1rem;
+  }
+}
+/*# sourceMappingURL=SignUp.module.css.map */

@@ -1,41 +1,36 @@
 .usersContainer {
-  background: #ffd7d7;
-  background-image: url("https://www.transparenttextures.com/patterns/dark-stripes-light.png");
-  -webkit-box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-          box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+  background: transparent;
   border-radius: 5px;
-  padding: 1.5rem;
+  padding: 0.75rem;
   width: 100%;
   width: 700px;
   max-height: 95vh;
   overflow: auto;
 }
 
-table {
-  border-collapse: collapse;
-}
-
-thead {
-  border-radius: 5px;
-}
-
-td {
-  width: 20%;
-}
-
-.delete {
-  width: 5%;
-}
-
-.admin {
-  width: 7.5%;
-}
-
-.email {
-  width: 25%;
+@media only screen and (max-width: 992px) {
+  .usersContainer {
+    padding: 0.75rem;
+    width: 70%;
+  }
 }
 
 .usersContainer::-webkit-scrollbar {
   display: none;
+}
+
+@media only screen and (max-width: 750px) {
+  .usersContainer {
+    width: 95%;
+    max-height: calc(95vh - 80px);
+    top: 2%;
+    padding: 0.5rem;
+  }
+  .usersContainer .admin {
+    width: 9%;
+  }
+  .usersContainer .email {
+    width: 30%;
+  }
 }
 /*# sourceMappingURL=AllUsers.module.css.map */

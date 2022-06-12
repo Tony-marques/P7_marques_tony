@@ -9,7 +9,7 @@ import { formatDate } from "../../Utils/formatDate";
 import pp from "../../assets/DefaultProfil.jpg";
 import { apiComment } from "../../Api/Api";
 
-export default function Comments({ item }) {
+export default function Comments({ item, setShowComments }) {
   // Variables
   const token = Cookies.get("token");
 
@@ -30,6 +30,7 @@ export default function Comments({ item }) {
       })
       .then(() => {
         setIsPostUpdating(true);
+        setShowComments(false);
         toast.success("Le commentaire a été supprimé.");
       })
       .catch((err) => {
@@ -47,14 +48,13 @@ export default function Comments({ item }) {
               src={item.user.image ? item.user.image : pp}
               alt="photo de profil"
             />
+          </div>
+          <div className={styles.commentName}>
             <div className={styles.name}>
               {item.user.name} - {item.user.lastname}
             </div>
+            <div className={styles.date}>{formatDate(item.createdAt)}</div>
           </div>
-          <div className={styles.date}>{formatDate(item.createdAt)}</div>
-        </div>
-        <div className={styles.commentBottom}>
-          <div className={styles.commentBody}>{item.content}</div>
           <div className={styles.btnContainer}>
             {item.userId == USER_ID ? (
               <button onClick={deleteComment}>
@@ -66,6 +66,9 @@ export default function Comments({ item }) {
               </button>
             ) : null}
           </div>
+        </div>
+        <div className={styles.commentBottom}>
+          <div className={styles.commentBody}>{item.content}</div>
         </div>
       </div>
     </div>

@@ -15,11 +15,13 @@ import Navbar from "./components/Navbar/Navbar";
 import Home from "./pages/Home/Home";
 import Profil from "./pages/Profil/Profil";
 import Error404 from "./pages/Error404/Error404";
+import Error404Bis from "./pages/Error404/Error404Bis";
 import { ToggleAddContext } from "./contexts/ToggleAddContext";
 import PersonnalsPosts from "./pages/PersonnalsPosts/PersonnalsPosts";
 import AllUsers from "./pages/AllUsers/AllUsers";
 import { apiUser, setHeaders } from "./Api/Api";
 import AddForm from "./components/AddForm/AddForm";
+import Particules from "./components/Particules/Particules";
 
 const App = () => {
   // Variables
@@ -97,6 +99,7 @@ const App = () => {
     >
       <ToggleAddContext.Provider value={{ toggleAdd, setToggleAdd }}>
         <div className="containerRoot">
+          <Particules />
           <Router>
             <Navbar />
             <Routes>
@@ -106,6 +109,7 @@ const App = () => {
                 <Route path="/profil/:id" element={<Profil />} />
                 <Route path="/myposts" element={<PersonnalsPosts />} />
                 <Route path="/:id" element={<Error404 />} />
+                <Route path="*" element={<Error404Bis />} />
                 <Route element={<PrivateAdminRoute />}>
                   <Route path="/allusers" element={<AllUsers />} />
                 </Route>

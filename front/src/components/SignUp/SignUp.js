@@ -55,25 +55,21 @@ export default function Login({ setLogin }) {
         placeholder="E-mail"
         onChange={(e) => setEmail(e.target.value)}
       />
-      {errors && path == "email" && <span>{errors}</span>}
       <input
         type="password"
         placeholder="Mot de passe"
         onChange={(e) => setPassword(e.target.value)}
       />
-      {errors && path == "password" && <span>{errors}</span>}
       <input
         type="text"
         placeholder="Nom"
         onChange={(e) => setLastname(e.target.value)}
       />
-      {errors && path == "lastname" && <span>{errors}</span>}
       <input
         type="text"
         placeholder="Prénom"
         onChange={(e) => setFirstname(e.target.value)}
       />
-      {errors && path == "name" && <span>{errors}</span>}
       <input
         type="button"
         value="Créer mon compte"

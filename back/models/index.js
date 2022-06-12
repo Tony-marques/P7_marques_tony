@@ -1,23 +1,25 @@
 const config = require("../config/db.js");
 
+
 const { Sequelize, DataTypes } = require("sequelize");
 
 // Création de la connexion
 const sequelize = new Sequelize({ ...config });
 
+
 // Connexion à la DB
-sequelize
+sequelize 
   .authenticate()
   .then(() => console.log("Connecté à la BDD"))
   .catch((err) => console.log("Non connecté à la BDD"));
 
 // Création de l'objet ou l'on va stocker toutes les models
-const db = {};
+const db = {}; 
 
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
+db.Sequelize = Sequelize; 
+db.sequelize = sequelize; 
 
-db.post = require("./post.model")(sequelize, DataTypes);
+db.post = require("./post.model")(sequelize, DataTypes); 
 db.user = require("./user.model")(sequelize, DataTypes);
 db.comment = require("./comment.model")(sequelize, DataTypes);
 db.like = require("./like.model")(sequelize, DataTypes);
