@@ -51,7 +51,7 @@ export default function News() {
               );
             })
         ) : (
-          <p>Il n'y a actuellement aucun message.</p>
+          <p className={styles.emptyPost}>Il n'y a actuellement aucun message.</p>
         )}
       </div>
     </main>

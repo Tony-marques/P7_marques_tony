@@ -18,6 +18,16 @@
   .postsContainer::-webkit-scrollbar {
     display: none;
   }
+
+  .emptyPost {
+    border: 1px solid #fd2d01;
+    border-radius: 5px;
+    background: #5d6079;
+    position: relative;
+    color: #fff;
+    z-index: 1;
+    padding: 2rem;
+  }
 }
 
 @media only screen and (max-width: 992px) {
