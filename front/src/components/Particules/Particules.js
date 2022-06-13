@@ -4,7 +4,7 @@ import { loadFull } from "tsparticles";
 
 export default function Particules() {
   const particlesInit = async (main) => {
-    console.log(main);
+    // console.log(main);
 
     // you can initialize the tsParticles instance (main) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
@@ -13,7 +13,7 @@ export default function Particules() {
   };
 
   const particlesLoaded = (container) => {
-    console.log(container);
+    // console.log(container);
   };
   return (
     <Particles
