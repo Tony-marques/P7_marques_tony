@@ -1,5 +1,6 @@
 # Installation du Projet 7 - Groupomania (à faire dans l'ordre)
 
+Importer le fichier .sql par exemple sur phpMyAdmin pour récupérer les tables déjà construites
 ## Backend
 
 - Retirer l'extension .example sur le .env situé à la racine dans le dossier back/config
